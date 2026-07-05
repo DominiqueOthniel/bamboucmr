@@ -39,15 +39,16 @@ export function Header() {
     <header
       className={`sticky top-0 z-50 border-b transition-[background,border-color,box-shadow] duration-300 ${
         scrolled
-          ? "border-line bg-paper/85 shadow-[0_8px_30px_-22px_rgba(18,48,28,.5)] backdrop-blur-xl"
-          : "border-transparent bg-paper/70 backdrop-blur-md"
+          ? "border-line bg-paper/90 shadow-[0_8px_30px_-22px_rgba(18,48,28,.5)] backdrop-blur-xl"
+          : "border-transparent bg-paper/80 backdrop-blur-md"
       }`}
     >
-      <div className="mx-auto flex h-[72px] max-w-[1160px] items-center gap-7 px-5 sm:px-8 lg:px-16">
-        <Logo />
+      <div className="container-site flex h-[68px] items-center gap-3 sm:h-[72px] sm:gap-4">
+        <Logo compact className="sm:hidden" />
+        <Logo className="hidden sm:inline-flex" />
 
         <nav
-          className="ml-auto hidden items-center gap-1 lg:flex"
+          className="ml-auto hidden items-center gap-0.5 lg:flex"
           aria-label="Navigation principale"
         >
           {navLinks.map((link) => (
@@ -55,7 +56,7 @@ export function Header() {
               key={link.href}
               href={link.href}
               aria-current={isActive(link.href) ? "page" : undefined}
-              className={`relative rounded-[10px] px-3.5 py-2 text-[0.94rem] font-medium transition-colors ${
+              className={`relative whitespace-nowrap rounded-[10px] px-3 py-2 text-[0.9rem] font-medium transition-colors xl:px-3.5 xl:text-[0.94rem] ${
                 isActive(link.href)
                   ? "text-bamboo"
                   : "text-ink hover:bg-sand"
@@ -65,7 +66,7 @@ export function Header() {
               {isActive(link.href) && (
                 <motion.span
                   layoutId="nav-underline"
-                  className="absolute inset-x-3.5 bottom-1 h-0.5 rounded-full bg-shoot-deep"
+                  className="absolute inset-x-3 bottom-1 h-0.5 rounded-full bg-shoot-deep"
                   transition={
                     reduce
                       ? { duration: 0 }
@@ -79,15 +80,16 @@ export function Header() {
 
         <Link
           href="/contact"
-          className="ml-3 hidden items-center gap-2 rounded-xl bg-forest px-5 py-2.5 text-[0.94rem] font-semibold text-white transition hover:-translate-y-0.5 hover:bg-bamboo hover:shadow-[0_12px_24px_-12px_rgba(47,107,60,.7)] lg:inline-flex"
+          className="ml-auto hidden items-center gap-2 whitespace-nowrap rounded-xl bg-forest px-4 py-2.5 text-[0.88rem] font-semibold text-white transition hover:bg-bamboo lg:ml-3 lg:inline-flex xl:px-5 xl:text-[0.94rem]"
         >
-          Devenir partenaire
+          <span className="hidden xl:inline">Devenir partenaire</span>
+          <span className="xl:hidden">Partenaire</span>
           <ArrowRight className="h-4 w-4" />
         </Link>
 
         <button
           type="button"
-          className="ml-auto flex h-11 w-11 items-center justify-center rounded-[11px] bg-sand lg:hidden"
+          className="ml-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-[11px] bg-sand lg:hidden"
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -99,19 +101,22 @@ export function Header() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="border-b border-line bg-surface px-5 pb-6 pt-2 shadow-lg lg:hidden"
+            className="overflow-hidden border-b border-line bg-surface lg:hidden"
           >
-            <nav className="flex flex-col gap-1" aria-label="Menu mobile">
+            <nav
+              className="container-site flex flex-col gap-1 py-4"
+              aria-label="Menu mobile"
+            >
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.04 }}
+                  transition={{ delay: i * 0.03 }}
                 >
                   <Link
                     href={link.href}
@@ -128,7 +133,7 @@ export function Header() {
               ))}
               <Link
                 href="/contact"
-                className="mt-3 inline-flex items-center justify-center gap-2 rounded-xl bg-forest px-5 py-3 font-semibold text-white"
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-forest px-5 py-3 font-semibold text-white"
               >
                 Devenir partenaire
                 <ArrowRight className="h-4 w-4" />

@@ -28,10 +28,10 @@ const socials = [
 export function Footer() {
   return (
     <footer className="bg-forest text-[#C7D3C1]">
-      <div className="mx-auto max-w-[1160px] px-5 pb-8 pt-14 sm:px-8 lg:px-16 lg:pt-20">
+      <div className="container-site pb-8 pt-14 lg:pt-20">
         <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.4fr]">
           <div>
-            <Logo light />
+            <Logo dark />
             <p className="mt-4 max-w-[34ch] text-[0.92rem]">
               Créer un modèle de développement durable intégrant le bambou comme
               levier économique, tout en protégeant l&apos;environnement.
@@ -85,7 +85,7 @@ export function Footer() {
             <ul className="space-y-3 text-[0.9rem]">
               <li className="flex gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-shoot" />
-                Immeuble Gabon Bar, face au stade de Foréké — Dschang
+                Immeuble Gabon Bar, face au stade de Foréké, Dschang
               </li>
               <li className="flex gap-2.5">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-shoot" />
@@ -104,7 +104,7 @@ export function Footer() {
         </div>
 
         <div className="mt-11 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-[0.85rem]">
-          <span>© 2026 BambouCamer — Nouveau vecteur de l&apos;économie verte.</span>
+          <span>© 2026 BambouCamer · Nouveau vecteur de l&apos;économie verte.</span>
           <div className="flex flex-wrap gap-5">
             <Link href="/mentions-legales" className="hover:text-shoot">Mentions légales</Link>
             <Link href="/confidentialite" className="hover:text-shoot">Confidentialité</Link>

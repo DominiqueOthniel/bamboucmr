@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowRight, Leaf, Sparkles } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import { SiteImage } from "@/components/shared/SiteImage";
+import { Eyebrow } from "@/components/shared/Eyebrow";
 import { images } from "@/lib/images";
 
 const ease = [0.22, 0.61, 0.36, 1] as const;
@@ -15,14 +16,13 @@ export function Hero() {
     reduce
       ? {}
       : {
-          initial: { opacity: 0, y: 32 },
+          initial: { opacity: 0, y: 28 },
           animate: { opacity: 1, y: 0 },
-          transition: { duration: 0.8, ease, delay },
+          transition: { duration: 0.75, ease, delay },
         };
 
   return (
-    <section className="relative min-h-[88vh] overflow-hidden">
-      {/* Photo de fond */}
+    <section className="relative overflow-hidden">
       <div className="absolute inset-0" aria-hidden="true">
         <SiteImage
           src={images.hero}
@@ -32,68 +32,46 @@ export function Hero() {
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-forest/92 via-forest/78 to-forest/45" />
-        <div className="absolute inset-0 bg-gradient-to-t from-forest/80 via-transparent to-bamboo/20" />
-        <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(180,214,75,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(180,214,75,.08)_1px,transparent_1px)] [background-size:40px_40px]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-forest/94 via-forest/82 to-forest/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest/85 via-transparent to-bamboo/15" />
       </div>
 
-      {/* Blobs animés */}
-      {!reduce && (
-        <>
-          <motion.div
-            className="pointer-events-none absolute -left-20 top-20 h-64 w-64 rounded-full bg-shoot/20 blur-3xl"
-            animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
-            transition={{ duration: 8, repeat: Infinity }}
-          />
-          <motion.div
-            className="pointer-events-none absolute bottom-10 right-10 h-48 w-48 rounded-full bg-bamboo/30 blur-3xl"
-            animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 10, repeat: Infinity, delay: 1 }}
-          />
-        </>
-      )}
-
-      <div className="relative mx-auto grid max-w-[1160px] items-center gap-10 px-5 pb-20 pt-16 sm:px-8 lg:min-h-[88vh] lg:grid-cols-[1.1fr_.9fr] lg:gap-14 lg:px-16 lg:pb-24 lg:pt-20">
+      <div className="container-site relative grid items-center gap-8 py-14 sm:gap-10 sm:py-16 lg:grid-cols-2 lg:gap-14 lg:py-20 xl:py-24">
         <div className="text-white">
-          <motion.div
-            {...fadeUp(0.05)}
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-shoot backdrop-blur-md"
-          >
-            <Sparkles className="h-3.5 w-3.5" />
-            Nouveau vecteur de l&apos;économie verte
+          <motion.div {...fadeUp(0.05)}>
+            <Eyebrow tone="on-dark">Nouveau vecteur de l&apos;économie verte</Eyebrow>
           </motion.div>
 
           <motion.h1
-            {...fadeUp(0.15)}
-            className="mt-6 max-w-[14ch] text-[clamp(2.8rem,6.8vw,5rem)] leading-[0.95] text-white"
+            {...fadeUp(0.12)}
+            className="mt-5 text-[clamp(2.4rem,7vw,4.5rem)] leading-[0.95] text-white"
           >
-            Bambou{" "}
-            <span className="text-shoot">Camer</span>
+            Bambou <span className="text-shoot">Camer</span>
           </motion.h1>
 
           <motion.p
-            {...fadeUp(0.25)}
-            className="mt-5 max-w-[46ch] text-[clamp(1.05rem,1.6vw,1.25rem)] text-white/88"
+            {...fadeUp(0.22)}
+            className="mt-5 max-w-[48ch] text-[clamp(1rem,2.5vw,1.2rem)] leading-relaxed text-white/90"
           >
             Transforme le bambou en moteur de développement durable au Cameroun
-            et en Afrique — protéger l&apos;environnement, préserver la
-            biodiversité et dynamiser les économies locales.
+            et en Afrique. Protéger l&apos;environnement, préserver la biodiversité
+            et dynamiser les économies locales.
           </motion.p>
 
           <motion.div
-            {...fadeUp(0.38)}
-            className="mt-8 flex flex-wrap gap-3.5"
+            {...fadeUp(0.32)}
+            className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
           >
             <Link
               href="/solutions"
-              className="group inline-flex items-center gap-2.5 rounded-[13px] bg-shoot px-6 py-3.5 font-semibold text-forest shadow-lg transition hover:-translate-y-0.5 hover:bg-white"
+              className="group inline-flex items-center justify-center gap-2 rounded-[13px] bg-shoot px-6 py-3.5 font-semibold text-forest shadow-lg transition hover:bg-white"
             >
               En savoir plus
               <ArrowDown className="h-[18px] w-[18px] transition group-hover:translate-y-0.5" />
             </Link>
             <Link
               href="/apropos"
-              className="inline-flex items-center gap-2.5 rounded-[13px] border border-white/35 bg-white/10 px-6 py-3.5 font-semibold text-white backdrop-blur transition hover:bg-white/20"
+              className="inline-flex items-center justify-center gap-2 rounded-[13px] border border-white/35 bg-white/10 px-6 py-3.5 font-semibold text-white backdrop-blur transition hover:bg-white/20"
             >
               Qui sommes-nous
               <ArrowRight className="h-[18px] w-[18px]" />
@@ -101,84 +79,64 @@ export function Hero() {
           </motion.div>
 
           <motion.div
-            {...fadeUp(0.5)}
-            className="mt-10 flex flex-wrap gap-3"
+            {...fadeUp(0.42)}
+            className="mt-8 flex flex-wrap gap-2 sm:gap-3"
           >
-            {[
-              { icon: Leaf, label: "Association ONG" },
-              { icon: Sparkles, label: "Startup sociale" },
-              { icon: Leaf, label: "Basée à Dschang" },
-            ].map(({ icon: Icon, label }) => (
-              <span
-                key={label}
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-3.5 py-2 text-[0.82rem] text-white/90 backdrop-blur"
-              >
-                <Icon className="h-3.5 w-3.5 text-shoot" />
-                {label}
-              </span>
-            ))}
+            {["Association ONG", "Startup sociale", "Basée à Dschang"].map(
+              (label) => (
+                <span
+                  key={label}
+                  className="rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-[0.78rem] text-white/90 backdrop-blur sm:text-[0.82rem]"
+                >
+                  {label}
+                </span>
+              )
+            )}
           </motion.div>
         </div>
 
-        {/* Carte visuelle */}
-        <motion.div
-          {...fadeUp(0.2)}
-          className="relative mx-auto w-full max-w-[440px] lg:max-w-none"
-        >
-          <div className="relative overflow-hidden rounded-[24px] border border-white/15 shadow-[0_30px_60px_-20px_rgba(0,0,0,.5)]">
+        <motion.div {...fadeUp(0.18)} className="w-full lg:max-w-[520px] lg:justify-self-end">
+          <div className="relative overflow-hidden rounded-[20px] border border-white/15 shadow-2xl sm:rounded-[24px]">
             <SiteImage
               src={images.bambooField}
-              alt="Champ de bambou — BambouCamer"
+              alt="Champ de bambou au Cameroun"
               width={1140}
               height={570}
-              className="aspect-[4/3] w-full"
+              className="aspect-[4/3] w-full sm:aspect-[16/10]"
               priority
             />
-            <div className="absolute inset-0 rounded-[24px] ring-1 ring-inset ring-white/10" />
           </div>
 
-          <motion.div
-            className="absolute -bottom-4 -left-3 rounded-2xl border border-white/20 bg-forest/90 px-4 py-3 text-white shadow-xl backdrop-blur md:-left-6"
-            initial={reduce ? false : { opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-          >
-            <p className="font-display text-2xl font-bold text-shoot">12 000+</p>
-            <p className="text-sm text-white/80">plants mis en terre</p>
-          </motion.div>
-
-          <motion.div
-            className="absolute -right-2 top-6 rounded-2xl border border-white/20 bg-white/95 px-4 py-3 text-forest shadow-xl md:-right-5"
-            initial={reduce ? false : { opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.85 }}
-          >
-            <p className="font-display text-lg font-bold">×4 CO₂</p>
-            <p className="text-sm text-muted">vs arbre ordinaire</p>
-          </motion.div>
+          <div className="mt-4 grid grid-cols-2 gap-3 sm:gap-4">
+            <div className="rounded-2xl border border-white/20 bg-forest/90 px-4 py-3 text-white backdrop-blur">
+              <p className="font-display text-xl font-bold text-shoot sm:text-2xl">
+                12 000+
+              </p>
+              <p className="text-xs text-white/80 sm:text-sm">plants mis en terre</p>
+            </div>
+            <div className="rounded-2xl border border-white/20 bg-white/95 px-4 py-3 text-forest">
+              <p className="font-display text-lg font-bold sm:text-xl">×4 CO₂</p>
+              <p className="text-xs text-muted sm:text-sm">vs arbre ordinaire</p>
+            </div>
+          </div>
         </motion.div>
       </div>
 
-      <motion.div
-        className="relative flex justify-center pb-8"
-        initial={reduce ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-      >
+      <div className="relative flex justify-center pb-8">
         <a
           href="#chiffres"
-          className="flex flex-col items-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-white/70"
+          className="flex flex-col items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-white/70"
         >
           Explorer
-          <span className="grid h-10 w-6 place-items-start justify-center overflow-hidden rounded-full border border-white/30 pt-2">
+          <span className="grid h-9 w-5 place-items-start justify-center overflow-hidden rounded-full border border-white/30 pt-1.5">
             <motion.span
               className="h-2 w-1 rounded-full bg-shoot"
-              animate={reduce ? undefined : { y: [0, 12, 0] }}
+              animate={reduce ? undefined : { y: [0, 10, 0] }}
               transition={{ duration: 1.6, repeat: Infinity }}
             />
           </span>
         </a>
-      </motion.div>
+      </div>
     </section>
   );
 }

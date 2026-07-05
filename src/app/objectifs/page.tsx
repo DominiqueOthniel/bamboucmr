@@ -36,7 +36,7 @@ export default function ObjectifsPage() {
       />
 
       <section className="bg-sand py-16 sm:py-24">
-        <div className="mx-auto max-w-[1160px] px-5 sm:px-8 lg:px-16">
+        <div className="container-site">
           <Stagger className="grid gap-5 sm:grid-cols-2">
             {pillars.map((pillar, i) => {
               const Icon = icons[pillar.icon];

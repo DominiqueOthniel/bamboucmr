@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Calendar } from "lucide-react";
 import { SiteImage } from "@/components/shared/SiteImage";
+import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { news } from "@/lib/data";
 
@@ -8,12 +9,12 @@ export function NewsPreview() {
   const preview = news.slice(0, 3);
 
   return (
-    <section className="bg-sand py-16 sm:py-24">
-      <div className="mx-auto max-w-[1160px] px-5 sm:px-8 lg:px-16">
-        <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-4">
+    <section className="bg-sand py-14 sm:py-24">
+      <div className="container-site">
+        <Reveal className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
           <div className="max-w-[640px]">
-            <span className="eyebrow">Actualités & terrain</span>
-            <h2 className="mt-4 text-[clamp(1.9rem,4.2vw,2.9rem)]">
+            <Eyebrow>Actualités & terrain</Eyebrow>
+            <h2 className="mt-4 text-[clamp(1.75rem,4.2vw,2.9rem)]">
               Nos interventions récentes, là où les besoins sont réels
             </h2>
           </div>
@@ -26,10 +27,10 @@ export function NewsPreview() {
           </Link>
         </Reveal>
 
-        <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {preview.map((item) => (
             <StaggerItem key={item.title}>
-              <article className="group flex h-full flex-col overflow-hidden rounded-[20px] border border-line bg-surface shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-xl">
+              <article className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-line bg-surface shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-xl sm:rounded-[20px]">
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <SiteImage
                     src={item.image}
@@ -47,8 +48,10 @@ export function NewsPreview() {
                     <Calendar className="h-3.5 w-3.5" />
                     {item.date}
                   </span>
-                  <h3 className="mt-2.5 text-[1.05rem] leading-snug">{item.title}</h3>
-                  <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[0.9rem] font-semibold text-bamboo">
+                  <h3 className="mt-2.5 text-[1rem] leading-snug sm:text-[1.05rem]">
+                    {item.title}
+                  </h3>
+                  <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[0.88rem] font-semibold text-bamboo sm:text-[0.9rem]">
                     Lire l&apos;article
                     <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
                   </span>

@@ -23,7 +23,7 @@ export default function AproposPage() {
       />
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto grid max-w-[1160px] items-start gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:px-16">
+        <div className="container-site grid items-start gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
             <div className="space-y-3">
               {aboutQuestions.map((q, i) => (

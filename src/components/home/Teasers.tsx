@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 
 const teasers = [
@@ -31,16 +32,14 @@ const teasers = [
 
 export function Teasers() {
   return (
-    <section className="py-16 sm:py-24">
-      <div className="mx-auto max-w-[1160px] px-5 sm:px-8 lg:px-16">
-        <Reveal className="mb-10 max-w-[640px] sm:mb-14">
-          <span className="inline-flex items-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-bamboo before:h-0.5 before:w-[22px] before:rounded-full before:bg-shoot-deep before:content-['']">
-            Explorer BambouCamer
-          </span>
-          <h2 className="mt-4 text-[clamp(1.9rem,4.4vw,3rem)]">
+    <section className="py-14 sm:py-24">
+      <div className="container-site">
+        <Reveal className="mb-8 max-w-[640px] sm:mb-14">
+          <Eyebrow>Explorer BambouCamer</Eyebrow>
+          <h2 className="mt-4 text-[clamp(1.75rem,4.4vw,3rem)]">
             Une mission, plusieurs leviers d&apos;action.
           </h2>
-          <p className="mt-4 text-[1.05rem] text-muted">
+          <p className="mt-4 text-[1rem] text-muted sm:text-[1.05rem]">
             Découvrez qui nous sommes, ce que nous visons et comment le bambou
             devient un outil concret de développement durable.
           </p>
@@ -51,13 +50,11 @@ export function Teasers() {
             <StaggerItem key={item.href}>
               <Link
                 href={item.href}
-                className="group flex h-full flex-col rounded-[18px] border border-line bg-surface p-7 transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_6px_14px_rgba(18,48,28,.08),0_26px_50px_-24px_rgba(18,48,28,.38)]"
+                className="group flex h-full flex-col rounded-[18px] border border-line bg-surface p-6 transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_6px_14px_rgba(18,48,28,.08),0_26px_50px_-24px_rgba(18,48,28,.38)] sm:p-7"
               >
-                <span className="inline-flex items-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-bamboo before:h-0.5 before:w-[22px] before:rounded-full before:bg-shoot-deep before:content-['']">
-                  {item.eyebrow}
-                </span>
-                <h3 className="mt-3 text-[1.2rem]">{item.title}</h3>
-                <p className="mt-2.5 flex-1 text-[0.95rem] text-muted">
+                <Eyebrow>{item.eyebrow}</Eyebrow>
+                <h3 className="mt-3 text-[1.1rem] sm:text-[1.2rem]">{item.title}</h3>
+                <p className="mt-2.5 flex-1 text-[0.92rem] text-muted sm:text-[0.95rem]">
                   {item.description}
                 </p>
                 <span className="mt-5 inline-flex items-center gap-2 font-semibold text-bamboo">

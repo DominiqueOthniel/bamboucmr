@@ -60,7 +60,7 @@ export function Stats() {
             "radial-gradient(circle at 15% 50%, rgba(180,214,75,.2), transparent 40%), radial-gradient(circle at 85% -10%, rgba(180,214,75,.16), transparent 45%)",
         }}
       />
-      <div className="relative mx-auto max-w-[1160px] px-5 sm:px-8 lg:px-16">
+      <div className="container-site relative">
         <p className="mb-10 text-center font-display text-[clamp(1.2rem,2.5vw,1.6rem)] text-shoot">
           Notre impact en chiffres
         </p>

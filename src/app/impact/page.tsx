@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/shared/PageHero";
 import { ImpactBars } from "@/components/shared/ImpactBars";
+import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
 import { images } from "@/lib/images";
 
@@ -22,11 +23,9 @@ export default function ImpactPage() {
       />
 
       <section className="bg-forest py-16 text-[#EFF4EA] sm:py-24">
-        <div className="mx-auto grid max-w-[1160px] items-center gap-10 px-5 sm:px-8 lg:grid-cols-[.95fr_1.05fr] lg:gap-16 lg:px-16">
+        <div className="container-site grid items-center gap-8 sm:gap-10 lg:grid-cols-[.95fr_1.05fr] lg:gap-16">
           <Reveal>
-            <span className="eyebrow text-shoot before:bg-shoot">
-              Notre impact
-            </span>
+            <Eyebrow tone="on-dark">Notre impact</Eyebrow>
             <h2 className="mt-4 text-[clamp(1.9rem,4.2vw,2.9rem)] text-white">
               Des avancées concrètes sur le terrain
             </h2>

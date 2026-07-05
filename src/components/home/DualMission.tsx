@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SiteImage } from "@/components/shared/SiteImage";
+import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { images } from "@/lib/images";
 
@@ -25,15 +26,15 @@ const cards = [
 
 export function DualMission() {
   return (
-    <section className="relative overflow-hidden bg-forest py-16 text-white sm:py-20">
+    <section className="relative overflow-hidden bg-forest py-14 text-white sm:py-20">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(180,214,75,.18),transparent_45%)]" />
-      <div className="relative mx-auto max-w-[1160px] px-5 sm:px-8 lg:px-16">
+      <div className="container-site relative">
         <Reveal className="mb-10 text-center">
-          <span className="inline-flex items-center justify-center gap-2 text-[0.78rem] font-semibold uppercase tracking-[0.14em] text-shoot before:h-0.5 before:w-[22px] before:rounded-full before:bg-shoot before:content-['']">
+          <Eyebrow tone="on-dark" className="justify-center">
             Une association · Une startup
-          </span>
-          <h2 className="mt-4 text-[clamp(1.8rem,4vw,2.8rem)]">
-            BambouCamer — une seule mission
+          </Eyebrow>
+          <h2 className="mt-4 text-[clamp(1.75rem,4vw,2.8rem)]">
+            BambouCamer, une seule mission
           </h2>
           <p className="mx-auto mt-4 max-w-[640px] text-[#B9C7B4]">
             Nés au Cameroun, engagés pour l&apos;Afrique. Deux forces complémentaires
@@ -41,12 +42,12 @@ export function DualMission() {
           </p>
         </Reveal>
 
-        <Stagger className="grid gap-5 md:grid-cols-2">
+        <Stagger className="grid gap-4 sm:gap-5 md:grid-cols-2">
           {cards.map((card) => (
             <StaggerItem key={card.title}>
               <Link
                 href={card.href}
-                className="group relative block overflow-hidden rounded-[20px] border border-white/10"
+                className="group relative block overflow-hidden rounded-[18px] border border-white/10 sm:rounded-[20px]"
               >
                 <SiteImage
                   src={card.image}
@@ -59,8 +60,8 @@ export function DualMission() {
                   className={`absolute inset-0 bg-gradient-to-t ${card.color} opacity-80 mix-blend-multiply`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h3 className="text-xl">{card.title}</h3>
+                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                  <h3 className="text-lg sm:text-xl">{card.title}</h3>
                   <p className="mt-2 max-w-[40ch] text-sm text-white/85">
                     {card.description}
                   </p>

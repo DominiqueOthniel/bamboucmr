@@ -17,17 +17,17 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Construisons ensemble une Afrique durable."
-        description="Une question, un projet, un partenariat ? Écrivez-nous — notre équipe vous répond sous 48 h."
+        description="Une question, un projet, un partenariat ? Écrivez-nous, notre équipe vous répond sous 48 h."
       />
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto grid max-w-[1160px] gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-14 lg:px-16">
+        <div className="container-site grid gap-10 lg:grid-cols-2 lg:gap-14">
           <Reveal>
             <div className="space-y-1.5">
               <Info
                 icon={MapPin}
                 label="Adresse"
-                value="Immeuble Gabon Bar, face au stade de Foréké — Dschang"
+                value="Immeuble Gabon Bar, face au stade de Foréké, Dschang"
               />
               <Info
                 icon={Phone}

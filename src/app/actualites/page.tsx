@@ -20,7 +20,7 @@ export default function ActualitesPage() {
       />
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-[1160px] px-5 sm:px-8 lg:px-16">
+        <div className="container-site">
           <NewsGrid />
         </div>
       </section>

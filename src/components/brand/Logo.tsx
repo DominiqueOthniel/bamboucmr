@@ -1,46 +1,37 @@
+import Image from "next/image";
 import Link from "next/link";
 
-export function Logo({
-  className = "",
-  light = false,
-}: {
+type LogoProps = {
   className?: string;
-  light?: boolean;
-}) {
+  /** Footer sur fond sombre */
+  dark?: boolean;
+  /** Masquer le nom à côté du logo (mobile serré) */
+  compact?: boolean;
+};
+
+export function Logo({ className = "", dark = false, compact = false }: LogoProps) {
   return (
     <Link
       href="/"
-      className={`inline-flex items-center gap-2.5 font-display text-[1.15rem] font-bold tracking-tight ${className}`}
+      className={`inline-flex min-w-0 items-center gap-2.5 ${className}`}
       aria-label="BambouCamer, accueil"
     >
-      <svg
-        viewBox="0 0 30 34"
-        className="h-[34px] w-[30px] shrink-0"
-        fill="none"
-        aria-hidden="true"
-      >
-        <rect
-          x="11"
-          y="2"
-          width="8"
-          height="30"
-          rx="4"
-          fill={light ? "#B4D64B" : "#2F6B3C"}
-        />
-        <rect x="11" y="10.5" width="8" height="2.4" fill="#12301C" />
-        <rect x="11" y="20" width="8" height="2.4" fill="#12301C" />
-        <path
-          d="M11 7C6 6 3 8 2 12c4 1 8-1 9-5Z"
-          fill={light ? "#8FB63A" : "#B4D64B"}
-        />
-        {!light && (
-          <path d="M19 16c5-1 8 1 9 5-4 1-8-1-9-5Z" fill="#8FB63A" />
-        )}
-      </svg>
-      <span className={light ? "text-white" : "text-ink"}>
-        Bambou
-        <b className={light ? "text-shoot" : "text-bamboo"}>Camer</b>
-      </span>
+      <Image
+        src="/logo.jpg"
+        alt=""
+        width={48}
+        height={48}
+        className="h-10 w-10 shrink-0 rounded-full object-cover ring-2 ring-bamboo/20"
+        priority
+      />
+      {!compact && (
+        <span
+          className={`truncate font-display text-[1.05rem] font-bold tracking-tight sm:text-[1.15rem] ${dark ? "text-white" : "text-ink"}`}
+        >
+          Bambou
+          <b className={dark ? "text-shoot" : "text-bamboo"}>Camer</b>
+        </span>
+      )}
     </Link>
   );
 }

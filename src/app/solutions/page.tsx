@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { SiteImage } from "@/components/shared/SiteImage";
 import { PageHero } from "@/components/shared/PageHero";
+import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { rseItems, solutions } from "@/lib/data";
 import { images } from "@/lib/images";
@@ -36,12 +37,12 @@ export default function SolutionsPage() {
       <PageHero
         eyebrow="Nos solutions"
         title="Des réponses concrètes pour un Cameroun et une Afrique durables."
-        description="Chaque action répond à un défi réel — de la restauration des terres aux crédits carbone certifiés."
+        description="Chaque action répond à un défi réel, de la restauration des terres aux crédits carbone certifiés."
         image={images.restoration}
       />
 
       <section className="py-16 sm:py-24">
-        <div className="mx-auto max-w-[1160px] px-5 sm:px-8 lg:px-16">
+        <div className="container-site">
           <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {solutions.map((sol) => {
               const Icon = icons[sol.icon];
@@ -95,11 +96,9 @@ export default function SolutionsPage() {
             aria-hidden
           />
         </div>
-        <div className="relative mx-auto max-w-[1160px] px-5 sm:px-8 lg:px-16">
+        <div className="relative container-site">
           <Reveal className="mb-10 max-w-[640px]">
-            <span className="eyebrow text-shoot before:bg-shoot">
-              Entreprises &amp; RSE
-            </span>
+            <Eyebrow tone="on-dark">Entreprises &amp; RSE</Eyebrow>
             <h2 className="mt-4 text-[clamp(1.9rem,4.2vw,2.9rem)]">
               Collaborer avec nous sur vos projets écologiques
             </h2>
