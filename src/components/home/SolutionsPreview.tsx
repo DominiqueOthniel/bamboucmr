@@ -11,6 +11,7 @@ import {
 import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { TiltCard } from "@/components/motion/TiltCard";
 import { solutions } from "@/lib/data";
 
 const icons = {
@@ -41,8 +42,9 @@ export function SolutionsPreview() {
           {solutions.map((sol) => {
             const Icon = icons[sol.icon];
             return (
-              <StaggerItem key={sol.title}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-line bg-surface shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-xl sm:rounded-[20px]">
+              <StaggerItem key={sol.title} variant="scale">
+                <TiltCard className="h-full">
+                <article className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-line bg-surface shadow-sm sm:rounded-[20px]">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <SiteImage
                       src={sol.image}
@@ -72,6 +74,7 @@ export function SolutionsPreview() {
                     </Link>
                   </div>
                 </article>
+                </TiltCard>
               </StaggerItem>
             );
           })}

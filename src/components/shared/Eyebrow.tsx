@@ -1,4 +1,8 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
+import { springBouncy } from "@/lib/motion";
 
 type EyebrowProps = {
   children: ReactNode;
@@ -13,11 +17,27 @@ const tones = {
 };
 
 export function Eyebrow({ children, className = "", tone = "default" }: EyebrowProps) {
+  const reduce = useReducedMotion();
+
+  if (reduce) {
+    return (
+      <span
+        className={`inline-flex items-center rounded-full border px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.1em] ${tones[tone]} ${className}`}
+      >
+        {children}
+      </span>
+    );
+  }
+
   return (
-    <span
+    <motion.span
       className={`inline-flex items-center rounded-full border px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.1em] ${tones[tone]} ${className}`}
+      initial={{ opacity: 0, scale: 0.6, y: 12 }}
+      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={springBouncy}
     >
       {children}
-    </span>
+    </motion.span>
   );
 }

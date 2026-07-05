@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { TiltCard } from "@/components/motion/TiltCard";
 
 const teasers = [
   {
@@ -47,7 +48,8 @@ export function Teasers() {
 
         <Stagger className="grid gap-4 md:grid-cols-3">
           {teasers.map((item) => (
-            <StaggerItem key={item.href}>
+            <StaggerItem key={item.href} variant="scale">
+              <TiltCard className="h-full">
               <Link
                 href={item.href}
                 className="group flex h-full flex-col rounded-[18px] border border-line bg-surface p-6 transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_6px_14px_rgba(18,48,28,.08),0_26px_50px_-24px_rgba(18,48,28,.38)] sm:p-7"
@@ -62,6 +64,7 @@ export function Teasers() {
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                 </span>
               </Link>
+              </TiltCard>
             </StaggerItem>
           ))}
         </Stagger>

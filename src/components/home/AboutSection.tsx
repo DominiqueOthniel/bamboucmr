@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
@@ -11,13 +12,20 @@ import { images } from "@/lib/images";
 
 export function AboutSection() {
   const reduce = useReducedMotion();
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const imageY = useTransform(scrollYProgress, [0, 1], ["8%", "-8%"]);
 
   return (
-    <section className="relative overflow-hidden py-14 sm:py-20 lg:py-24">
+    <section ref={ref} className="relative overflow-hidden py-14 sm:py-20 lg:py-24">
       <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-shoot/15 blur-3xl" />
       <div className="container-site grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
-        <Reveal className="relative">
+        <Reveal className="relative" variant="left">
           <div className="overflow-hidden rounded-[20px] shadow-xl sm:rounded-[22px]">
+            <motion.div style={reduce ? undefined : { y: imageY }}>
             <SiteImage
               src={images.bambooField}
               alt="Plantation de bambou au Cameroun"
@@ -25,6 +33,7 @@ export function AboutSection() {
               height={570}
               className="aspect-[16/10] w-full"
             />
+            </motion.div>
             <div className="bg-forest px-5 py-4 text-white sm:px-6 sm:py-5">
               <Eyebrow tone="on-dark" className="mb-2">
                 Terrain · Cameroun
@@ -49,7 +58,7 @@ export function AboutSection() {
         </Reveal>
 
         <div>
-          <Reveal>
+          <Reveal variant="right">
             <Eyebrow>Qui sommes-nous</Eyebrow>
             <h2 className="mt-4 text-[clamp(1.75rem,4vw,2.75rem)] leading-tight">
               Une association et une startup, une seule mission

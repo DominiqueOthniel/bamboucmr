@@ -8,6 +8,7 @@ import {
 import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { TiltCard } from "@/components/motion/TiltCard";
 import { pillars } from "@/lib/data";
 
 const icons = {
@@ -38,8 +39,9 @@ export function ObjectivesPreview() {
           {pillars.map((pillar, i) => {
             const Icon = icons[pillar.icon];
             return (
-              <StaggerItem key={pillar.title}>
-                <article className="group overflow-hidden rounded-[18px] border border-line bg-surface shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg sm:rounded-[20px]">
+              <StaggerItem key={pillar.title} variant="scale">
+                <TiltCard className="h-full">
+                <article className="group overflow-hidden rounded-[18px] border border-line bg-surface shadow-sm sm:rounded-[20px]">
                   <div className="relative aspect-[16/9] overflow-hidden">
                     <SiteImage
                       src={pillar.image}
@@ -68,6 +70,7 @@ export function ObjectivesPreview() {
                     </p>
                   </div>
                 </article>
+                </TiltCard>
               </StaggerItem>
             );
           })}
