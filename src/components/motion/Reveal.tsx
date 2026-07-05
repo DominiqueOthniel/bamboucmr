@@ -2,7 +2,14 @@
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
-import { fadeLeft, fadeRight, fadeUp, scaleIn, springSoft, staggerContainer } from "@/lib/motion";
+import {
+  fadeLeft,
+  fadeRight,
+  fadeUp,
+  scaleIn,
+  staggerContainer,
+  tweenSmooth,
+} from "@/lib/motion";
 
 type VariantName = "up" | "left" | "right" | "scale";
 
@@ -37,9 +44,9 @@ export function Reveal({
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-6% 0px" }}
+      viewport={{ once: true, margin: "-4% 0px", amount: 0.2 }}
       variants={variantMap[variant]}
-      transition={{ ...springSoft, delay }}
+      transition={{ ...tweenSmooth, delay }}
     >
       {children}
     </motion.div>
@@ -49,7 +56,7 @@ export function Reveal({
 export function Stagger({
   children,
   className,
-  stagger = 0.09,
+  stagger = 0.07,
 }: {
   children: ReactNode;
   className?: string;
@@ -66,11 +73,11 @@ export function Stagger({
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-6% 0px" }}
+      viewport={{ once: true, margin: "-4% 0px", amount: 0.15 }}
       variants={{
         hidden: {},
         visible: {
-          transition: { staggerChildren: stagger, delayChildren: 0.05 },
+          transition: { staggerChildren: stagger, delayChildren: 0.03 },
         },
       }}
     >
@@ -98,14 +105,13 @@ export function StaggerItem({
     <motion.div
       className={className}
       variants={variantMap[variant]}
-      transition={springSoft}
+      transition={tweenSmooth}
     >
       {children}
     </motion.div>
   );
 }
 
-/** Stagger container for hero / above-the-fold (animate on mount, not scroll) */
 export function StaggerMount({
   children,
   className,
@@ -145,7 +151,7 @@ export function StaggerMountItem({
   }
 
   return (
-    <motion.div className={className} variants={fadeUp} transition={{ ...springSoft, duration: 0.7 }}>
+    <motion.div className={className} variants={fadeUp} transition={tweenSmooth}>
       {children}
     </motion.div>
   );

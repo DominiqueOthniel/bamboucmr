@@ -6,7 +6,8 @@ import { ArrowRight } from "lucide-react";
 import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { springSnappy } from "@/lib/motion";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
+import { tweenSmooth } from "@/lib/motion";
 import { images } from "@/lib/images";
 
 const cards = [
@@ -30,15 +31,18 @@ const cards = [
 
 export function DualMission() {
   const reduce = useReducedMotion();
+  const lite = useLiteMotion();
 
   return (
     <section className="relative overflow-hidden bg-forest py-14 text-white sm:py-20">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(180,214,75,.18),transparent_45%)]" />
+      {!lite && (
       <motion.div
-        className="pointer-events-none absolute -right-32 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-shoot/10 blur-3xl"
-        animate={reduce ? undefined : { scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute -right-32 top-1/2 hidden h-64 w-64 -translate-y-1/2 rounded-full bg-shoot/10 blur-3xl md:block"
+        animate={reduce ? undefined : { scale: [1, 1.15, 1], opacity: [0.4, 0.6, 0.4] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
+      )}
       <div className="container-site relative">
         <Reveal className="mb-10 text-center">
           <Eyebrow tone="on-dark" className="justify-center">
@@ -56,17 +60,17 @@ export function DualMission() {
         <Stagger className="grid gap-4 sm:gap-5 md:grid-cols-2" stagger={0.15}>
           {cards.map((card) => (
             <StaggerItem key={card.title} variant="scale">
-              <motion.div whileHover={{ y: -8 }} transition={springSnappy}>
+              <motion.div whileHover={lite ? undefined : { y: -6 }} transition={tweenSmooth}>
                 <Link
                   href={card.href}
                   className="group relative block overflow-hidden rounded-[18px] border border-white/10 sm:rounded-[20px]"
                 >
                   <motion.div
                     className="overflow-hidden"
-                    initial={reduce ? false : { clipPath: "inset(0 100% 0 0)" }}
-                    whileInView={{ clipPath: "inset(0 0% 0 0)" }}
+                    initial={reduce || lite ? false : { opacity: 0, scale: 1.04 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.9, ease: [0.22, 0.61, 0.36, 1] }}
+                    transition={tweenSmooth}
                   >
                     <SiteImage
                       src={card.image}

@@ -7,6 +7,7 @@ import { ArrowRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/brand/Logo";
 import { navLinks } from "@/lib/data";
+import { tweenFast } from "@/lib/motion";
 
 export function Header() {
   const pathname = usePathname();
@@ -43,9 +44,8 @@ export function Header() {
           : "border-transparent bg-paper/80 backdrop-blur-md"
       }`}
     >
-      <div className="container-site flex h-[68px] items-center gap-3 sm:h-[72px] sm:gap-4">
-        <Logo compact className="sm:hidden" />
-        <Logo className="hidden sm:inline-flex" />
+      <div className="container-site flex h-16 items-center gap-2 sm:h-[72px] sm:gap-4">
+        <Logo hideTextOnMobile className="min-w-0 shrink" />
 
         <nav
           className="ml-auto hidden items-center gap-0.5 lg:flex"
@@ -67,11 +67,7 @@ export function Header() {
                 <motion.span
                   layoutId="nav-underline"
                   className="absolute inset-x-3 bottom-1 h-0.5 rounded-full bg-shoot-deep"
-                  transition={
-                    reduce
-                      ? { duration: 0 }
-                      : { type: "spring", stiffness: 380, damping: 30 }
-                  }
+                  transition={reduce ? { duration: 0 } : tweenFast}
                 />
               )}
             </Link>
@@ -80,7 +76,7 @@ export function Header() {
 
         <Link
           href="/contact"
-          className="ml-auto hidden items-center gap-2 whitespace-nowrap rounded-xl bg-forest px-4 py-2.5 text-[0.88rem] font-semibold text-white transition hover:bg-bamboo lg:ml-3 lg:inline-flex xl:px-5 xl:text-[0.94rem]"
+          className="hidden items-center gap-2 whitespace-nowrap rounded-xl bg-forest px-4 py-2.5 text-[0.88rem] font-semibold text-white transition hover:bg-bamboo lg:ml-2 lg:inline-flex xl:px-5 xl:text-[0.94rem]"
         >
           <span className="hidden xl:inline">Devenir partenaire</span>
           <span className="xl:hidden">Partenaire</span>
@@ -89,7 +85,7 @@ export function Header() {
 
         <button
           type="button"
-          className="ml-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-[11px] bg-sand lg:hidden"
+          className="ml-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-[11px] bg-sand lg:ml-0 lg:hidden"
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -104,32 +100,26 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={tweenFast}
             className="overflow-hidden border-b border-line bg-surface lg:hidden"
           >
             <nav
               className="container-site flex flex-col gap-1 py-4"
               aria-label="Menu mobile"
             >
-              {navLinks.map((link, i) => (
-                <motion.div
+              {navLinks.map((link) => (
+                <Link
                   key={link.href}
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.03 }}
+                  href={link.href}
+                  aria-current={isActive(link.href) ? "page" : undefined}
+                  className={`block rounded-xl px-4 py-3 text-base font-medium ${
+                    isActive(link.href)
+                      ? "bg-sand text-bamboo"
+                      : "text-ink hover:bg-sand/70"
+                  }`}
                 >
-                  <Link
-                    href={link.href}
-                    aria-current={isActive(link.href) ? "page" : undefined}
-                    className={`block rounded-xl px-4 py-3 text-base font-medium ${
-                      isActive(link.href)
-                        ? "bg-sand text-bamboo"
-                        : "text-ink hover:bg-sand/70"
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                </motion.div>
+                  {link.label}
+                </Link>
               ))}
               <Link
                 href="/contact"

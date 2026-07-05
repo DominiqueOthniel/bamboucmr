@@ -5,15 +5,25 @@ type LogoProps = {
   className?: string;
   /** Footer sur fond sombre */
   dark?: boolean;
-  /** Masquer le nom à côté du logo (mobile serré) */
+  /** Masquer le nom à côté du logo */
   compact?: boolean;
+  /** Masquer le texte sous le breakpoint sm (header mobile) */
+  hideTextOnMobile?: boolean;
 };
 
-export function Logo({ className = "", dark = false, compact = false }: LogoProps) {
+export function Logo({
+  className = "",
+  dark = false,
+  compact = false,
+  hideTextOnMobile = false,
+}: LogoProps) {
+  const showText = !compact;
+  const textClass = hideTextOnMobile ? "hidden sm:inline" : "";
+
   return (
     <Link
       href="/"
-      className={`inline-flex min-w-0 items-center gap-2.5 ${className}`}
+      className={`inline-flex min-w-0 max-w-[min(100%,14rem)] items-center gap-2 sm:max-w-none sm:gap-2.5 ${className}`}
       aria-label="BambouCamer, accueil"
     >
       <Image
@@ -21,12 +31,12 @@ export function Logo({ className = "", dark = false, compact = false }: LogoProp
         alt=""
         width={48}
         height={48}
-        className="h-10 w-10 shrink-0 rounded-full object-cover ring-2 ring-bamboo/20"
+        className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-bamboo/20 sm:h-10 sm:w-10"
         priority
       />
-      {!compact && (
+      {showText && (
         <span
-          className={`truncate font-display text-[1.05rem] font-bold tracking-tight sm:text-[1.15rem] ${dark ? "text-white" : "text-ink"}`}
+          className={`truncate font-display text-[1rem] font-bold tracking-tight sm:text-[1.15rem] ${textClass} ${dark ? "text-white" : "text-ink"}`}
         >
           Bambou
           <b className={dark ? "text-shoot" : "text-bamboo"}>Camer</b>

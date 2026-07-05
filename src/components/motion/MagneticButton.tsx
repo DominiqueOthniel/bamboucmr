@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import type { ReactNode } from "react";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
 
 type MagneticButtonProps = {
   children: ReactNode;
@@ -9,14 +10,14 @@ type MagneticButtonProps = {
 };
 
 export function MagneticButton({ children, className = "" }: MagneticButtonProps) {
-  const reduce = useReducedMotion();
+  const lite = useLiteMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 300, damping: 20 });
-  const springY = useSpring(y, { stiffness: 300, damping: 20 });
+  const springX = useSpring(x, { stiffness: 280, damping: 22 });
+  const springY = useSpring(y, { stiffness: 280, damping: 22 });
 
-  if (reduce) {
-    return <span className={className}>{children}</span>;
+  if (lite) {
+    return <span className={`inline-flex ${className}`}>{children}</span>;
   }
 
   return (
@@ -25,15 +26,15 @@ export function MagneticButton({ children, className = "" }: MagneticButtonProps
       style={{ x: springX, y: springY }}
       onMouseMove={(e) => {
         const rect = e.currentTarget.getBoundingClientRect();
-        x.set((e.clientX - rect.left - rect.width / 2) * 0.18);
-        y.set((e.clientY - rect.top - rect.height / 2) * 0.18);
+        x.set((e.clientX - rect.left - rect.width / 2) * 0.12);
+        y.set((e.clientY - rect.top - rect.height / 2) * 0.12);
       }}
       onMouseLeave={() => {
         x.set(0);
         y.set(0);
       }}
-      whileHover={{ scale: 1.04 }}
-      whileTap={{ scale: 0.97 }}
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.98 }}
     >
       {children}
     </motion.span>

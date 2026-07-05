@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import type { MouseEvent, ReactNode } from "react";
-import { springSnappy } from "@/lib/motion";
+import { useLiteMotion } from "@/hooks/useLiteMotion";
+import { springSnappy, tweenFast } from "@/lib/motion";
 
 type TiltCardProps = {
   children: ReactNode;
@@ -10,8 +11,8 @@ type TiltCardProps = {
   intensity?: number;
 };
 
-export function TiltCard({ children, className = "", intensity = 12 }: TiltCardProps) {
-  const reduce = useReducedMotion();
+export function TiltCard({ children, className = "", intensity = 8 }: TiltCardProps) {
+  const lite = useLiteMotion();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -19,7 +20,6 @@ export function TiltCard({ children, className = "", intensity = 12 }: TiltCardP
   const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-intensity, intensity]), springSnappy);
 
   const onMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (reduce) return;
     const rect = e.currentTarget.getBoundingClientRect();
     x.set((e.clientX - rect.left) / rect.width - 0.5);
     y.set((e.clientY - rect.top) / rect.height - 0.5);
@@ -30,7 +30,7 @@ export function TiltCard({ children, className = "", intensity = 12 }: TiltCardP
     y.set(0);
   };
 
-  if (reduce) {
+  if (lite) {
     return <div className={className}>{children}</div>;
   }
 
@@ -40,8 +40,8 @@ export function TiltCard({ children, className = "", intensity = 12 }: TiltCardP
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
-      whileHover={{ scale: 1.02, z: 20 }}
-      transition={springSnappy}
+      whileHover={{ scale: 1.015 }}
+      transition={tweenFast}
     >
       {children}
     </motion.div>

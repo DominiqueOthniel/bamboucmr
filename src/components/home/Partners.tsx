@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
@@ -18,7 +17,7 @@ const allPartners: PartnerItem[] = [
 
 function PartnerCard({ item }: { item: PartnerItem }) {
   return (
-    <div className="flex h-20 w-36 shrink-0 items-center justify-center rounded-[14px] border border-line bg-surface p-3 transition hover:border-bamboo hover:shadow-md sm:h-24 sm:w-44 sm:rounded-[16px] sm:p-4">
+    <div className="flex h-20 items-center justify-center rounded-[14px] border border-line bg-surface p-3 sm:h-24 sm:rounded-[16px] sm:p-4">
       {item.type === "logo" ? (
         <SiteImage
           src={item.src}
@@ -28,7 +27,7 @@ function PartnerCard({ item }: { item: PartnerItem }) {
           className="max-h-10 w-auto !object-contain sm:max-h-12"
         />
       ) : (
-        <span className="inline-flex items-center gap-2 font-display text-xs font-bold text-forest sm:text-sm">
+        <span className="inline-flex items-center gap-2 text-center font-display text-xs font-bold text-forest sm:text-sm">
           <span className="h-2 w-2 shrink-0 rounded-full bg-shoot-deep" />
           {item.name}
         </span>
@@ -49,17 +48,27 @@ export function Partners() {
             Nos partenaires
           </h2>
         </Reveal>
+
+        {/* Grille statique sur mobile */}
+        <Reveal delay={0.08} className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:hidden">
+          {allPartners.map((item) => (
+            <PartnerCard key={item.name} item={item} />
+          ))}
+        </Reveal>
       </div>
 
-      <Reveal delay={0.1} className="relative mt-8 sm:mt-10">
+      {/* Marquee fluide sur tablette+ */}
+      <Reveal delay={0.1} className="relative mt-8 hidden md:block sm:mt-10">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-paper to-transparent sm:w-24" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-paper to-transparent sm:w-24" />
         <div className="flex overflow-hidden">
-          <motion.div className="animate-marquee flex gap-3 px-3 sm:gap-4">
+          <div className="animate-marquee flex w-max gap-4 px-4 will-change-transform">
             {track.map((item, i) => (
-              <PartnerCard key={`${item.name}-${i}`} item={item} />
+              <div key={`${item.name}-${i}`} className="w-40 shrink-0 sm:w-44">
+                <PartnerCard item={item} />
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </Reveal>
     </section>

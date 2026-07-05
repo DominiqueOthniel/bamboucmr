@@ -2,7 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
-import { easeOut } from "@/lib/motion";
+import { tweenSmooth } from "@/lib/motion";
 
 export default function Template({ children }: { children: ReactNode }) {
   const reduce = useReducedMotion();
@@ -13,9 +13,9 @@ export default function Template({ children }: { children: ReactNode }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
-      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      transition={{ duration: 0.45, ease: easeOut }}
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={tweenSmooth}
     >
       {children}
     </motion.div>
