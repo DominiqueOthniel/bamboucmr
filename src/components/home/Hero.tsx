@@ -11,7 +11,6 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 import { StaggerMount, StaggerMountItem } from "@/components/motion/Reveal";
 import { TextReveal } from "@/components/motion/TextReveal";
 import { useLiteMotion } from "@/hooks/useLiteMotion";
-import { tweenSmooth } from "@/lib/motion";
 import { images } from "@/lib/images";
 
 const badges = ["Association ONG", "Startup sociale", "Basée à Dschang"];
@@ -123,15 +122,8 @@ export function Hero() {
           </StaggerMount>
         </div>
 
-        <motion.div
-          className="w-full min-w-0 lg:max-w-[520px] lg:justify-self-end"
-          initial={reduce ? false : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25, ...tweenSmooth }}
-        >
-          <div
-            className={`relative overflow-hidden rounded-[18px] border border-white/15 shadow-2xl sm:rounded-[24px] ${heavy ? "animate-float" : ""}`}
-          >
+        <div className="w-full min-w-0 lg:max-w-[520px] lg:justify-self-end">
+          <div className="relative overflow-hidden rounded-[18px] border border-white/15 shadow-2xl sm:rounded-[24px]">
             <SiteImage
               src={images.bambooField}
               alt="Champ de bambou au Cameroun"
@@ -140,9 +132,6 @@ export function Hero() {
               className="aspect-[4/3] w-full sm:aspect-[16/10]"
               priority
             />
-            {heavy && (
-              <div className="pointer-events-none absolute inset-0 animate-shine-sweep bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-            )}
           </div>
 
           <div className="mt-3 grid grid-cols-2 gap-2.5 sm:mt-4 sm:gap-4">
@@ -169,7 +158,7 @@ export function Hero() {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </motion.div>
 
       <div className="relative flex justify-center pb-6 sm:pb-8">
