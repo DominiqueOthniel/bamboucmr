@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+:root {
+  --forest: #12301c;
+  --forest-2: #1b4227;
+  --bamboo: #2f6b3c;
+  --bamboo-2: #3e8b4e;
+  --shoot: #b4d64b;
+  --shoot-deep: #8fb63a;
+  --paper: #f4f5ee;
+  --surface: #fbfcf7;
+  --sand: #e7e2d2;
+  --sand-2: #d9cbad;
+  --ink: #16221a;
+  --muted: #586a5c;
+  --line: #dee3d6;
+}
+
+@theme inline {
+  --color-forest: var(--forest);
+  --color-forest-2: var(--forest-2);
+  --color-bamboo: var(--bamboo);
+  --color-bamboo-2: var(--bamboo-2);
+  --color-shoot: var(--shoot);
+  --color-shoot-deep: var(--shoot-deep);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-sand: var(--sand);
+  --color-sand-2: var(--sand-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --font-display: var(--font-bricolage);
+  --font-sans: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--shoot) 45%, transparent);
+  color: var(--forest);
+}
+
+:focus-visible {
+  outline: 3px solid var(--shoot-deep);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Animated mesh for hero */
+@keyframes mesh-drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(4%, -3%) scale(1.05);
+  }
+  66% {
+    transform: translate(-3%, 4%) scale(0.97);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-mesh {
+  animation: mesh-drift 18s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-y 6s ease-in-out infinite 0.8s;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 28s linear infinite;
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--bamboo) 0%,
+    var(--shoot-deep) 35%,
+    var(--bamboo-2) 50%,
+    var(--shoot) 65%,
+    var(--bamboo) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-mesh,
+  .animate-float,
+  .animate-float-delayed,
+  .animate-pulse-glow,
+  .animate-spin-slow,
+  .text-shimmer {
+    animation: none;
+  }
+
+  .text-shimmer {
+    color: var(--bamboo);
+    background: none;
+  }
+}
