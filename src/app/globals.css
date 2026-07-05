@@ -73,6 +73,41 @@ h4 {
   border-radius: 6px;
 }
 
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bamboo);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--shoot-deep);
+}
+
+.section-band-green {
+  background: linear-gradient(135deg, var(--forest) 0%, var(--bamboo) 100%);
+}
+
+.section-band-sand {
+  background: linear-gradient(180deg, var(--sand) 0%, var(--paper) 100%);
+}
+
+.card-tint-green {
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--bamboo) 12%, var(--surface)),
+    var(--surface)
+  );
+}
+
 /* Animated mesh for hero */
 @keyframes mesh-drift {
   0%,
