@@ -1,14 +1,18 @@
+import Link from "next/link";
 import { ArrowRight, Calendar } from "lucide-react";
 import { SiteImage } from "@/components/shared/SiteImage";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { news } from "@/lib/data";
+import type { NewsItem } from "@/lib/content/types";
 
-export function NewsGrid() {
+export function NewsGrid({ news }: { news: NewsItem[] }) {
   return (
     <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {news.map((item) => (
-        <StaggerItem key={item.title}>
-          <article className="group flex h-full flex-col overflow-hidden rounded-[20px] border border-line bg-surface shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-xl">
+        <StaggerItem key={item.id}>
+          <Link
+            href={`/actualites/${item.id}`}
+            className="group flex h-full flex-col overflow-hidden rounded-[20px] border border-line bg-surface shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-xl"
+          >
             <div className="relative aspect-[16/10] overflow-hidden">
               <SiteImage
                 src={item.image}
@@ -33,7 +37,7 @@ export function NewsGrid() {
                 <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
               </span>
             </div>
-          </article>
+          </Link>
         </StaggerItem>
       ))}
     </Stagger>

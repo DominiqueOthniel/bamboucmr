@@ -1,0 +1,38 @@
+[
+  {
+    "id": "rse-1",
+    "n": "01",
+    "title": "Empreinte carbone",
+    "description": "Analyser vos activités, identifier les sources d'émissions et déployer des solutions durables."
+  },
+  {
+    "id": "rse-2",
+    "n": "02",
+    "title": "Certificats carbone",
+    "description": "Compenser une partie de vos émissions en soutenant des projets durables et certifiés."
+  },
+  {
+    "id": "rse-3",
+    "n": "03",
+    "title": "Action climatique",
+    "description": "Efficacité énergétique, innovations vertes et compensation carbone, mises en œuvre concrètement."
+  },
+  {
+    "id": "rse-4",
+    "n": "04",
+    "title": "Achats écologiques",
+    "description": "Adopter des choix responsables : matériaux durables, fournisseurs engagés, faible impact carbone."
+  },
+  {
+    "id": "rse-5",
+    "n": "05",
+    "title": "Réduction CO₂ par le bambou",
+    "description": "Intégrer cette ressource durable pour contribuer activement à la lutte climatique."
+  },
+  {
+    "id": "rse-6",
+    "n": "06",
+    "title": "Consultation & formation",
+    "description": "Des conseils personnalisés pour identifier les meilleures pratiques de votre transition."
+  }
+]

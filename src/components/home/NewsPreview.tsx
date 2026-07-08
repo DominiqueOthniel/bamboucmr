@@ -4,9 +4,9 @@ import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { TiltCard } from "@/components/motion/TiltCard";
-import { news } from "@/lib/data";
+import type { NewsItem } from "@/lib/content/types";
 
-export function NewsPreview() {
+export function NewsPreview({ news }: { news: NewsItem[] }) {
   const preview = news.slice(0, 3);
 
   return (
@@ -30,9 +30,12 @@ export function NewsPreview() {
 
         <Stagger className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {preview.map((item) => (
-            <StaggerItem key={item.title} variant="scale">
+            <StaggerItem key={item.id} variant="scale">
               <TiltCard className="h-full">
-              <article className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-line bg-surface shadow-sm sm:rounded-[20px]">
+              <Link
+                href={`/actualites/${item.id}`}
+                className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-line bg-surface shadow-sm sm:rounded-[20px]"
+              >
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <SiteImage
                     src={item.image}
@@ -58,7 +61,7 @@ export function NewsPreview() {
                     <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
                   </span>
                 </div>
-              </article>
+              </Link>
               </TiltCard>
             </StaggerItem>
           ))}

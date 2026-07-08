@@ -37,7 +37,7 @@ export function ContactForm() {
           >
             <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-bamboo" />
             <div>
-              <b>Message envoyé.</b> Merci — nous revenons vers vous très vite.
+              <b>Message envoyé.</b> Merci, nous revenons vers vous très vite.
             </div>
           </motion.div>
         ) : (

@@ -1,0 +1,7 @@
+[
+  { "id": "stat-1", "value": 12000, "suffix": "+", "label": "Plants de bambou mis en terre" },
+  { "id": "stat-2", "value": 850, "suffix": "+", "label": "Agriculteurs formés et sensibilisés" },
+  { "id": "stat-3", "value": 45, "suffix": " ha", "label": "De terres en cours de restauration" },
+  { "id": "stat-4", "value": 18, "suffix": "+", "label": "Partenaires institutionnels actifs" },
+  { "id": "stat-5", "value": 120, "suffix": "+", "label": "Emplois directs créés" }
+]

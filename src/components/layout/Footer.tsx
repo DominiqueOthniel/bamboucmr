@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
+import type { SiteSettings } from "@/lib/content/types";
 
 const socials = [
   {
@@ -25,17 +26,14 @@ const socials = [
   },
 ];
 
-export function Footer() {
+export function Footer({ settings }: { settings: SiteSettings }) {
   return (
     <footer className="bg-forest text-[#C7D3C1]">
       <div className="container-site pb-8 pt-14 lg:pt-20">
         <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.4fr]">
           <div>
             <Logo dark />
-            <p className="mt-4 max-w-[34ch] text-[0.92rem]">
-              Créer un modèle de développement durable intégrant le bambou comme
-              levier économique, tout en protégeant l&apos;environnement.
-            </p>
+            <p className="mt-4 max-w-[34ch] text-[0.92rem]">{settings.footer.tagline}</p>
             <div className="mt-5 flex gap-2.5">
               {socials.map(({ label, href, path }) => (
                 <a
@@ -85,18 +83,18 @@ export function Footer() {
             <ul className="space-y-3 text-[0.9rem]">
               <li className="flex gap-2.5">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-shoot" />
-                Immeuble Gabon Bar, face au stade de Foréké, Dschang
+                {settings.contact.address}
               </li>
               <li className="flex gap-2.5">
                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-shoot" />
-                <a href="tel:+237653077076" className="hover:text-shoot">
-                  (+237) 653 07 70 76
+                <a href={`tel:${settings.contact.phone.replace(/\s/g, "")}`} className="hover:text-shoot">
+                  {settings.contact.phone}
                 </a>
               </li>
               <li className="flex gap-2.5">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-shoot" />
-                <a href="mailto:contact@bamboucamer.com" className="hover:text-shoot">
-                  contact@bamboucamer.com
+                <a href={`mailto:${settings.contact.email}`} className="hover:text-shoot">
+                  {settings.contact.email}
                 </a>
               </li>
             </ul>

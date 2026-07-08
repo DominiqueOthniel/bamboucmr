@@ -8,10 +8,14 @@ import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
 import { useLiteMotion } from "@/hooks/useLiteMotion";
-import { aboutQuestions } from "@/lib/data";
+import type { AboutQuestionItem } from "@/lib/content/types";
 import { images } from "@/lib/images";
 
-export function AboutSection() {
+export function AboutSection({
+  aboutQuestions,
+}: {
+  aboutQuestions: AboutQuestionItem[];
+}) {
   const reduce = useReducedMotion();
   const lite = useLiteMotion();
   const ref = useRef<HTMLElement>(null);
@@ -71,14 +75,14 @@ export function AboutSection() {
           <Reveal delay={0.08} className="mt-5 space-y-2.5">
             {aboutQuestions.map((q, i) => (
               <div
-                key={q}
+                key={q.id}
                 className={`rounded-xl border px-3.5 py-2.5 text-[0.88rem] sm:px-4 sm:py-3 sm:text-[0.92rem] ${
                   i === 0
                     ? "border-bamboo/30 bg-bamboo/8 font-medium text-forest"
                     : "border-line bg-surface text-muted"
                 }`}
               >
-                {q}
+                {q.text}
               </div>
             ))}
           </Reveal>

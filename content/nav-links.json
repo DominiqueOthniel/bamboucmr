@@ -1,0 +1,8 @@
+[
+  { "id": "nav-1", "href": "/", "label": "Accueil" },
+  { "id": "nav-2", "href": "/apropos", "label": "À propos" },
+  { "id": "nav-3", "href": "/objectifs", "label": "Objectifs" },
+  { "id": "nav-4", "href": "/solutions", "label": "Solutions" },
+  { "id": "nav-5", "href": "/actualites", "label": "Actualités" },
+  { "id": "nav-6", "href": "/contact", "label": "Contact" }
+]

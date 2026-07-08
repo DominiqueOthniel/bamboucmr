@@ -9,7 +9,7 @@ import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { TiltCard } from "@/components/motion/TiltCard";
-import { pillars } from "@/lib/data";
+import type { PillarItem } from "@/lib/content/types";
 
 const icons = {
   shield: Shield,
@@ -18,7 +18,7 @@ const icons = {
   lightbulb: Lightbulb,
 } as const;
 
-export function ObjectivesPreview() {
+export function ObjectivesPreview({ pillars }: { pillars: PillarItem[] }) {
   return (
     <section className="section-band-sand py-14 sm:py-20 lg:py-24">
       <div className="container-site">
@@ -39,7 +39,7 @@ export function ObjectivesPreview() {
           {pillars.map((pillar, i) => {
             const Icon = icons[pillar.icon];
             return (
-              <StaggerItem key={pillar.title} variant="scale">
+              <StaggerItem key={pillar.id} variant="scale">
                 <TiltCard className="h-full">
                 <article className="group overflow-hidden rounded-[18px] border border-line bg-surface shadow-sm sm:rounded-[20px]">
                   <div className="relative aspect-[16/9] overflow-hidden">

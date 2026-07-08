@@ -2,9 +2,10 @@ import Link from "next/link";
 import { ImpactBars } from "@/components/shared/ImpactBars";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
+import type { ImpactBarItem } from "@/lib/content/types";
 import { images } from "@/lib/images";
 
-export function ImpactPreview() {
+export function ImpactPreview({ impactBars }: { impactBars: ImpactBarItem[] }) {
   return (
     <section className="relative overflow-hidden bg-forest py-14 text-[#EFF4EA] sm:py-24">
       <div
@@ -42,7 +43,7 @@ export function ImpactPreview() {
           </Link>
         </Reveal>
         <Reveal delay={0.1}>
-          <ImpactBars />
+          <ImpactBars bars={impactBars} />
         </Reveal>
       </div>
     </section>

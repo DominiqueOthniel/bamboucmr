@@ -12,7 +12,7 @@ import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { TiltCard } from "@/components/motion/TiltCard";
-import { solutions } from "@/lib/data";
+import type { SolutionItem } from "@/lib/content/types";
 
 const icons = {
   "map-pin": MapPin,
@@ -23,7 +23,7 @@ const icons = {
   users: Users,
 } as const;
 
-export function SolutionsPreview() {
+export function SolutionsPreview({ solutions }: { solutions: SolutionItem[] }) {
   return (
     <section className="py-14 sm:py-24">
       <div className="container-site">
@@ -42,7 +42,7 @@ export function SolutionsPreview() {
           {solutions.map((sol) => {
             const Icon = icons[sol.icon];
             return (
-              <StaggerItem key={sol.title} variant="scale">
+              <StaggerItem key={sol.id} variant="scale">
                 <TiltCard className="h-full">
                 <article className="group flex h-full flex-col overflow-hidden rounded-[18px] border border-line bg-surface shadow-sm sm:rounded-[20px]">
                   <div className="relative aspect-[4/3] overflow-hidden">

@@ -3,9 +3,17 @@
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { springSnappy } from "@/lib/motion";
-import { impactBars } from "@/lib/data";
+import type { ImpactBarItem } from "@/lib/content/types";
 
-function Bar({ label, pct, index }: { label: string; pct: number; index: number }) {
+function Bar({
+  label,
+  pct,
+  index,
+}: {
+  label: string;
+  pct: number;
+  index: number;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.5 });
   const reduce = useReducedMotion();
@@ -53,18 +61,22 @@ function Bar({ label, pct, index }: { label: string; pct: number; index: number 
           className="bar-shine relative h-full rounded-full bg-gradient-to-r from-bamboo-2 via-shoot to-bamboo-2"
           initial={{ width: 0 }}
           animate={inView ? { width: `${pct}%` } : { width: 0 }}
-          transition={{ duration: reduce ? 0 : 1.4, ease: [0.22, 0.61, 0.36, 1], delay: index * 0.1 }}
+          transition={{
+            duration: reduce ? 0 : 1.4,
+            ease: [0.22, 0.61, 0.36, 1],
+            delay: index * 0.1,
+          }}
         />
       </div>
     </motion.div>
   );
 }
 
-export function ImpactBars() {
+export function ImpactBars({ bars }: { bars: ImpactBarItem[] }) {
   return (
     <div className="flex flex-col gap-6">
-      {impactBars.map((bar, i) => (
-        <Bar key={bar.label} label={bar.label} pct={bar.pct} index={i} />
+      {bars.map((bar, i) => (
+        <Bar key={bar.id} label={bar.label} pct={bar.pct} index={i} />
       ))}
     </div>
   );

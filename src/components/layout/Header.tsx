@@ -6,10 +6,10 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Logo } from "@/components/brand/Logo";
-import { navLinks } from "@/lib/data";
+import type { NavLinkItem } from "@/lib/content/types";
 import { tweenFast } from "@/lib/motion";
 
-export function Header() {
+export function Header({ navLinks }: { navLinks: NavLinkItem[] }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);

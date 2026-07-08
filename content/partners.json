@@ -1,0 +1,23 @@
+[
+  {
+    "id": "p-1",
+    "name": "Carbonapp",
+    "logoUrl": "https://bamboucamer.com/wp-content/uploads/2026/01/doing-removebg-preview.png",
+    "order": 0
+  },
+  {
+    "id": "p-2",
+    "name": "The Rufford Foundation",
+    "logoUrl": "https://bamboucamer.com/wp-content/uploads/2025/12/rufford-logo-menu-hr-360x155-1.png",
+    "order": 1
+  },
+  {
+    "id": "p-3",
+    "name": "Afrique RSE",
+    "logoUrl": "https://bamboucamer.com/wp-content/uploads/2026/01/Guinee.png",
+    "order": 2
+  },
+  { "id": "p-4", "name": "DGIA", "logoUrl": null, "order": 3 },
+  { "id": "p-5", "name": "THELIE", "logoUrl": null, "order": 4 },
+  { "id": "p-6", "name": "Économie Media Group", "logoUrl": null, "order": 5 }
+]

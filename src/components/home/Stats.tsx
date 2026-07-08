@@ -4,15 +4,9 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useLiteMotion } from "@/hooks/useLiteMotion";
 import { tweenSmooth } from "@/lib/motion";
-import { stats } from "@/lib/data";
+import type { StatItem } from "@/lib/content/types";
 
-function Counter({
-  value,
-  suffix,
-}: {
-  value: number;
-  suffix: string;
-}) {
+function Counter({ value, suffix }: { value: number; suffix: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.5 });
   const reduce = useReducedMotion();
@@ -48,7 +42,7 @@ function Counter({
   );
 }
 
-export function Stats() {
+export function Stats({ stats }: { stats: StatItem[] }) {
   const reduce = useReducedMotion();
   const lite = useLiteMotion();
 
@@ -78,7 +72,7 @@ export function Stats() {
         <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-5">
           {stats.map((stat, i) => (
             <motion.div
-              key={stat.label}
+              key={stat.id}
               initial={reduce ? false : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
