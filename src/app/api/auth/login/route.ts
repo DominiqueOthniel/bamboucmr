@@ -20,9 +20,13 @@ export async function POST(request: Request) {
 
   try {
     const body = (await request.json()) as { password?: string };
-    if (!body.password || !verifyPassword(body.password)) {
+    const password = body.password?.trim() ?? "";
+    if (!password || !verifyPassword(password)) {
       return NextResponse.json(
-        { error: "Mot de passe incorrect" },
+        {
+          error:
+            "Mot de passe incorrect. Vérifiez que ADMIN_PASSWORD sur Netlify vaut exactement bamboucamer2026, puis redéployez.",
+        },
         { status: 401 }
       );
     }

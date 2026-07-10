@@ -96,7 +96,7 @@ export async function verifySessionToken(
 export function verifyPassword(input: string): boolean {
   try {
     const expected = getPassword();
-    return timingSafeEqualStr(input, expected);
+    return timingSafeEqualStr(input.trim(), expected);
   } catch {
     return false;
   }
