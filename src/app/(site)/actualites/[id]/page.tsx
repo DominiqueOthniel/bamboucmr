@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NewsArticleView } from "@/components/shared/NewsArticleView";
-import { getNews, getNewsById } from "@/lib/content/reader";
+import { getNewsById } from "@/lib/content/reader";
 
 type Props = {
   params: Promise<{ id: string }>;
 };
 
-export async function generateStaticParams() {
-  const news = await getNews();
-  return news.map((item) => ({ id: item.id }));
-}
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
