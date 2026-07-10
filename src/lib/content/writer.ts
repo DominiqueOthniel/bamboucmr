@@ -1,12 +1,9 @@
 import "server-only";
 
-import { writeFile } from "fs/promises";
-import path from "path";
 import { revalidatePath } from "next/cache";
+import { saveCollectionItems, saveSiteSettings } from "./store";
 import type { CollectionName, SiteSettings } from "./types";
 import { COLLECTION_NAMES } from "./collections";
-
-const CONTENT_DIR = path.join(process.cwd(), "content");
 
 const REVALIDATE_PATHS: Record<CollectionName, string[]> = {
   news: ["/", "/actualites"],
@@ -31,6 +28,9 @@ function revalidateAfterCollectionWrite(name: CollectionName) {
   if (name === "nav-links") {
     revalidatePath("/", "layout");
   }
+  if (name === "news") {
+    revalidatePath("/actualites", "layout");
+  }
 }
 
 export async function writeCollection(
@@ -40,20 +40,12 @@ export async function writeCollection(
   if (!isCollectionName(name)) {
     throw new Error("Collection invalide");
   }
-  await writeFile(
-    path.join(CONTENT_DIR, `${name}.json`),
-    `${JSON.stringify(data, null, 2)}\n`,
-    "utf-8"
-  );
+  await saveCollectionItems(name, data as unknown[]);
   revalidateAfterCollectionWrite(name);
 }
 
 export async function writeSiteSettings(data: SiteSettings): Promise<void> {
-  await writeFile(
-    path.join(CONTENT_DIR, "site-settings.json"),
-    `${JSON.stringify(data, null, 2)}\n`,
-    "utf-8"
-  );
+  await saveSiteSettings(data);
   revalidatePath("/", "layout");
   revalidatePath("/contact");
 }

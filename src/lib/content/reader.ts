@@ -1,9 +1,10 @@
 import "server-only";
 
-import { readFile, writeFile } from "fs/promises";
-import path from "path";
-import { revalidatePath } from "next/cache";
 import { unstable_noStore as noStore } from "next/cache";
+import {
+  loadCollectionItems,
+  loadSiteSettings,
+} from "./store";
 import type {
   AboutQuestionItem,
   CollectionItemMap,
@@ -19,71 +20,76 @@ import type {
   StatItem,
 } from "./types";
 
-const CONTENT_DIR = path.join(process.cwd(), "content");
-
-async function readJson<T>(filename: string): Promise<T> {
-  noStore();
-  const raw = await readFile(path.join(CONTENT_DIR, filename), "utf-8");
-  return JSON.parse(raw) as T;
-}
-
 export async function getNews(): Promise<NewsItem[]> {
-  const items = await readJson<NewsItem[]>("news.json");
+  noStore();
+  const items = await loadCollectionItems<NewsItem>("news");
   return items.filter((n) => n.published);
 }
 
 export async function getAllNews(): Promise<NewsItem[]> {
-  return readJson<NewsItem[]>("news.json");
+  noStore();
+  return loadCollectionItems<NewsItem>("news");
 }
 
 export async function getNewsById(id: string): Promise<NewsItem | null> {
-  const items = await readJson<NewsItem[]>("news.json");
+  noStore();
+  const items = await loadCollectionItems<NewsItem>("news");
   const item = items.find((n) => n.id === id);
   if (!item || !item.published) return null;
   return item;
 }
 
 export async function getStats(): Promise<StatItem[]> {
-  return readJson<StatItem[]>("stats.json");
+  noStore();
+  return loadCollectionItems<StatItem>("stats");
 }
 
 export async function getImpactBars(): Promise<ImpactBarItem[]> {
-  return readJson<ImpactBarItem[]>("impact-bars.json");
+  noStore();
+  return loadCollectionItems<ImpactBarItem>("impact-bars");
 }
 
 export async function getPartners(): Promise<PartnerItem[]> {
-  const items = await readJson<PartnerItem[]>("partners.json");
+  noStore();
+  const items = await loadCollectionItems<PartnerItem>("partners");
   return [...items].sort((a, b) => a.order - b.order);
 }
 
 export async function getAboutQuestions(): Promise<AboutQuestionItem[]> {
-  return readJson<AboutQuestionItem[]>("about-questions.json");
+  noStore();
+  return loadCollectionItems<AboutQuestionItem>("about-questions");
 }
 
 export async function getNavLinks(): Promise<NavLinkItem[]> {
-  return readJson<NavLinkItem[]>("nav-links.json");
+  noStore();
+  return loadCollectionItems<NavLinkItem>("nav-links");
 }
 
 export async function getPillars(): Promise<PillarItem[]> {
-  return readJson<PillarItem[]>("pillars.json");
+  noStore();
+  return loadCollectionItems<PillarItem>("pillars");
 }
 
 export async function getSolutions(): Promise<SolutionItem[]> {
-  return readJson<SolutionItem[]>("solutions.json");
+  noStore();
+  return loadCollectionItems<SolutionItem>("solutions");
 }
 
 export async function getRseItems(): Promise<RseItem[]> {
-  return readJson<RseItem[]>("rse-items.json");
+  noStore();
+  return loadCollectionItems<RseItem>("rse-items");
 }
 
 export async function getSiteSettings(): Promise<SiteSettings> {
-  return readJson<SiteSettings>("site-settings.json");
+  noStore();
+  return loadSiteSettings();
 }
 
 export async function getCollection<T extends CollectionName>(
   name: T
 ): Promise<CollectionItemMap[T][]> {
-  return readJson<CollectionItemMap[T][]>(`${name}.json`);
+  noStore();
+  return loadCollectionItems<CollectionItemMap[T]>(name);
 }
 
 export async function getCollectionItem<T extends CollectionName>(
