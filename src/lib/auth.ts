@@ -1,8 +1,14 @@
 export const SESSION_COOKIE = "bc_admin_session";
 const SESSION_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
 
+function normalizeEnv(value: string | undefined): string | undefined {
+  if (!value) return undefined;
+  const trimmed = value.trim().replace(/^["']|["']$/g, "");
+  return trimmed || undefined;
+}
+
 function getSecret(): string {
-  const secret = process.env.ADMIN_SESSION_SECRET;
+  const secret = normalizeEnv(process.env.ADMIN_SESSION_SECRET);
   if (!secret || secret.length < 16) {
     throw new Error("ADMIN_SESSION_SECRET manquant ou trop court");
   }
@@ -10,11 +16,23 @@ function getSecret(): string {
 }
 
 function getPassword(): string {
-  const password = process.env.ADMIN_PASSWORD;
+  const password = normalizeEnv(process.env.ADMIN_PASSWORD);
   if (!password) {
     throw new Error("ADMIN_PASSWORD manquant");
   }
   return password;
+}
+
+export function getMissingAuthEnv(): string[] {
+  const missing: string[] = [];
+  if (!normalizeEnv(process.env.ADMIN_PASSWORD)) {
+    missing.push("ADMIN_PASSWORD");
+  }
+  const secret = normalizeEnv(process.env.ADMIN_SESSION_SECRET);
+  if (!secret || secret.length < 16) {
+    missing.push("ADMIN_SESSION_SECRET");
+  }
+  return missing;
 }
 
 async function hmacSign(message: string, secret: string): Promise<string> {
