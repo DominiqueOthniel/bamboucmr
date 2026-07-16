@@ -6,7 +6,8 @@
     "kpi": "Réponse concrète à la crise climatique",
     "icon": "shield",
     "image": "https://bamboucamer.com/wp-content/uploads/2025/12/src_img_CD1211FR_SOFO_img13-1140x570.jpg",
-    "tint": "from-forest to-bamboo"
+    "tint": "from-forest to-bamboo",
+    "body": "BambouCamer plante, préserve et restaure les écosystèmes naturels du Cameroun grâce au bambou, capable de séquestrer jusqu'à 4 fois plus de CO₂ qu'un arbre ordinaire."
   },
   {
     "id": "pillar-2",
@@ -15,7 +16,8 @@
     "kpi": "Une biodiversité remarquable d'Afrique",
     "icon": "globe",
     "image": "https://bamboucamer.com/wp-content/uploads/2026/04/Picture1-3.jpg",
-    "tint": "from-bamboo-2 to-shoot-deep"
+    "tint": "from-bamboo-2 to-shoot-deep",
+    "body": "Nos programmes protègent les habitats des forêts camerounaises et soutiennent la coexistence durable entre activités humaines et richesse écologique."
   },
   {
     "id": "pillar-3",
@@ -23,8 +25,9 @@
     "description": "Nous accompagnons les communautés rurales vers l'autonomie via la formation professionnelle, l'entrepreneuriat local et les filières bambou.",
     "kpi": "Le durable commence par les communautés",
     "icon": "building",
-    "image": "https://bamboucamer.com/wp-content/uploads/2026/01/Screen-Shot-2025-11-24-at-23.23.59.png",
-    "tint": "from-bamboo to-forest-2"
+    "image": "/pillars/economic.jpg",
+    "tint": "from-bamboo to-forest-2",
+    "body": "Nous accompagnons les communautés rurales vers l'autonomie via la formation professionnelle, l'entrepreneuriat local et les filières bambou."
   },
   {
     "id": "pillar-4",
@@ -32,7 +35,8 @@
     "description": "Nous incubons des projets qui transforment le bambou en produits durables à forte valeur ajoutée : construction, artisanat, emballages biodégradables.",
     "kpi": "Une filière d'avenir pour l'Afrique",
     "icon": "lightbulb",
-    "image": "https://bamboucamer.com/wp-content/uploads/2026/01/Capture-decran-2026-01-10-170826-1.png",
-    "tint": "from-shoot-deep to-bamboo-2"
+    "image": "/pillars/innovation.jpg",
+    "tint": "from-shoot-deep to-bamboo-2",
+    "body": "Nous incubons des projets qui transforment le bambou en produits durables à forte valeur ajoutée : construction, artisanat, emballages biodégradables."
   }
 ]

@@ -7,6 +7,7 @@ import { COLLECTION_NAMES } from "./collections";
 
 const REVALIDATE_PATHS: Record<CollectionName, string[]> = {
   news: ["/", "/actualites"],
+  "news-categories": ["/actualites", "/admin/news"],
   stats: ["/"],
   "impact-bars": ["/", "/impact"],
   partners: ["/"],
@@ -48,6 +49,7 @@ export async function writeSiteSettings(data: SiteSettings): Promise<void> {
   await saveSiteSettings(data);
   revalidatePath("/", "layout");
   revalidatePath("/contact");
+  revalidatePath("/");
 }
 
 export function newId(prefix: string): string {

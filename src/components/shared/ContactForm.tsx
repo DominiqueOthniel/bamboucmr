@@ -25,7 +25,7 @@ export function ContactForm() {
   }
 
   return (
-    <div className="rounded-[18px] border border-line bg-surface p-6 shadow-[0_1px_2px_rgba(18,48,28,.04),0_12px_30px_-18px_rgba(18,48,28,.28)] sm:p-8">
+    <div className="rounded-[18px] border border-line bg-surface p-4 shadow-[0_1px_2px_rgba(18,48,28,.04),0_12px_30px_-18px_rgba(18,48,28,.28)] sm:p-8">
       <AnimatePresence mode="wait">
         {sent ? (
           <motion.div

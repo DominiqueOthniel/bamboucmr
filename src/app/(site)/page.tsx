@@ -14,24 +14,34 @@ import {
   getPartners,
   getPillars,
   getSolutions,
+  getSiteSettings,
   getStats,
 } from "@/lib/content/reader";
 
 export default async function HomePage() {
-  const [stats, aboutQuestions, pillars, solutions, impactBars, news, partners] =
-    await Promise.all([
-      getStats(),
-      getAboutQuestions(),
-      getPillars(),
-      getSolutions(),
-      getImpactBars(),
-      getNews(),
-      getPartners(),
-    ]);
+  const [
+    stats,
+    aboutQuestions,
+    pillars,
+    solutions,
+    impactBars,
+    news,
+    partners,
+    settings,
+  ] = await Promise.all([
+    getStats(),
+    getAboutQuestions(),
+    getPillars(),
+    getSolutions(),
+    getImpactBars(),
+    getNews(),
+    getPartners(),
+    getSiteSettings(),
+  ]);
 
   return (
     <>
-      <Hero />
+      <Hero hero={settings.hero} />
       <Stats stats={stats} />
       <AboutSection aboutQuestions={aboutQuestions} />
       <ObjectivesPreview pillars={pillars} />

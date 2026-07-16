@@ -3,8 +3,11 @@ import Link from "next/link";
 import {
   Building2,
   Globe2,
+  Leaf,
   Lightbulb,
   Shield,
+  Sprout,
+  Users,
 } from "lucide-react";
 import { SiteImage } from "@/components/shared/SiteImage";
 import { PageHero } from "@/components/shared/PageHero";
@@ -18,12 +21,15 @@ export const metadata: Metadata = {
     "Les 4 objectifs de durabilité de BambouCamer : environnement, biodiversité, développement économique et innovation verte.",
 };
 
-const icons = {
+const icons: Record<string, typeof Shield> = {
   shield: Shield,
   globe: Globe2,
   building: Building2,
   lightbulb: Lightbulb,
-} as const;
+  leaf: Leaf,
+  users: Users,
+  sprout: Sprout,
+};
 
 export default async function ObjectifsPage() {
   const pillars = await getPillars();
@@ -41,10 +47,13 @@ export default async function ObjectifsPage() {
         <div className="container-site">
           <Stagger className="grid gap-5 sm:grid-cols-2">
             {pillars.map((pillar, i) => {
-              const Icon = icons[pillar.icon];
+              const Icon = icons[pillar.icon] ?? Leaf;
               return (
                 <StaggerItem key={pillar.id}>
-                  <article className="group overflow-hidden rounded-[20px] border border-line bg-surface shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                  <Link
+                    href={`/objectifs/${pillar.id}`}
+                    className="group block overflow-hidden rounded-[20px] border border-line bg-surface shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+                  >
                     <div className="relative aspect-[16/9] overflow-hidden">
                       <SiteImage
                         src={pillar.image}
@@ -72,7 +81,7 @@ export default async function ObjectifsPage() {
                         {pillar.kpi}
                       </p>
                     </div>
-                  </article>
+                  </Link>
                 </StaggerItem>
               );
             })}

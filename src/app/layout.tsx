@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
-import { Bricolage_Grotesque, Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Fraunces, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 
-const display = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+const display = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
-const body = Inter({
-  variable: "--font-inter",
+const body = Source_Sans_3({
+  variable: "--font-source",
   subsets: ["latin"],
 });
 
@@ -23,6 +24,13 @@ export const metadata: Metadata = {
     icon: "/logo.jpg",
     apple: "/logo.jpg",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0c2416",
 };
 
 export default function RootLayout({

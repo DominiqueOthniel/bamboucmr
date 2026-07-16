@@ -100,17 +100,17 @@ export function AboutSection({
             </blockquote>
           </Reveal>
 
-          <Reveal delay={0.2} className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <Reveal delay={0.2} className="btn-stack-mobile mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href="/apropos"
-              className="inline-flex items-center justify-center gap-2 rounded-[13px] bg-bamboo px-5 py-3 font-semibold text-white transition hover:bg-forest-2"
+              className="btn-primary"
             >
               En savoir plus
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/objectifs"
-              className="inline-flex items-center justify-center rounded-[13px] border border-bamboo/40 bg-surface px-5 py-3 font-semibold text-bamboo transition hover:bg-bamboo/8"
+              className="inline-flex min-h-11 items-center justify-center rounded-[var(--radius-sm)] border border-bamboo/40 bg-surface px-5 py-3 font-semibold text-bamboo transition hover:bg-bamboo/8"
             >
               Nos objectifs
             </Link>

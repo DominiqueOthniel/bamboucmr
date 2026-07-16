@@ -26,6 +26,7 @@ const collectionName = "content";
 
 const collectionFiles = [
   "news",
+  "news-categories",
   "stats",
   "impact-bars",
   "partners",

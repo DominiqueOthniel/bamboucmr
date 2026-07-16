@@ -23,9 +23,13 @@ export async function middleware(request: NextRequest) {
     return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
   }
 
+  if (pathname.startsWith("/api/upload") && !authed) {
+    return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/content/:path*"],
+  matcher: ["/admin/:path*", "/api/content/:path*", "/api/upload"],
 };

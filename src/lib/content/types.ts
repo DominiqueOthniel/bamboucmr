@@ -1,3 +1,9 @@
+export type NewsCategoryItem = {
+  id: string;
+  label: string;
+  order: number;
+};
+
 export type NewsItem = {
   id: string;
   cat: string;
@@ -44,8 +50,9 @@ export type PillarItem = {
   id: string;
   title: string;
   description: string;
+  body: string;
   kpi: string;
-  icon: "shield" | "globe" | "building" | "lightbulb";
+  icon: string;
   image: string;
   tint: string;
 };
@@ -54,7 +61,8 @@ export type SolutionItem = {
   id: string;
   title: string;
   description: string;
-  icon: "map-pin" | "sprout" | "coins" | "graduation" | "package" | "users";
+  body: string;
+  icon: string;
   image: string;
   accent: string;
 };
@@ -75,10 +83,22 @@ export type SiteSettings = {
   footer: {
     tagline: string;
   };
+  hero: {
+    eyebrow: string;
+    title: string;
+    tagline: string;
+    description: string;
+    image: string;
+    primaryCtaLabel: string;
+    primaryCtaHref: string;
+    secondaryCtaLabel: string;
+    secondaryCtaHref: string;
+  };
 };
 
 export type CollectionName =
   | "news"
+  | "news-categories"
   | "stats"
   | "impact-bars"
   | "partners"
@@ -90,6 +110,7 @@ export type CollectionName =
 
 export type CollectionItemMap = {
   news: NewsItem;
+  "news-categories": NewsCategoryItem;
   stats: StatItem;
   "impact-bars": ImpactBarItem;
   partners: PartnerItem;

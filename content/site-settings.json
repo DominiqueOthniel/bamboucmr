@@ -6,5 +6,16 @@
   },
   "footer": {
     "tagline": "Créer un modèle de développement durable intégrant le bambou comme levier économique, tout en protégeant l'environnement."
+  },
+  "hero": {
+    "eyebrow": "Développement durable · Cameroun",
+    "title": "BambouCamer",
+    "tagline": "Le bambou au service de l'économie verte et des territoires.",
+    "description": "Association et startup sociale basée à Dschang : restauration écologique, filières locales et partenariats responsables.",
+    "image": "/hero/bamboo.jpg",
+    "primaryCtaLabel": "Découvrir nos solutions",
+    "primaryCtaHref": "/solutions",
+    "secondaryCtaLabel": "Qui sommes-nous",
+    "secondaryCtaHref": "/apropos"
   }
 }

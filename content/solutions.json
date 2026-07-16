@@ -5,15 +5,17 @@
     "description": "Nous identifions, cartographions et protégeons les espèces menacées en intégrant les communautés locales comme premières gardiennes de la nature.",
     "icon": "map-pin",
     "image": "https://bamboucamer.com/wp-content/uploads/2026/04/Picture1-2.jpg",
-    "accent": "bg-forest"
+    "accent": "bg-forest",
+    "body": "Nous identifions, cartographions et protégeons les espèces menacées en intégrant les communautés locales comme premières gardiennes de la nature."
   },
   {
     "id": "sol-2",
     "title": "Restauration des terres dégradées",
     "description": "Le bambou régénère les sols appauvris, stabilise les berges érodées et reconstitue les écosystèmes forestiers dégradés à grande échelle.",
     "icon": "sprout",
-    "image": "https://bamboucamer.com/wp-content/uploads/2026/01/Screen-Shot-2025-11-24-at-23.24.46.png",
-    "accent": "bg-bamboo"
+    "image": "/pillars/restoration.jpg",
+    "accent": "bg-bamboo",
+    "body": "Le bambou régénère les sols appauvris, stabilise les berges érodées et reconstitue les écosystèmes forestiers dégradés à grande échelle."
   },
   {
     "id": "sol-3",
@@ -21,23 +23,26 @@
     "description": "Nos plantations certifiées génèrent des crédits carbone vérifiables pour financer la reforestation et soutenir les communautés rurales.",
     "icon": "coins",
     "image": "https://bamboucamer.com/wp-content/uploads/2025/12/src_img_CD1211FR_SOFO_img13-1140x570.jpg",
-    "accent": "bg-forest-2"
+    "accent": "bg-forest-2",
+    "body": "Nos plantations certifiées génèrent des crédits carbone vérifiables pour financer la reforestation et soutenir les communautés rurales."
   },
   {
     "id": "sol-4",
     "title": "Sensibilisation & formation",
     "description": "Nous formons agriculteurs, jeunes et coopératives aux techniques de culture, de transformation et de commercialisation du bambou.",
     "icon": "graduation",
-    "image": "https://bamboucamer.com/wp-content/uploads/2026/01/Screen-Shot-2025-11-24-at-23.23.59.png",
-    "accent": "bg-bamboo-2"
+    "image": "/pillars/training.jpg",
+    "accent": "bg-bamboo-2",
+    "body": "Nous formons agriculteurs, jeunes et coopératives aux techniques de culture, de transformation et de commercialisation du bambou."
   },
   {
     "id": "sol-5",
     "title": "Produits à base de bambou",
     "description": "Construction écologique, mobilier, emballages biodégradables et ustensiles : des alternatives concrètes aux matériaux polluants.",
     "icon": "package",
-    "image": "https://bamboucamer.com/wp-content/uploads/2026/01/Capture-decran-2026-01-10-170826-1.png",
-    "accent": "bg-shoot-deep"
+    "image": "/pillars/innovation.jpg",
+    "accent": "bg-shoot-deep",
+    "body": "Construction écologique, mobilier, emballages biodégradables et ustensiles : des alternatives concrètes aux matériaux polluants."
   },
   {
     "id": "sol-6",
@@ -45,6 +50,7 @@
     "description": "De l'étude de faisabilité à la mise en œuvre, nous accompagnons entreprises, ONG et institutions avec une connaissance fine du terrain.",
     "icon": "users",
     "image": "https://bamboucamer.com/wp-content/uploads/2026/04/Picture1.jpg",
-    "accent": "bg-forest"
+    "accent": "bg-forest",
+    "body": "De l'étude de faisabilité à la mise en œuvre, nous accompagnons entreprises, ONG et institutions avec une connaissance fine du terrain."
   }
 ]

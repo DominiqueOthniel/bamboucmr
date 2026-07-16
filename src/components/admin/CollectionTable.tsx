@@ -35,7 +35,7 @@ export function CollectionTable({ meta, items }: Props) {
         </div>
         <Link
           href={`/admin/${meta.name}/new`}
-          className="inline-flex items-center gap-2 rounded-xl bg-forest px-4 py-2.5 text-sm font-semibold text-white hover:bg-bamboo"
+          className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-forest px-4 py-2.5 text-sm font-semibold text-white hover:bg-bamboo sm:w-auto"
         >
           <Plus className="h-4 w-4" />
           Ajouter

@@ -1,180 +1,80 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown, ArrowRight } from "lucide-react";
-import { useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import { SiteImage } from "@/components/shared/SiteImage";
-import { Eyebrow } from "@/components/shared/Eyebrow";
-import { FloatingOrbs } from "@/components/motion/FloatingOrbs";
-import { MagneticButton } from "@/components/motion/MagneticButton";
-import { StaggerMount, StaggerMountItem } from "@/components/motion/Reveal";
-import { TextReveal } from "@/components/motion/TextReveal";
-import { useLiteMotion } from "@/hooks/useLiteMotion";
-import { images } from "@/lib/images";
+import type { SiteSettings } from "@/lib/content/types";
 
-const badges = ["Association ONG", "Startup sociale", "Basée à Dschang"];
+type Props = {
+  hero: SiteSettings["hero"];
+};
 
-export function Hero() {
+export function Hero({ hero }: Props) {
   const reduce = useReducedMotion();
-  const lite = useLiteMotion();
-  const heavy = !reduce && !lite;
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "5%"]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden">
+    <section className="relative isolate min-h-[min(100svh,720px)] overflow-hidden bg-forest sm:min-h-[min(88vh,760px)]">
       <div className="absolute inset-0" aria-hidden="true">
-        <motion.div
-          className="absolute inset-0 will-change-transform"
-          style={heavy ? { y: bgY } : undefined}
-        >
-          <div
-            className={`absolute inset-0 ${heavy ? "animate-ken-burns" : ""}`}
-          >
-            <SiteImage
-              src={images.hero}
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-            />
-          </div>
-        </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-r from-forest/94 via-forest/82 to-forest/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-forest/85 via-transparent to-bamboo/15" />
-        {heavy && <FloatingOrbs />}
-        {heavy && (
-          <>
-            <div className="animate-spin-slow absolute -right-24 -top-24 hidden h-72 w-72 rounded-full border border-shoot/10 md:block" />
-            <div className="animate-spin-slow absolute -bottom-32 -left-16 hidden h-56 w-56 rounded-full border border-white/5 [animation-direction:reverse] md:block" />
-          </>
-        )}
+        <SiteImage
+          src={hero.image}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_30%] scale-[1.02] sm:object-[center_35%]"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,36,22,0.78)_0%,rgba(12,36,22,0.55)_40%,rgba(12,36,22,0.82)_100%)] sm:bg-[linear-gradient(105deg,rgba(12,36,22,0.92)_0%,rgba(12,36,22,0.72)_42%,rgba(12,36,22,0.38)_100%)]" />
+        <div className="absolute inset-0 hidden bg-[linear-gradient(to_top,rgba(12,36,22,0.55)_0%,transparent_45%)] sm:block" />
+        <div className="absolute inset-y-0 left-0 hidden w-[2px] bg-shoot/40 sm:block" />
       </div>
 
-      <motion.div
-        className="container-site relative grid items-center gap-6 py-12 sm:gap-10 sm:py-16 lg:grid-cols-2 lg:gap-14 lg:py-20 xl:py-24"
-        style={heavy ? { y: contentY } : undefined}
-      >
-        <div className="min-w-0 text-white">
-          <StaggerMount>
-            <StaggerMountItem>
-              <Eyebrow tone="on-dark">Nouveau vecteur de l&apos;économie verte</Eyebrow>
-            </StaggerMountItem>
-
-            <StaggerMountItem>
-              <h1 className="mt-4 text-[clamp(2.1rem,7vw,4.5rem)] leading-[0.95] text-white sm:mt-5">
-                <TextReveal text="Bambou" delay={0.08} />
-                <br />
-                <TextReveal text="Camer" className="text-shoot" delay={0.2} />
-              </h1>
-            </StaggerMountItem>
-
-            <StaggerMountItem>
-              <p className="mt-4 max-w-[48ch] text-[clamp(0.98rem,2.5vw,1.2rem)] leading-relaxed text-white/90 sm:mt-5">
-                Transforme le bambou en moteur de développement durable au Cameroun
-                et en Afrique. Protéger l&apos;environnement, préserver la biodiversité
-                et dynamiser les économies locales.
-              </p>
-            </StaggerMountItem>
-
-            <StaggerMountItem>
-              <div className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row sm:flex-wrap">
-                <MagneticButton>
-                  <Link
-                    href="/solutions"
-                    className="group inline-flex w-full items-center justify-center gap-2 rounded-[13px] bg-shoot px-6 py-3.5 font-semibold text-forest shadow-lg transition hover:bg-white sm:w-auto"
-                  >
-                    En savoir plus
-                    <ArrowDown className="h-[18px] w-[18px] transition group-hover:translate-y-0.5" />
-                  </Link>
-                </MagneticButton>
-                <MagneticButton>
-                  <Link
-                    href="/apropos"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-[13px] border border-white/35 bg-white/10 px-6 py-3.5 font-semibold text-white backdrop-blur transition hover:bg-white/20 sm:w-auto"
-                  >
-                    Qui sommes-nous
-                    <ArrowRight className="h-[18px] w-[18px]" />
-                  </Link>
-                </MagneticButton>
-              </div>
-            </StaggerMountItem>
-
-            <StaggerMountItem>
-              <div className="mt-6 flex flex-wrap gap-2 sm:mt-8 sm:gap-3">
-                {badges.map((label) => (
-                  <span
-                    key={label}
-                    className="rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-[0.75rem] text-white/90 backdrop-blur sm:text-[0.82rem]"
-                  >
-                    {label}
-                  </span>
-                ))}
-              </div>
-            </StaggerMountItem>
-          </StaggerMount>
-        </div>
-
-        <div className="w-full min-w-0 lg:max-w-[520px] lg:justify-self-end">
-          <div className="relative overflow-hidden rounded-[18px] border border-white/15 shadow-2xl sm:rounded-[24px]">
-            <SiteImage
-              src={images.bambooField}
-              alt="Champ de bambou au Cameroun"
-              width={1140}
-              height={570}
-              className="aspect-[4/3] w-full sm:aspect-[16/10]"
-              priority
-            />
-          </div>
-
-          <div className="mt-3 grid grid-cols-2 gap-2.5 sm:mt-4 sm:gap-4">
-            {[
-              { value: "12 000+", label: "plants mis en terre", dark: true },
-              { value: "×4 CO₂", label: "vs arbre ordinaire", dark: false },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className={`rounded-2xl border px-3 py-2.5 backdrop-blur sm:px-4 sm:py-3 ${
-                  stat.dark
-                    ? "border-white/20 bg-forest/90 text-white"
-                    : "border-white/20 bg-white/95 text-forest"
-                }`}
-              >
-                <p
-                  className={`font-display font-bold ${stat.dark ? "text-lg text-shoot sm:text-2xl" : "text-base sm:text-xl"}`}
-                >
-                  {stat.value}
-                </p>
-                <p className={`text-[0.7rem] sm:text-sm ${stat.dark ? "text-white/80" : "text-muted"}`}>
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-
-      <div className="relative flex justify-center pb-6 sm:pb-8">
-        <a
-          href="#chiffres"
-          className="flex flex-col items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-white/70"
+      <div className="container-site relative flex min-h-[min(100svh,720px)] flex-col justify-end pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-24 sm:min-h-[min(88vh,760px)] sm:justify-center sm:pb-24 sm:pt-36">
+        <motion.div
+          className="max-w-3xl text-white"
+          initial={reduce ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
         >
-          Explorer
-          <span className="grid h-9 w-5 place-items-start justify-center overflow-hidden rounded-full border border-white/30 pt-1.5">
-            <motion.span
-              className="h-2 w-1 rounded-full bg-shoot"
-              animate={reduce ? undefined : { y: [0, 10, 0] }}
-              transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </span>
-        </a>
+          <p className="eyebrow-text text-white/65">{hero.eyebrow}</p>
+
+          <h1 className="mt-4 font-display text-[clamp(2.35rem,11vw,5.4rem)] font-semibold leading-[0.94] tracking-[-0.035em] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:mt-5">
+            {hero.title}
+          </h1>
+
+          <motion.p
+            className="mt-4 max-w-[36rem] font-display text-[clamp(1.05rem,3.6vw,1.55rem)] font-medium leading-snug text-white/95 sm:mt-6"
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {hero.tagline}
+          </motion.p>
+
+          <motion.p
+            className="mt-3 max-w-[40rem] text-[0.95rem] leading-relaxed text-white/72 sm:mt-4 sm:text-[1.05rem]"
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.55, delay: 0.2 }}
+          >
+            {hero.description}
+          </motion.p>
+
+          <motion.div
+            className="btn-stack-mobile mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center"
+            initial={reduce ? false : { opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.28 }}
+          >
+            <Link href={hero.primaryCtaHref} className="btn-light">
+              {hero.primaryCtaLabel}
+              <ArrowRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+            </Link>
+            <Link href={hero.secondaryCtaHref} className="btn-secondary">
+              {hero.secondaryCtaLabel}
+            </Link>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,0 +1,7 @@
+[
+  { "id": "cat-activite", "label": "Activité", "order": 1 },
+  { "id": "cat-restauration", "label": "Restauration", "order": 2 },
+  { "id": "cat-intervention", "label": "Intervention", "order": 3 },
+  { "id": "cat-distinction", "label": "Distinction", "order": 4 },
+  { "id": "cat-conservation", "label": "Conservation", "order": 5 }
+]

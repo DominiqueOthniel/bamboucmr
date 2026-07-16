@@ -45,3 +45,6 @@ next-env.d.ts
 AGENTS.md
 CLAUDE.md
 
+# Local media uploads (dev fallback without MongoDB)
+/public/uploads
+

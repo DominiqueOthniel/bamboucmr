@@ -37,7 +37,7 @@ export function ImpactPreview({ impactBars }: { impactBars: ImpactBarItem[] }) {
           </p>
           <Link
             href="/impact"
-            className="mt-6 inline-flex rounded-[13px] border border-white/25 px-6 py-3.5 font-semibold text-white transition hover:border-shoot hover:bg-white/8 sm:mt-7"
+            className="mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-[var(--radius-sm)] border border-white/25 px-6 py-3.5 font-semibold text-white transition hover:border-shoot hover:bg-white/8 sm:mt-7 sm:w-auto"
           >
             Voir notre impact
           </Link>

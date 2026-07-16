@@ -101,12 +101,20 @@ export function Footer({ settings }: { settings: SiteSettings }) {
           </div>
         </div>
 
-        <div className="mt-11 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6 text-[0.85rem]">
-          <span>© 2026 BambouCamer · Nouveau vecteur de l&apos;économie verte.</span>
-          <div className="flex flex-wrap gap-5">
-            <Link href="/mentions-legales" className="hover:text-shoot">Mentions légales</Link>
-            <Link href="/confidentialite" className="hover:text-shoot">Confidentialité</Link>
-            <Link href="/conditions" className="hover:text-shoot">Conditions d&apos;utilisation</Link>
+        <div className="mt-11 flex flex-col gap-4 border-t border-white/10 pt-6 text-[0.85rem] sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+          <span className="leading-relaxed">
+            © 2026 BambouCamer · Nouveau vecteur de l&apos;économie verte.
+          </span>
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-5">
+            <Link href="/mentions-legales" className="hover:text-shoot">
+              Mentions légales
+            </Link>
+            <Link href="/confidentialite" className="hover:text-shoot">
+              Confidentialité
+            </Link>
+            <Link href="/conditions" className="hover:text-shoot">
+              Conditions d&apos;utilisation
+            </Link>
           </div>
         </div>
       </div>

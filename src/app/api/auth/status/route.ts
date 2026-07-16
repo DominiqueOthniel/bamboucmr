@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getMissingAuthEnv } from "@/lib/auth";
-import { isMongoEnabled } from "@/lib/db/mongodb";
+import { isMongoConfigured, isMongoEnabled } from "@/lib/db/mongodb";
 
 function envLength(name: "ADMIN_PASSWORD" | "ADMIN_SESSION_SECRET"): number {
   const raw = process.env[name]?.trim().replace(/^["']|["']$/g, "");
@@ -16,6 +16,7 @@ export async function GET() {
     missing,
     passwordLength: envLength("ADMIN_PASSWORD"),
     sessionSecretLength: envLength("ADMIN_SESSION_SECRET"),
+    mongodbConfigured: isMongoConfigured(),
     mongodb: isMongoEnabled(),
   });
 }

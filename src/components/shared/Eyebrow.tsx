@@ -11,18 +11,30 @@ type EyebrowProps = {
 };
 
 const tones = {
-  default: "border-bamboo/25 bg-bamboo/10 text-bamboo",
-  light: "border-shoot/30 bg-shoot/15 text-shoot-deep",
-  "on-dark": "border-white/20 bg-white/10 text-shoot",
+  default: "text-bamboo",
+  light: "text-shoot-deep",
+  "on-dark": "text-white/70",
 };
 
 export function Eyebrow({ children, className = "", tone = "default" }: EyebrowProps) {
   const reduce = useReducedMotion();
 
-  const classes = `inline-flex items-center rounded-full border px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.1em] ${tones[tone]} ${className}`;
+  const classes = `eyebrow-text inline-flex items-center gap-2 ${tones[tone]} ${className}`;
+
+  const content = (
+    <>
+      <span
+        className={`h-px w-5 ${
+          tone === "on-dark" ? "bg-white/40" : "bg-bamboo/50"
+        }`}
+        aria-hidden
+      />
+      {children}
+    </>
+  );
 
   if (reduce) {
-    return <span className={classes}>{children}</span>;
+    return <span className={classes}>{content}</span>;
   }
 
   return (
@@ -33,7 +45,7 @@ export function Eyebrow({ children, className = "", tone = "default" }: EyebrowP
       viewport={{ once: true, amount: 0.5 }}
       transition={tweenSmooth}
     >
-      {children}
+      {content}
     </motion.span>
   );
 }

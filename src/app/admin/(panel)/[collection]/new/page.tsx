@@ -9,7 +9,12 @@ export default async function AdminNewItemPage({ params }: Props) {
   const meta = getCollectionMeta(collection);
   if (!meta || meta.name === "site-settings") notFound();
 
-  const defaults: Record<string, unknown> = { published: true, order: 0 };
+  const defaults: Record<string, unknown> = {
+    published: true,
+    order: 0,
+    body: "",
+    description: "",
+  };
 
   return <CollectionForm meta={meta} initialData={defaults} isNew />;
 }

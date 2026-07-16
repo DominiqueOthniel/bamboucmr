@@ -1,10 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
-import { useLiteMotion } from "@/hooks/useLiteMotion";
 import { tweenSmooth } from "@/lib/motion";
 
 type PageHeroProps = {
@@ -23,46 +21,32 @@ export function PageHero({
   eyebrowTone,
 }: PageHeroProps) {
   const reduce = useReducedMotion();
-  const lite = useLiteMotion();
-  const heavy = !reduce && !lite;
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
   const tone = eyebrowTone ?? (image ? "on-dark" : "default");
 
   return (
     <section
-      ref={ref}
-      className={`relative overflow-hidden border-b border-line ${image ? "min-h-[220px] sm:min-h-[280px]" : ""}`}
+      className={`relative overflow-hidden border-b border-line ${image ? "min-h-[240px] sm:min-h-[300px]" : ""}`}
     >
-      {image && (
-        <motion.div
-          className="absolute inset-0"
-          style={heavy ? { scale: bgScale } : undefined}
-          aria-hidden="true"
-        >
+      {image ? (
+        <div className="absolute inset-0" aria-hidden="true">
           <SiteImage
             src={image}
             alt=""
             fill
             priority
             sizes="100vw"
-            className="object-cover"
+            className="object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-forest/92 via-forest/78 to-bamboo/55" />
-        </motion.div>
-      )}
-      {!image && (
+          <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(12,36,22,0.9)_0%,rgba(12,36,22,0.72)_55%,rgba(42,95,58,0.5)_100%)]" />
+        </div>
+      ) : (
         <div
-          className="absolute inset-0 bg-gradient-to-br from-sand via-paper to-shoot/10"
+          className="absolute inset-0 bg-[linear-gradient(160deg,var(--sand)_0%,var(--paper)_55%,color-mix(in_srgb,var(--bamboo)_6%,transparent)_100%)]"
           aria-hidden="true"
         />
       )}
 
-      <div className="container-site relative py-10 sm:py-16 lg:py-20">
+      <div className="container-site relative py-12 sm:py-16 lg:py-20">
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -71,19 +55,19 @@ export function PageHero({
           <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
         </motion.div>
         <motion.h1
-          initial={reduce ? false : { opacity: 0, y: 20 }}
+          initial={reduce ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.08, ...tweenSmooth }}
-          className={`mt-3 max-w-[22ch] text-[clamp(1.75rem,4.5vw,3.4rem)] leading-[1.05] sm:mt-4 ${image ? "text-white" : ""}`}
+          transition={{ delay: 0.06, ...tweenSmooth }}
+          className={`mt-4 max-w-[20ch] text-[clamp(1.85rem,4.6vw,3.35rem)] leading-[1.05] ${image ? "text-white" : "text-forest"}`}
         >
           {title}
         </motion.h1>
         {description && (
           <motion.p
-            initial={reduce ? false : { opacity: 0, y: 14 }}
+            initial={reduce ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.16, ...tweenSmooth }}
-            className={`mt-3 max-w-[52ch] text-[0.95rem] leading-relaxed sm:mt-4 sm:text-[1.08rem] ${image ? "text-white/88" : "text-muted"}`}
+            transition={{ delay: 0.12, ...tweenSmooth }}
+            className={`mt-4 max-w-[48ch] text-[1rem] leading-relaxed sm:text-[1.08rem] ${image ? "text-white/80" : "text-muted"}`}
           >
             {description}
           </motion.p>

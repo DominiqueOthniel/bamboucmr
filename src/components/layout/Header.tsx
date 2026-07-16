@@ -38,13 +38,13 @@ export function Header({ navLinks }: { navLinks: NavLinkItem[] }) {
 
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-[background,border-color,box-shadow] duration-300 ${
+      className={`sticky top-0 z-50 border-b pt-[env(safe-area-inset-top)] transition-[background,border-color,box-shadow,backdrop-filter] duration-300 ${
         scrolled
-          ? "border-line bg-paper/90 shadow-[0_8px_30px_-22px_rgba(18,48,28,.5)] backdrop-blur-xl"
-          : "border-transparent bg-paper/80 backdrop-blur-md"
+          ? "border-line/80 bg-paper/92 shadow-[0_10px_40px_-28px_rgba(12,36,22,.45)] backdrop-blur-xl"
+          : "border-transparent bg-paper/75 backdrop-blur-md"
       }`}
     >
-      <div className="container-site flex h-16 items-center gap-2 sm:h-[72px] sm:gap-4">
+      <div className="container-site flex h-14 items-center gap-2 sm:h-[70px] sm:gap-4">
         <Logo hideTextOnMobile className="min-w-0 shrink" />
 
         <nav
@@ -56,17 +56,17 @@ export function Header({ navLinks }: { navLinks: NavLinkItem[] }) {
               key={link.href}
               href={link.href}
               aria-current={isActive(link.href) ? "page" : undefined}
-              className={`relative whitespace-nowrap rounded-[10px] px-3 py-2 text-[0.9rem] font-medium transition-colors xl:px-3.5 xl:text-[0.94rem] ${
+              className={`relative whitespace-nowrap rounded-[var(--radius-sm)] px-2.5 py-2 text-[0.88rem] font-medium transition-colors xl:px-3.5 xl:text-[0.9rem] ${
                 isActive(link.href)
                   ? "text-bamboo"
-                  : "text-ink hover:bg-sand"
+                  : "text-ink/85 hover:bg-sand/80 hover:text-ink"
               }`}
             >
               {link.label}
               {isActive(link.href) && (
                 <motion.span
                   layoutId="nav-underline"
-                  className="absolute inset-x-3 bottom-1 h-0.5 rounded-full bg-shoot-deep"
+                  className="absolute inset-x-2.5 bottom-1 h-px rounded-full bg-bamboo xl:inset-x-3"
                   transition={reduce ? { duration: 0 } : tweenFast}
                 />
               )}
@@ -76,7 +76,7 @@ export function Header({ navLinks }: { navLinks: NavLinkItem[] }) {
 
         <Link
           href="/contact"
-          className="hidden items-center gap-2 whitespace-nowrap rounded-xl bg-forest px-4 py-2.5 text-[0.88rem] font-semibold text-white transition hover:bg-bamboo lg:ml-2 lg:inline-flex xl:px-5 xl:text-[0.94rem]"
+          className="hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-[var(--radius-sm)] bg-forest px-4 py-2.5 text-[0.88rem] font-semibold text-white transition hover:bg-bamboo lg:ml-2 lg:inline-flex xl:px-5"
         >
           <span className="hidden xl:inline">Devenir partenaire</span>
           <span className="xl:hidden">Partenaire</span>
@@ -85,7 +85,7 @@ export function Header({ navLinks }: { navLinks: NavLinkItem[] }) {
 
         <button
           type="button"
-          className="ml-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-[11px] bg-sand lg:ml-0 lg:hidden"
+          className="ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-sand lg:ml-0 lg:hidden"
           aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -101,10 +101,10 @@ export function Header({ navLinks }: { navLinks: NavLinkItem[] }) {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={tweenFast}
-            className="overflow-hidden border-b border-line bg-surface lg:hidden"
+            className="max-h-[min(80vh,560px)] overflow-y-auto border-b border-line bg-surface lg:hidden"
           >
             <nav
-              className="container-site flex flex-col gap-1 py-4"
+              className="container-site flex flex-col gap-1 py-3 pb-[max(1rem,env(safe-area-inset-bottom))]"
               aria-label="Menu mobile"
             >
               {navLinks.map((link) => (
@@ -112,10 +112,10 @@ export function Header({ navLinks }: { navLinks: NavLinkItem[] }) {
                   key={link.href}
                   href={link.href}
                   aria-current={isActive(link.href) ? "page" : undefined}
-                  className={`block rounded-xl px-4 py-3 text-base font-medium ${
+                  className={`block rounded-[var(--radius-md)] px-4 py-3.5 text-base font-medium ${
                     isActive(link.href)
                       ? "bg-sand text-bamboo"
-                      : "text-ink hover:bg-sand/70"
+                      : "text-ink active:bg-sand/70"
                   }`}
                 >
                   {link.label}
@@ -123,7 +123,7 @@ export function Header({ navLinks }: { navLinks: NavLinkItem[] }) {
               ))}
               <Link
                 href="/contact"
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-xl bg-forest px-5 py-3 font-semibold text-white"
+                className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-[var(--radius-sm)] bg-forest px-5 py-3 font-semibold text-white"
               >
                 Devenir partenaire
                 <ArrowRight className="h-4 w-4" />

@@ -67,12 +67,36 @@ export async function getNavLinks(): Promise<NavLinkItem[]> {
 
 export async function getPillars(): Promise<PillarItem[]> {
   noStore();
-  return loadCollectionItems<PillarItem>("pillars");
+  const items = await loadCollectionItems<PillarItem>("pillars");
+  return items.map((item) => ({
+    ...item,
+    body: item.body || item.description,
+  }));
+}
+
+export async function getPillarById(id: string): Promise<PillarItem | null> {
+  noStore();
+  const items = await loadCollectionItems<PillarItem>("pillars");
+  const item = items.find((entry) => entry.id === id);
+  if (!item) return null;
+  return { ...item, body: item.body || item.description };
 }
 
 export async function getSolutions(): Promise<SolutionItem[]> {
   noStore();
-  return loadCollectionItems<SolutionItem>("solutions");
+  const items = await loadCollectionItems<SolutionItem>("solutions");
+  return items.map((item) => ({
+    ...item,
+    body: item.body || item.description,
+  }));
+}
+
+export async function getSolutionById(id: string): Promise<SolutionItem | null> {
+  noStore();
+  const items = await loadCollectionItems<SolutionItem>("solutions");
+  const item = items.find((entry) => entry.id === id);
+  if (!item) return null;
+  return { ...item, body: item.body || item.description };
 }
 
 export async function getRseItems(): Promise<RseItem[]> {

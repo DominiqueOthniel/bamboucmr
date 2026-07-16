@@ -5,6 +5,8 @@ const dbName = process.env.MONGODB_DB_NAME ?? "bamboucamer";
 declare global {
   // eslint-disable-next-line no-var
   var _mongoClientPromise: Promise<MongoClient> | undefined;
+  // eslint-disable-next-line no-var
+  var _mongoUnavailable: boolean | undefined;
 }
 
 function normalizeMongoUri(raw: string | undefined): string | undefined {
@@ -26,21 +28,36 @@ function createClient(): Promise<MongoClient> {
   }
   const client = new MongoClient(uri, {
     maxPoolSize: 10,
+    serverSelectionTimeoutMS: 5000,
+    connectTimeoutMS: 5000,
   });
   return client.connect();
 }
 
-export function isMongoEnabled(): boolean {
+export function isMongoConfigured(): boolean {
   return Boolean(uri);
+}
+
+/** True when URI is set and we have not marked Mongo as unavailable this process. */
+export function isMongoEnabled(): boolean {
+  return Boolean(uri) && !global._mongoUnavailable;
+}
+
+export function markMongoUnavailable(): void {
+  global._mongoUnavailable = true;
+  global._mongoClientPromise = undefined;
 }
 
 export function getMongoClient(): Promise<MongoClient> {
   if (!isMongoEnabled()) {
-    throw new Error("MONGODB_URI manquant ou invalide");
+    throw new Error("MONGODB_URI manquant, invalide ou indisponible");
   }
 
   if (!global._mongoClientPromise) {
-    global._mongoClientPromise = createClient();
+    global._mongoClientPromise = createClient().catch((err) => {
+      markMongoUnavailable();
+      throw err;
+    });
   }
   return global._mongoClientPromise;
 }
