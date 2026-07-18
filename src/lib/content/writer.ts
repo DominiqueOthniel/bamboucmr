@@ -16,6 +16,7 @@ const REVALIDATE_PATHS: Record<CollectionName, string[]> = {
   pillars: ["/", "/objectifs"],
   solutions: ["/", "/solutions"],
   "rse-items": ["/solutions"],
+  faq: ["/faq"],
 };
 
 function isCollectionName(name: string): name is CollectionName {
