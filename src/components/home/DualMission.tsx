@@ -34,7 +34,7 @@ export function DualMission() {
   const lite = useLiteMotion();
 
   return (
-    <section className="relative overflow-hidden bg-forest py-14 text-white sm:py-20">
+    <section className="on-dark relative overflow-hidden bg-forest py-14 text-white sm:py-20">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(180,214,75,.18),transparent_45%)]" />
       {!lite && (
       <motion.div
@@ -89,7 +89,7 @@ export function DualMission() {
                     <p className="mt-2 max-w-[40ch] text-sm text-white/85">
                       {card.description}
                     </p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-shoot">
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white">
                       En savoir plus
                       <ArrowRight className="h-4 w-4 transition group-hover:translate-x-2" />
                     </span>

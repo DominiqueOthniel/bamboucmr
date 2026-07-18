@@ -41,7 +41,7 @@ export function AboutSection({
               className="aspect-[16/10] w-full"
             />
             </motion.div>
-            <div className="bg-forest px-5 py-4 text-white sm:px-6 sm:py-5">
+            <div className="on-dark bg-forest px-5 py-4 text-white sm:px-6 sm:py-5">
               <Eyebrow tone="on-dark" className="mb-2">
                 Terrain · Cameroun
               </Eyebrow>
@@ -110,7 +110,7 @@ export function AboutSection({
             </Link>
             <Link
               href="/objectifs"
-              className="inline-flex min-h-11 items-center justify-center rounded-[var(--radius-sm)] border border-bamboo/40 bg-surface px-5 py-3 font-semibold text-bamboo transition hover:bg-bamboo/8"
+              className="btn-cta inline-flex min-h-11 items-center justify-center rounded-[var(--radius-sm)] border border-line bg-surface px-5 py-3 font-semibold text-ink transition hover:bg-sand"
             >
               Nos objectifs
             </Link>

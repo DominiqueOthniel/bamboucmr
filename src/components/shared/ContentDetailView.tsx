@@ -36,7 +36,7 @@ export function ContentDetailView({
     <article className="container-site py-10 sm:py-16">
       <Link
         href={backHref}
-        className="inline-flex items-center gap-2 text-sm font-medium text-bamboo hover:text-forest"
+        className="inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-forest"
       >
         <ArrowLeft className="h-4 w-4" />
         {backLabel}
@@ -75,7 +75,7 @@ export function ContentDetailView({
         <div className="flex flex-wrap gap-3 pt-5">
           <Link
             href={ctaHref}
-            className="inline-flex items-center gap-2 rounded-md bg-forest px-5 py-3 text-sm font-semibold text-white transition hover:bg-bamboo"
+            className="btn-cta inline-flex items-center gap-2 rounded-md bg-forest px-5 py-3 text-sm font-semibold text-white transition"
           >
             {ctaLabel}
             <ArrowRight className="h-4 w-4" />

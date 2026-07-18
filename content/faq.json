@@ -1,0 +1,50 @@
+[
+  {
+    "id": "faq-1",
+    "question": "Qu'est-ce que BambouCamer ?",
+    "answer": "BambouCamer est à la fois une association et une startup sociale basée à Dschang (Cameroun). Nous valorisons le bambou comme levier d'économie verte, de restauration écologique et de développement des communautés locales.",
+    "order": 1
+  },
+  {
+    "id": "faq-2",
+    "question": "Pourquoi le bambou ?",
+    "answer": "Le bambou pousse rapidement, stocke du carbone, stabilise les sols et peut remplacer des matériaux plus polluants. C'est une ressource locale sous-exploitée, idéale pour allier protection de l'environnement et activités économiques durables.",
+    "order": 2
+  },
+  {
+    "id": "faq-3",
+    "question": "Où êtes-vous basés ?",
+    "answer": "Notre siège est à Dschang (Immeuble Gabon Bar, face au stade de Foréké). Nos actions touchent le Cameroun et s'étendent progressivement à d'autres territoires africains via des partenariats.",
+    "order": 3
+  },
+  {
+    "id": "faq-4",
+    "question": "Quelles solutions proposez-vous ?",
+    "answer": "Nous accompagnons la plantation et la restauration, la formation des acteurs locaux, le développement de filières et de produits à base de bambou, ainsi que des projets RSE pour les entreprises qui souhaitent un impact mesurable.",
+    "order": 4
+  },
+  {
+    "id": "faq-5",
+    "question": "Comment devenir partenaire ?",
+    "answer": "Entreprises, ONG, collectivités ou bailleurs : contactez-nous via le formulaire ou par e-mail. Nous construisons des partenariats sur mesure (cofinancement, expertise technique, projets terrain, mécénat ou RSE).",
+    "order": 5
+  },
+  {
+    "id": "faq-6",
+    "question": "Proposez-vous des formations ?",
+    "answer": "Oui. Nous organisons des formations et ateliers sur la culture du bambou, sa transformation et les bonnes pratiques de gestion durable, destinés aux communautés, porteurs de projets et partenaires.",
+    "order": 6
+  },
+  {
+    "id": "faq-7",
+    "question": "Comment mesurer votre impact ?",
+    "answer": "Nous suivons des indicateurs concrets : plantations, surfaces restaurées, personnes formées, avancée des projets produits et partenariats. Ces progrès sont présentés sur notre page Impact.",
+    "order": 7
+  },
+  {
+    "id": "faq-8",
+    "question": "Comment vous contacter ?",
+    "answer": "Écrivez à contact@bamboucamer.com, appelez le (+237) 653 07 70 76, ou utilisez le formulaire de la page Contact. Nous répondons en général sous 48 heures.",
+    "order": 8
+  }
+]

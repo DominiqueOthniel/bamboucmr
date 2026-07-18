@@ -50,7 +50,7 @@ export function Stats({ stats }: { stats: StatItem[] }) {
     <section
       id="chiffres"
       aria-label="Nos chiffres"
-      className="relative overflow-hidden bg-forest py-16 text-[#EDF2EA] sm:py-20"
+      className="on-dark relative overflow-hidden bg-forest py-16 text-[#EDF2EA] sm:py-20"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-70"

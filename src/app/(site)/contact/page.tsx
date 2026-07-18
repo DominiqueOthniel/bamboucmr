@@ -68,7 +68,7 @@ function Info({
   href?: string;
 }) {
   const content = href ? (
-    <a href={href} className="font-display font-semibold hover:text-bamboo">
+    <a href={href} className="font-display font-semibold transition-colors hover:text-forest">
       {value}
     </a>
   ) : (

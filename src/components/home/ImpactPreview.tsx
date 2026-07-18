@@ -7,7 +7,7 @@ import { images } from "@/lib/images";
 
 export function ImpactPreview({ impactBars }: { impactBars: ImpactBarItem[] }) {
   return (
-    <section className="relative overflow-hidden bg-forest py-14 text-[#EFF4EA] sm:py-24">
+    <section className="on-dark relative overflow-hidden bg-forest py-14 text-[#EFF4EA] sm:py-24">
       <div
         className="pointer-events-none absolute inset-0 opacity-10"
         style={{
@@ -37,7 +37,7 @@ export function ImpactPreview({ impactBars }: { impactBars: ImpactBarItem[] }) {
           </p>
           <Link
             href="/impact"
-            className="mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-[var(--radius-sm)] border border-white/25 px-6 py-3.5 font-semibold text-white transition hover:border-shoot hover:bg-white/8 sm:mt-7 sm:w-auto"
+            className="btn-cta btn-secondary mt-6 w-full sm:mt-7 sm:w-auto"
           >
             Voir notre impact
           </Link>

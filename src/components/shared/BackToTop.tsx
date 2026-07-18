@@ -31,7 +31,7 @@ export function BackToTop() {
           onClick={() =>
             window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" })
           }
-          className="fixed bottom-5 right-4 z-40 grid h-11 w-11 place-items-center rounded-[14px] bg-forest text-white shadow-lg sm:bottom-6 sm:right-5 sm:h-12 sm:w-12"
+          className="btn-cta fixed bottom-5 right-4 z-40 grid h-11 w-11 place-items-center rounded-[14px] bg-forest text-white shadow-lg sm:bottom-6 sm:right-5 sm:h-12 sm:w-12"
         >
           <ArrowUp className="h-5 w-5" />
         </motion.button>

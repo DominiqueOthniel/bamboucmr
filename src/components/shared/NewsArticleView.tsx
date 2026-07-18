@@ -10,7 +10,7 @@ export function NewsArticleView({ article }: { article: NewsItem }) {
     <article className="container-site py-10 sm:py-16">
       <Link
         href="/actualites"
-        className="inline-flex items-center gap-2 text-sm font-medium text-bamboo hover:text-forest"
+        className="inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-forest"
       >
         <ArrowLeft className="h-4 w-4" />
         Retour aux actualités

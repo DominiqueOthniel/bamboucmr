@@ -90,7 +90,7 @@ export default async function ObjectifsPage() {
           <Reveal className="mt-10 flex flex-wrap justify-center gap-3.5">
             <Link
               href="/solutions"
-              className="inline-flex rounded-[13px] bg-bamboo px-6 py-3.5 font-semibold text-white transition hover:bg-forest-2"
+              className="btn-cta inline-flex rounded-[13px] bg-bamboo px-6 py-3.5 font-semibold text-white transition"
             >
               Découvrir nos solutions
             </Link>

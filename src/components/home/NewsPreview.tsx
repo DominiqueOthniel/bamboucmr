@@ -21,7 +21,7 @@ export function NewsPreview({ news }: { news: NewsItem[] }) {
           </div>
           <Link
             href="/actualites"
-            className="inline-flex items-center gap-2 font-semibold text-bamboo hover:text-forest"
+            className="inline-flex items-center gap-2 font-semibold text-ink transition-colors hover:text-forest"
           >
             Toutes les actualités
             <ArrowRight className="h-4 w-4" />

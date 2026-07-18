@@ -81,15 +81,60 @@ p {
   text-wrap: pretty;
 }
 
+/* Selection: chartreuse opaque, lisible sur papier et sur verts sombres */
 ::selection {
-  background: color-mix(in srgb, var(--bamboo) 28%, transparent);
+  background: var(--shoot);
+  color: var(--ink);
+}
+
+/* Surfaces sombres (hero, footer, bandes forest, CTA verts) */
+.on-dark ::selection,
+.on-dark::selection,
+.section-band-green ::selection,
+.btn-primary ::selection,
+.btn-secondary ::selection,
+.btn-light ::selection,
+.btn-cta ::selection,
+[class*="bg-forest"]::selection,
+[class*="bg-forest"] ::selection,
+[class*="bg-bamboo"]::selection,
+[class*="bg-bamboo"] ::selection,
+[class*="from-forest"]::selection,
+[class*="from-forest"] ::selection {
+  background: var(--shoot);
   color: var(--forest);
 }
 
 :focus-visible {
-  outline: 2px solid var(--bamboo);
+  outline: 2px solid var(--shoot-deep);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
+}
+
+.on-dark :focus-visible,
+.section-band-green :focus-visible,
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-cta:focus-visible,
+[class*="bg-forest"]:focus-visible,
+[class*="bg-bamboo"]:focus-visible {
+  outline-color: var(--shoot);
+}
+
+/* Pas de sélection de texte sur les contrôles (HCI) */
+button,
+[role="button"],
+.btn-primary,
+.btn-secondary,
+.btn-light,
+.btn-cta,
+a[class*="bg-forest"],
+a[class*="bg-bamboo"],
+button[class*="bg-forest"],
+button[class*="bg-bamboo"] {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .container-site {
@@ -146,7 +191,7 @@ p {
 }
 
 .btn-primary:hover {
-  background: var(--bamboo);
+  background: color-mix(in srgb, var(--forest) 78%, white);
 }
 
 .btn-secondary {
@@ -167,6 +212,19 @@ p {
 
 .btn-light:hover {
   background: var(--paper);
+}
+
+/* CTA verts: hover éclairci (pas un autre vert) */
+.btn-cta[class*="bg-forest"]:hover,
+.btn-cta[class*="bg-bamboo"]:hover {
+  background: color-mix(in srgb, var(--forest) 72%, white);
+  color: white;
+}
+
+/* Liens sur surfaces sombres: blanc, pas chartreuse */
+.on-dark a:not([class*="btn-"]):hover,
+.on-dark a:not([class*="btn-"]):focus-visible {
+  color: #fff;
 }
 
 @media (max-width: 639px) {

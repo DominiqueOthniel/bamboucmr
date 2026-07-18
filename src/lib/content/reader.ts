@@ -9,6 +9,7 @@ import type {
   AboutQuestionItem,
   CollectionItemMap,
   CollectionName,
+  FaqItem,
   ImpactBarItem,
   NavLinkItem,
   NewsItem,
@@ -58,6 +59,12 @@ export async function getPartners(): Promise<PartnerItem[]> {
 export async function getAboutQuestions(): Promise<AboutQuestionItem[]> {
   noStore();
   return loadCollectionItems<AboutQuestionItem>("about-questions");
+}
+
+export async function getFaq(): Promise<FaqItem[]> {
+  noStore();
+  const items = await loadCollectionItems<FaqItem>("faq");
+  return [...items].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 }
 
 export async function getNavLinks(): Promise<NavLinkItem[]> {

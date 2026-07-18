@@ -26,9 +26,12 @@ const socials = [
   },
 ];
 
+const linkHover =
+  "transition-colors hover:text-white focus-visible:text-white";
+
 export function Footer({ settings }: { settings: SiteSettings }) {
   return (
-    <footer className="bg-forest text-[#C7D3C1]">
+    <footer className="on-dark bg-forest text-[#C7D3C1]">
       <div className="container-site pb-8 pt-14 lg:pt-20">
         <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1.4fr]">
           <div>
@@ -42,7 +45,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="grid h-10 w-10 place-items-center rounded-[11px] bg-white/8 text-white transition hover:-translate-y-0.5 hover:bg-bamboo"
+                  className="btn-cta grid h-10 w-10 place-items-center rounded-[11px] bg-white/8 text-white transition hover:-translate-y-0.5 hover:bg-white/20"
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden>
                     <path d={path} />
@@ -57,10 +60,10 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               Navigation
             </h4>
             <ul className="space-y-2.5 text-[0.92rem]">
-              <li><Link href="/apropos" className="hover:text-shoot">À propos</Link></li>
-              <li><Link href="/solutions" className="hover:text-shoot">Solutions</Link></li>
-              <li><Link href="/actualites" className="hover:text-shoot">Actualités</Link></li>
-              <li><Link href="/contact" className="hover:text-shoot">Contact</Link></li>
+              <li><Link href="/apropos" className={linkHover}>À propos</Link></li>
+              <li><Link href="/objectifs" className={linkHover}>Objectifs</Link></li>
+              <li><Link href="/solutions" className={linkHover}>Solutions</Link></li>
+              <li><Link href="/contact" className={linkHover}>Contact</Link></li>
             </ul>
           </div>
 
@@ -69,10 +72,10 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               Ressources
             </h4>
             <ul className="space-y-2.5 text-[0.92rem]">
-              <li><Link href="/objectifs" className="hover:text-shoot">Nos objectifs</Link></li>
-              <li><Link href="/impact" className="hover:text-shoot">Notre impact</Link></li>
-              <li><Link href="/contact" className="hover:text-shoot">FAQ</Link></li>
-              <li><Link href="/apropos" className="hover:text-shoot">ONG / Startup</Link></li>
+              <li><Link href="/actualites" className={linkHover}>Actualités</Link></li>
+              <li><Link href="/impact" className={linkHover}>Notre impact</Link></li>
+              <li><Link href="/faq" className={linkHover}>FAQ</Link></li>
+              <li><Link href="/apropos#association" className={linkHover}>Association / Startup</Link></li>
             </ul>
           </div>
 
@@ -82,18 +85,18 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             </h4>
             <ul className="space-y-3 text-[0.9rem]">
               <li className="flex gap-2.5">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-shoot" />
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-white/55" />
                 {settings.contact.address}
               </li>
               <li className="flex gap-2.5">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-shoot" />
-                <a href={`tel:${settings.contact.phone.replace(/\s/g, "")}`} className="hover:text-shoot">
+                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-white/55" />
+                <a href={`tel:${settings.contact.phone.replace(/\s/g, "")}`} className={linkHover}>
                   {settings.contact.phone}
                 </a>
               </li>
               <li className="flex gap-2.5">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-shoot" />
-                <a href={`mailto:${settings.contact.email}`} className="hover:text-shoot">
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-white/55" />
+                <a href={`mailto:${settings.contact.email}`} className={linkHover}>
                   {settings.contact.email}
                 </a>
               </li>
@@ -106,13 +109,13 @@ export function Footer({ settings }: { settings: SiteSettings }) {
             © 2026 BambouCamer · Nouveau vecteur de l&apos;économie verte.
           </span>
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-5">
-            <Link href="/mentions-legales" className="hover:text-shoot">
+            <Link href="/mentions-legales" className={linkHover}>
               Mentions légales
             </Link>
-            <Link href="/confidentialite" className="hover:text-shoot">
+            <Link href="/confidentialite" className={linkHover}>
               Confidentialité
             </Link>
-            <Link href="/conditions" className="hover:text-shoot">
+            <Link href="/conditions" className={linkHover}>
               Conditions d&apos;utilisation
             </Link>
           </div>

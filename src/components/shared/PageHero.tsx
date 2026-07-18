@@ -25,7 +25,7 @@ export function PageHero({
 
   return (
     <section
-      className={`relative overflow-hidden border-b border-line ${image ? "min-h-[240px] sm:min-h-[300px]" : ""}`}
+      className={`relative overflow-hidden border-b border-line ${image ? "on-dark min-h-[240px] sm:min-h-[300px]" : ""}`}
     >
       {image ? (
         <div className="absolute inset-0" aria-hidden="true">

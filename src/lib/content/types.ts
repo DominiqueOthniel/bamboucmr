@@ -40,6 +40,13 @@ export type AboutQuestionItem = {
   text: string;
 };
 
+export type FaqItem = {
+  id: string;
+  question: string;
+  answer: string;
+  order: number;
+};
+
 export type NavLinkItem = {
   id: string;
   href: string;
@@ -106,7 +113,8 @@ export type CollectionName =
   | "nav-links"
   | "pillars"
   | "solutions"
-  | "rse-items";
+  | "rse-items"
+  | "faq";
 
 export type CollectionItemMap = {
   news: NewsItem;
@@ -119,4 +127,5 @@ export type CollectionItemMap = {
   pillars: PillarItem;
   solutions: SolutionItem;
   "rse-items": RseItem;
+  faq: FaqItem;
 };

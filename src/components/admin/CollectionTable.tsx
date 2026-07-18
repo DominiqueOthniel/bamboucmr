@@ -35,7 +35,7 @@ export function CollectionTable({ meta, items }: Props) {
         </div>
         <Link
           href={`/admin/${meta.name}/new`}
-          className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-forest px-4 py-2.5 text-sm font-semibold text-white hover:bg-bamboo sm:w-auto"
+          className="btn-cta inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-forest px-4 py-2.5 text-sm font-semibold text-white sm:w-auto"
         >
           <Plus className="h-4 w-4" />
           Ajouter
@@ -81,7 +81,7 @@ export function CollectionTable({ meta, items }: Props) {
                     <div className="flex gap-2">
                       <Link
                         href={`/admin/${meta.name}/${item.id}`}
-                        className="inline-flex items-center gap-1 rounded-lg bg-sand px-2.5 py-1.5 text-xs font-medium hover:bg-bamboo/15 hover:text-bamboo"
+                        className="inline-flex items-center gap-1 rounded-lg bg-sand px-2.5 py-1.5 text-xs font-medium hover:bg-sand-2 hover:text-ink"
                       >
                         <Pencil className="h-3.5 w-3.5" />
                         Modifier

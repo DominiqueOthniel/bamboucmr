@@ -14,7 +14,7 @@ export function Hero({ hero }: Props) {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative isolate min-h-[min(100svh,720px)] overflow-hidden bg-forest sm:min-h-[min(88vh,760px)]">
+    <section className="on-dark relative isolate min-h-[min(100svh,720px)] overflow-hidden bg-forest sm:min-h-[min(88vh,760px)]">
       <div className="absolute inset-0" aria-hidden="true">
         <SiteImage
           src={hero.image}

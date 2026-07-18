@@ -1,14 +1,15 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { BackToTop } from "@/components/shared/BackToTop";
-import { getNavLinks, getSiteSettings } from "@/lib/content/reader";
+import { getSiteSettings } from "@/lib/content/reader";
+import { getNavTree } from "@/lib/nav";
 
 export default async function SiteLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [navLinks, settings] = await Promise.all([getNavLinks(), getSiteSettings()]);
+  const [navItems, settings] = await Promise.all([getNavTree(), getSiteSettings()]);
 
   return (
     <div className="flex min-h-full flex-col">
@@ -18,7 +19,7 @@ export default async function SiteLayout({
       >
         Aller au contenu
       </a>
-      <Header navLinks={navLinks} />
+      <Header navItems={navItems} />
       <main id="main" className="flex-1">
         {children}
       </main>

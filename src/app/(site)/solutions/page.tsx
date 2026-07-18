@@ -15,6 +15,7 @@ import {
 import { SiteImage } from "@/components/shared/SiteImage";
 import { PageHero } from "@/components/shared/PageHero";
 import { Eyebrow } from "@/components/shared/Eyebrow";
+import { HashScroll } from "@/components/shared/HashScroll";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { getRseItems, getSolutions } from "@/lib/content/reader";
 import { images } from "@/lib/images";
@@ -42,6 +43,7 @@ export default async function SolutionsPage() {
 
   return (
     <>
+      <HashScroll />
       <PageHero
         eyebrow="Nos solutions"
         title="Des réponses concrètes pour un Cameroun et une Afrique durables."
@@ -93,7 +95,10 @@ export default async function SolutionsPage() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-gradient-to-br from-forest via-bamboo to-shoot-deep py-16 text-white sm:py-24">
+      <section
+        id="rse"
+        className="on-dark relative scroll-mt-28 overflow-hidden bg-gradient-to-br from-forest via-bamboo to-shoot-deep py-16 text-white sm:scroll-mt-32 sm:py-24"
+      >
         <div className="pointer-events-none absolute bottom-0 right-0 p-8 opacity-20">
           <SiteImage
             src={images.rse}
@@ -135,7 +140,7 @@ export default async function SolutionsPage() {
           <Reveal className="mt-10 flex justify-center">
             <Link
               href="/contact"
-              className="inline-flex rounded-[13px] bg-white px-6 py-3.5 font-semibold text-forest transition hover:bg-shoot"
+              className="btn-cta inline-flex rounded-[13px] bg-white px-6 py-3.5 font-semibold text-forest transition hover:bg-paper"
             >
               Devenir partenaire
             </Link>

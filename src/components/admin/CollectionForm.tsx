@@ -97,7 +97,7 @@ function ImageField({
           type="button"
           disabled={uploading}
           onClick={() => inputRef.current?.click()}
-          className="rounded-xl bg-forest px-4 py-2 text-sm font-semibold text-white hover:bg-bamboo disabled:opacity-60"
+          className="btn-cta rounded-xl bg-forest px-4 py-2 text-sm font-semibold text-white disabled:opacity-60"
         >
           {uploading ? "Upload…" : "Choisir depuis l'appareil"}
         </button>
@@ -258,7 +258,7 @@ function DynamicSelect({
             type="button"
             disabled={creating || !newValue.trim()}
             onClick={() => void createOption()}
-            className="shrink-0 rounded-xl border border-bamboo/40 bg-bamboo/10 px-4 py-2.5 text-sm font-semibold text-bamboo hover:bg-bamboo/15 disabled:opacity-60"
+            className="shrink-0 rounded-xl border border-line bg-sand/60 px-4 py-2.5 text-sm font-semibold text-ink transition hover:bg-sand disabled:opacity-60"
           >
             {creating ? "Création…" : "Ajouter"}
           </button>
@@ -444,7 +444,7 @@ export function CollectionForm({ meta, initialData = {}, isNew }: Props) {
         <button
           type="submit"
           disabled={loading}
-          className="rounded-xl bg-forest px-5 py-2.5 text-sm font-semibold text-white hover:bg-bamboo disabled:opacity-60"
+          className="btn-cta rounded-xl bg-forest px-5 py-2.5 text-sm font-semibold text-white disabled:opacity-60"
         >
           {loading ? "Enregistrement…" : "Enregistrer"}
         </button>

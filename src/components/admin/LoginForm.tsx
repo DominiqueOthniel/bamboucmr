@@ -55,7 +55,7 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={loading}
-        className="w-full rounded-xl bg-forest px-4 py-3 font-semibold text-white transition hover:bg-bamboo disabled:opacity-60"
+        className="btn-cta w-full rounded-xl bg-forest px-4 py-3 font-semibold text-white transition disabled:opacity-60"
       >
         {loading ? "Connexion…" : "Se connecter"}
       </button>

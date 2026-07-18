@@ -39,7 +39,7 @@ export function Logo({
           className={`truncate font-display text-[1rem] font-bold tracking-tight sm:text-[1.15rem] ${textClass} ${dark ? "text-white" : "text-ink"}`}
         >
           Bambou
-          <span className={dark ? "font-semibold text-shoot" : "font-semibold text-bamboo"}>
+          <span className={dark ? "font-semibold text-white/90" : "font-semibold text-bamboo"}>
             Camer
           </span>
         </span>

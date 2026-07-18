@@ -25,7 +25,7 @@ export default async function ImpactPage() {
         image={images.mission}
       />
 
-      <section className="bg-forest py-16 text-[#EFF4EA] sm:py-24">
+      <section className="on-dark bg-forest py-16 text-[#EFF4EA] sm:py-24">
         <div className="container-site grid items-center gap-8 sm:gap-10 lg:grid-cols-[.95fr_1.05fr] lg:gap-16">
           <Reveal>
             <Eyebrow tone="on-dark">Notre impact</Eyebrow>
@@ -38,7 +38,7 @@ export default async function ImpactPage() {
             </p>
             <Link
               href="/actualites"
-              className="mt-7 inline-flex rounded-[13px] border border-white/28 px-6 py-3.5 font-semibold text-white transition hover:border-shoot hover:bg-white/8"
+              className="btn-cta btn-secondary mt-7"
             >
               Voir les actualités
             </Link>

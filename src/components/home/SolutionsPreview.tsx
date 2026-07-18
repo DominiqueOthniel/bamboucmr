@@ -89,7 +89,7 @@ export function SolutionsPreview({ solutions }: { solutions: SolutionItem[] }) {
         <Reveal className="mt-8 text-center sm:mt-10">
           <Link
             href="/solutions"
-            className="inline-flex rounded-[13px] bg-bamboo px-6 py-3.5 font-semibold text-white transition hover:bg-forest-2"
+            className="btn-cta inline-flex rounded-[13px] bg-bamboo px-6 py-3.5 font-semibold text-white transition"
           >
             Toutes nos solutions
           </Link>

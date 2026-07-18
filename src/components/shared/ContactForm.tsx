@@ -101,7 +101,7 @@ export function ContactForm() {
             </Field>
             <button
               type="submit"
-              className="inline-flex w-full items-center justify-center gap-2.5 rounded-[13px] bg-bamboo px-6 py-3.5 font-semibold text-white shadow-[0_12px_24px_-14px_rgba(47,107,60,.8)] transition hover:-translate-y-0.5 hover:bg-forest-2"
+              className="btn-cta inline-flex w-full items-center justify-center gap-2.5 rounded-[13px] bg-bamboo px-6 py-3.5 font-semibold text-white shadow-[0_12px_24px_-14px_rgba(47,107,60,.8)] transition hover:-translate-y-0.5"
             >
               Envoyer le message
               <Send className="h-4 w-4" />

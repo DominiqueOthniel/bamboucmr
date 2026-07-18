@@ -47,6 +47,7 @@ export const COLLECTION_NAMES = [
   "pillars",
   "solutions",
   "rse-items",
+  "faq",
 ] as const satisfies readonly CollectionName[];
 
 const PILLAR_ICONS = ["shield", "globe", "building", "lightbulb", "leaf", "users", "sprout"];
@@ -244,6 +245,18 @@ export const COLLECTIONS: CollectionMeta[] = [
     description: "Phrases d'accroche de la section Qui sommes-nous.",
     listColumns: ["text"],
     fields: [{ key: "text", label: "Texte", type: "textarea", required: true }],
+  },
+  {
+    name: "faq",
+    label: "FAQ",
+    labelPlural: "FAQ",
+    description: "Questions fréquentes affichées sur la page FAQ.",
+    listColumns: ["question", "order"],
+    fields: [
+      { key: "question", label: "Question", type: "text", required: true },
+      { key: "answer", label: "Réponse", type: "textarea", required: true },
+      { key: "order", label: "Ordre d'affichage", type: "number", min: 0 },
+    ],
   },
   {
     name: "nav-links",

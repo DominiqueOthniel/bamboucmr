@@ -3,17 +3,20 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
+import { useEffect, useId, useRef, useState } from "react";
 import { Logo } from "@/components/brand/Logo";
-import type { NavLinkItem } from "@/lib/content/types";
+import type { NavItem } from "@/lib/nav";
 import { tweenFast } from "@/lib/motion";
 
-export function Header({ navLinks }: { navLinks: NavLinkItem[] }) {
+export function Header({ navItems }: { navItems: NavItem[] }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [desktopOpen, setDesktopOpen] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState<string | null>(null);
   const reduce = useReducedMotion();
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -24,6 +27,8 @@ export function Header({ navLinks }: { navLinks: NavLinkItem[] }) {
 
   useEffect(() => {
     setOpen(false);
+    setDesktopOpen(null);
+    setMobileOpen(null);
   }, [pathname]);
 
   useEffect(() => {
@@ -33,8 +38,34 @@ export function Header({ navLinks }: { navLinks: NavLinkItem[] }) {
     };
   }, [open]);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  useEffect(() => {
+    if (!desktopOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setDesktopOpen(null);
+    };
+    const onPointer = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setDesktopOpen(null);
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onPointer);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onPointer);
+    };
+  }, [desktopOpen]);
+
+  const isActive = (href: string) => {
+    const path = href.split("#")[0];
+    if (path === "/") return pathname === "/";
+    return pathname === path || pathname.startsWith(`${path}/`);
+  };
+
+  const isGroupActive = (item: NavItem) => {
+    if (isActive(item.href)) return true;
+    return item.children?.some((c) => isActive(c.href)) ?? false;
+  };
 
   return (
     <header
@@ -48,35 +79,52 @@ export function Header({ navLinks }: { navLinks: NavLinkItem[] }) {
         <Logo hideTextOnMobile className="min-w-0 shrink" />
 
         <nav
+          ref={navRef}
           className="ml-auto hidden items-center gap-0.5 lg:flex"
           aria-label="Navigation principale"
         >
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              aria-current={isActive(link.href) ? "page" : undefined}
-              className={`relative whitespace-nowrap rounded-[var(--radius-sm)] px-2.5 py-2 text-[0.88rem] font-medium transition-colors xl:px-3.5 xl:text-[0.9rem] ${
-                isActive(link.href)
-                  ? "text-bamboo"
-                  : "text-ink/85 hover:bg-sand/80 hover:text-ink"
-              }`}
-            >
-              {link.label}
-              {isActive(link.href) && (
-                <motion.span
-                  layoutId="nav-underline"
-                  className="absolute inset-x-2.5 bottom-1 h-px rounded-full bg-bamboo xl:inset-x-3"
-                  transition={reduce ? { duration: 0 } : tweenFast}
-                />
-              )}
-            </Link>
-          ))}
+          {navItems.map((item) =>
+            item.children?.length ? (
+              <DesktopDropdown
+                key={item.id}
+                item={item}
+                active={isGroupActive(item)}
+                open={desktopOpen === item.id}
+                reduce={!!reduce}
+                onOpen={() => setDesktopOpen(item.id)}
+                onClose={() => setDesktopOpen(null)}
+                onToggle={() =>
+                  setDesktopOpen((cur) => (cur === item.id ? null : item.id))
+                }
+                isActive={isActive}
+              />
+            ) : (
+              <Link
+                key={item.id}
+                href={item.href}
+                aria-current={isActive(item.href) ? "page" : undefined}
+                className={`relative whitespace-nowrap rounded-[var(--radius-sm)] px-2.5 py-2 text-[0.88rem] font-medium transition-colors xl:px-3.5 xl:text-[0.9rem] ${
+                  isActive(item.href)
+                    ? "text-forest"
+                    : "text-ink/85 hover:bg-sand/80 hover:text-ink"
+                }`}
+              >
+                {item.label}
+                {isActive(item.href) && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute inset-x-2.5 bottom-1 h-px rounded-full bg-forest xl:inset-x-3"
+                    transition={reduce ? { duration: 0 } : tweenFast}
+                  />
+                )}
+              </Link>
+            )
+          )}
         </nav>
 
         <Link
           href="/contact"
-          className="hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-[var(--radius-sm)] bg-forest px-4 py-2.5 text-[0.88rem] font-semibold text-white transition hover:bg-bamboo lg:ml-2 lg:inline-flex xl:px-5"
+          className="btn-cta hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-[var(--radius-sm)] bg-forest px-4 py-2.5 text-[0.88rem] font-semibold text-white transition lg:ml-2 lg:inline-flex xl:px-5"
         >
           <span className="hidden xl:inline">Devenir partenaire</span>
           <span className="xl:hidden">Partenaire</span>
@@ -107,23 +155,36 @@ export function Header({ navLinks }: { navLinks: NavLinkItem[] }) {
               className="container-site flex flex-col gap-1 py-3 pb-[max(1rem,env(safe-area-inset-bottom))]"
               aria-label="Menu mobile"
             >
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={isActive(link.href) ? "page" : undefined}
-                  className={`block rounded-[var(--radius-md)] px-4 py-3.5 text-base font-medium ${
-                    isActive(link.href)
-                      ? "bg-sand text-bamboo"
-                      : "text-ink active:bg-sand/70"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navItems.map((item) =>
+                item.children?.length ? (
+                  <MobileGroup
+                    key={item.id}
+                    item={item}
+                    active={isGroupActive(item)}
+                    open={mobileOpen === item.id}
+                    onToggle={() =>
+                      setMobileOpen((cur) => (cur === item.id ? null : item.id))
+                    }
+                    isActive={isActive}
+                  />
+                ) : (
+                  <Link
+                    key={item.id}
+                    href={item.href}
+                    aria-current={isActive(item.href) ? "page" : undefined}
+                    className={`block rounded-[var(--radius-md)] px-4 py-3.5 text-base font-medium ${
+                      isActive(item.href)
+                        ? "bg-sand text-forest"
+                        : "text-ink active:bg-sand/70"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
               <Link
                 href="/contact"
-                className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-[var(--radius-sm)] bg-forest px-5 py-3 font-semibold text-white"
+                className="btn-cta mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-[var(--radius-sm)] bg-forest px-5 py-3 font-semibold text-white"
               >
                 Devenir partenaire
                 <ArrowRight className="h-4 w-4" />
@@ -133,5 +194,170 @@ export function Header({ navLinks }: { navLinks: NavLinkItem[] }) {
         )}
       </AnimatePresence>
     </header>
+  );
+}
+
+function DesktopDropdown({
+  item,
+  active,
+  open,
+  reduce,
+  onOpen,
+  onClose,
+  onToggle,
+  isActive,
+}: {
+  item: NavItem;
+  active: boolean;
+  open: boolean;
+  reduce: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  onToggle: () => void;
+  isActive: (href: string) => boolean;
+}) {
+  const panelId = useId();
+  const children = item.children ?? [];
+
+  return (
+    <div
+      className="relative"
+      onMouseEnter={onOpen}
+      onMouseLeave={onClose}
+    >
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-haspopup="menu"
+        aria-controls={panelId}
+        onClick={onToggle}
+        className={`relative inline-flex items-center gap-1 whitespace-nowrap rounded-[var(--radius-sm)] px-2.5 py-2 text-[0.88rem] font-medium transition-colors xl:px-3.5 xl:text-[0.9rem] ${
+          active || open
+            ? "text-forest"
+            : "text-ink/85 hover:bg-sand/80 hover:text-ink"
+        }`}
+      >
+        {item.label}
+        <ChevronDown
+          className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          aria-hidden
+        />
+        {active && (
+          <motion.span
+            layoutId="nav-underline"
+            className="absolute inset-x-2.5 bottom-1 h-px rounded-full bg-forest xl:inset-x-3"
+            transition={reduce ? { duration: 0 } : tweenFast}
+          />
+        )}
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id={panelId}
+            role="menu"
+            initial={reduce ? false : { opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduce ? undefined : { opacity: 0, y: 4 }}
+            transition={tweenFast}
+            className="absolute left-1/2 top-full z-50 w-[min(20rem,calc(100vw-2rem))] -translate-x-1/2 pt-2"
+          >
+            <div className="max-h-[min(70vh,28rem)] overflow-y-auto overflow-hidden rounded-[14px] border border-line bg-surface py-2 shadow-[var(--shadow-card)]">
+              <Link
+                href={item.href}
+                role="menuitem"
+                className="mx-2 mb-1 block rounded-[10px] px-3 py-2.5 text-[0.82rem] font-semibold text-forest transition hover:bg-sand"
+                onClick={onClose}
+              >
+                Voir tout · {item.label}
+              </Link>
+              <div className="mx-2 mb-1 h-px bg-line" />
+              {children.map((child) => (
+                <Link
+                  key={child.href + child.label}
+                  href={child.href}
+                  role="menuitem"
+                  aria-current={isActive(child.href) ? "page" : undefined}
+                  className={`mx-2 block rounded-[10px] px-3 py-2.5 transition hover:bg-sand ${
+                    isActive(child.href) ? "bg-sand/80" : ""
+                  }`}
+                  onClick={onClose}
+                >
+                  <span className="block text-[0.9rem] font-medium text-ink">
+                    {child.label}
+                  </span>
+                  {child.description && (
+                    <span className="mt-0.5 block text-[0.78rem] text-muted">
+                      {child.description}
+                    </span>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function MobileGroup({
+  item,
+  active,
+  open,
+  onToggle,
+  isActive,
+}: {
+  item: NavItem;
+  active: boolean;
+  open: boolean;
+  onToggle: () => void;
+  isActive: (href: string) => boolean;
+}) {
+  const panelId = useId();
+  const children = item.children ?? [];
+
+  return (
+    <div className="rounded-[var(--radius-md)]">
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls={panelId}
+        onClick={onToggle}
+        className={`flex w-full items-center justify-between rounded-[var(--radius-md)] px-4 py-3.5 text-left text-base font-medium ${
+          active ? "bg-sand text-forest" : "text-ink"
+        }`}
+      >
+        {item.label}
+        <ChevronDown
+          className={`h-4 w-4 shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
+          aria-hidden
+        />
+      </button>
+      {open && (
+        <div id={panelId} className="mb-1 space-y-0.5 pb-2 pl-3">
+          <Link
+            href={item.href}
+            className="block rounded-[10px] px-3 py-2.5 text-sm font-semibold text-forest active:bg-sand/70"
+          >
+            Voir tout
+          </Link>
+          {children.map((child) => (
+            <Link
+              key={child.href + child.label}
+              href={child.href}
+              aria-current={isActive(child.href) ? "page" : undefined}
+              className={`block rounded-[10px] px-3 py-2.5 text-sm ${
+                isActive(child.href)
+                  ? "bg-sand/80 font-medium text-forest"
+                  : "text-muted active:bg-sand/70"
+              }`}
+            >
+              {child.label}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

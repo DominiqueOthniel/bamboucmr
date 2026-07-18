@@ -99,7 +99,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             </button>
             <Link
               href="/"
-              className="mt-1 block rounded-xl px-3 py-2 text-xs text-muted hover:text-bamboo"
+              className="mt-1 block rounded-xl px-3 py-2 text-xs text-muted hover:text-ink"
             >
               Voir le site →
             </Link>

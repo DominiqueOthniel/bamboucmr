@@ -25,7 +25,7 @@ export default function MentionsLegalesPage() {
             <p>L&apos;ensemble des contenus présents sur ce site (textes, visuels, logos) est protégé. Toute reproduction non autorisée est interdite.</p>
           </LegalBlock>
           <div className="mt-9 flex flex-wrap gap-3.5">
-            <Link href="/contact" className="rounded-[13px] bg-bamboo px-6 py-3.5 font-semibold text-white">Nous contacter</Link>
+            <Link href="/contact" className="btn-cta rounded-[13px] bg-bamboo px-6 py-3.5 font-semibold text-white">Nous contacter</Link>
             <Link href="/" className="rounded-[13px] border-[1.5px] border-sand-2 px-6 py-3.5 font-semibold text-forest">Retour à l&apos;accueil</Link>
           </div>
         </Reveal>

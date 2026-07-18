@@ -88,7 +88,7 @@ export function ObjectivesPreview({ pillars }: { pillars: PillarItem[] }) {
         <Reveal className="mt-8 text-center sm:mt-10">
           <Link
             href="/objectifs"
-            className="inline-flex rounded-[13px] bg-forest px-6 py-3.5 font-semibold text-white transition hover:bg-bamboo"
+            className="btn-cta inline-flex rounded-[13px] bg-forest px-6 py-3.5 font-semibold text-white transition"
           >
             Voir tous les objectifs
           </Link>
