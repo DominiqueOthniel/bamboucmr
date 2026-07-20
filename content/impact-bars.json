@@ -1,6 +1,26 @@
 [
-  { "id": "ib-1", "label": "Sensibilisation et formation", "pct": 82 },
-  { "id": "ib-2", "label": "Restauration des sols et biodiversité", "pct": 68 },
-  { "id": "ib-3", "label": "R&D et produits en bambou", "pct": 74 },
-  { "id": "ib-4", "label": "Plaidoyer et partenariats stratégiques", "pct": 90 }
+  {
+    "id": "ib-1",
+    "label": "Sensibilisation et formation",
+    "pct": 82,
+    "labelEn": "Awareness and training"
+  },
+  {
+    "id": "ib-2",
+    "label": "Restauration des sols et biodiversité",
+    "pct": 68,
+    "labelEn": "Soil restoration and biodiversity"
+  },
+  {
+    "id": "ib-3",
+    "label": "R&D et produits en bambou",
+    "pct": 74,
+    "labelEn": "R&D and bamboo products"
+  },
+  {
+    "id": "ib-4",
+    "label": "Plaidoyer et partenariats stratégiques",
+    "pct": 90,
+    "labelEn": "Advocacy and strategic partnerships"
+  }
 ]

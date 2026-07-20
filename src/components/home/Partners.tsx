@@ -2,19 +2,19 @@
 
 import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
-import { Reveal } from "@/components/motion/Reveal";
+import { useI18n } from "@/i18n/LocaleProvider";
 import type { PartnerItem } from "@/lib/content/types";
 
 function PartnerCard({ partner }: { partner: PartnerItem }) {
   return (
-    <div className="flex h-20 items-center justify-center rounded-[14px] border border-line bg-surface p-3 sm:h-24 sm:rounded-[16px] sm:p-4">
+    <div className="flex h-[4.5rem] items-center justify-center rounded-[14px] border border-line bg-surface px-3 py-2 sm:h-20 sm:rounded-[16px] sm:px-4">
       {partner.logoUrl ? (
         <SiteImage
           src={partner.logoUrl}
           alt={partner.name}
           width={140}
-          height={60}
-          className="max-h-10 w-auto !object-contain sm:max-h-12"
+          height={48}
+          className="!h-8 !w-auto max-h-8 !object-contain sm:!h-10 sm:max-h-10"
         />
       ) : (
         <span className="inline-flex items-center gap-2 text-center font-display text-xs font-bold text-forest sm:text-sm">
@@ -27,38 +27,47 @@ function PartnerCard({ partner }: { partner: PartnerItem }) {
 }
 
 export function Partners({ partners }: { partners: PartnerItem[] }) {
+  const { t } = useI18n();
+  if (partners.length === 0) return null;
+
   const track = [...partners, ...partners];
 
   return (
-    <section className="overflow-hidden py-14 sm:py-20" aria-labelledby="part-h">
+    <section
+      className="overflow-hidden border-t border-line/70 bg-sand pb-12 pt-10 sm:pb-14 sm:pt-12"
+      aria-labelledby="part-h"
+    >
       <div className="container-site text-center">
-        <Reveal>
-          <Eyebrow className="justify-center">Ils nous font confiance</Eyebrow>
-          <h2 id="part-h" className="mt-3.5 text-[clamp(1.5rem,3.5vw,2.3rem)]">
-            Nos partenaires
-          </h2>
-        </Reveal>
+        <div className="flex justify-center">
+          <Eyebrow>{t("home.partnersEyebrow")}</Eyebrow>
+        </div>
+        <h2
+          id="part-h"
+          className="mt-2.5 text-[clamp(1.45rem,3.2vw,2.1rem)] text-forest"
+        >
+          {t("home.partnersTitle")}
+        </h2>
 
-        <Reveal delay={0.08} className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:hidden">
+        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:hidden">
           {partners.map((partner) => (
             <PartnerCard key={partner.id} partner={partner} />
           ))}
-        </Reveal>
+        </div>
       </div>
 
-      <Reveal delay={0.1} className="relative mt-8 hidden md:block sm:mt-10">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-paper to-transparent sm:w-24" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-paper to-transparent sm:w-24" />
+      <div className="relative mt-6 hidden md:block">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-14 bg-gradient-to-r from-sand to-transparent sm:w-20" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-gradient-to-l from-sand to-transparent sm:w-20" />
         <div className="flex overflow-hidden">
-          <div className="animate-marquee flex w-max gap-4 px-4 will-change-transform">
+          <div className="animate-marquee flex w-max gap-3 px-3 will-change-transform sm:gap-4 sm:px-4">
             {track.map((partner, i) => (
-              <div key={`${partner.id}-${i}`} className="w-40 shrink-0 sm:w-44">
+              <div key={`${partner.id}-${i}`} className="w-36 shrink-0 sm:w-40">
                 <PartnerCard partner={partner} />
               </div>
             ))}
           </div>
         </div>
-      </Reveal>
+      </div>
     </section>
   );
 }

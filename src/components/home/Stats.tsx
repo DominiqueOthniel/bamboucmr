@@ -2,11 +2,20 @@
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { useI18n } from "@/i18n/LocaleProvider";
 import { useLiteMotion } from "@/hooks/useLiteMotion";
 import { tweenSmooth } from "@/lib/motion";
 import type { StatItem } from "@/lib/content/types";
 
-function Counter({ value, suffix }: { value: number; suffix: string }) {
+function Counter({
+  value,
+  suffix,
+  locale,
+}: {
+  value: number;
+  suffix: string;
+  locale: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.5 });
   const reduce = useReducedMotion();
@@ -36,20 +45,21 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
       ref={ref}
       className="font-display text-[clamp(1.45rem,5.5vw,2.9rem)] font-bold leading-none tracking-tight"
     >
-      {display.toLocaleString("fr-FR")}
+      {display.toLocaleString(locale === "en" ? "en-US" : "fr-FR")}
       <span className="text-shoot/90">{suffix}</span>
     </div>
   );
 }
 
 export function Stats({ stats }: { stats: StatItem[] }) {
+  const { t, locale } = useI18n();
   const reduce = useReducedMotion();
   const lite = useLiteMotion();
 
   return (
     <section
       id="chiffres"
-      aria-label="Nos chiffres"
+      aria-label={t("home.statsLabel")}
       className="on-dark relative overflow-hidden bg-forest py-16 text-[#EDF2EA] sm:py-20"
     >
       <div
@@ -67,7 +77,7 @@ export function Stats({ stats }: { stats: StatItem[] }) {
           viewport={{ once: true }}
           transition={tweenSmooth}
         >
-          Notre impact en chiffres
+          {t("home.statsEyebrow")}
         </motion.p>
         <div className="grid grid-cols-2 gap-2.5 sm:gap-4 md:grid-cols-3 lg:grid-cols-5">
           {stats.map((stat, i) => (
@@ -84,7 +94,7 @@ export function Stats({ stats }: { stats: StatItem[] }) {
                   : ""
               }`}
             >
-              <Counter value={stat.value} suffix={stat.suffix} />
+              <Counter value={stat.value} suffix={stat.suffix} locale={locale} />
               <p className="mt-2 text-[0.75rem] leading-snug text-[#A8B6A6] sm:mt-2.5 sm:text-[0.88rem]">
                 {stat.label}
               </p>

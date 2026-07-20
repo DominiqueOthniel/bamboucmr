@@ -44,7 +44,7 @@ export function Reveal({
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-4% 0px", amount: 0.2 }}
+      viewport={{ once: true, margin: "0px 0px -8% 0px", amount: 0.15 }}
       variants={variantMap[variant]}
       transition={{ ...tweenSmooth, delay }}
     >
@@ -73,7 +73,7 @@ export function Stagger({
       className={className}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-4% 0px", amount: 0.15 }}
+      viewport={{ once: true, margin: "0px 0px -8% 0px", amount: 0.12 }}
       variants={{
         hidden: {},
         visible: {

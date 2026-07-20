@@ -12,11 +12,12 @@ export function SiteImage({ className = "", ...props }: SiteImageProps) {
 
   const src = typeof props.src === "string" ? props.src : "";
   const fromApi = src.startsWith("/api/media/");
+  const isSvg = src.endsWith(".svg");
 
   return (
     <Image
       {...props}
-      unoptimized={fromApi || props.unoptimized}
+      unoptimized={fromApi || isSvg || props.unoptimized}
       className={`${objectClass} ${className}`.trim()}
       sizes={props.sizes ?? "(max-width: 768px) 100vw, 50vw"}
     />

@@ -1,38 +1,50 @@
 [
   {
-    "id": "rse-1",
+    "id": "collab-1",
     "n": "01",
-    "title": "Empreinte carbone",
-    "description": "Analyser vos activités, identifier les sources d'émissions et déployer des solutions durables."
+    "title": "Diagnostic carbone",
+    "description": "Mesurer l'empreinte de vos activités et identifier où le bambou peut concrètement réduire vos émissions.",
+    "titleEn": "Carbon diagnosis",
+    "descriptionEn": "Measure the footprint of your activities and identify where bamboo can concretely cut your emissions."
   },
   {
-    "id": "rse-2",
+    "id": "collab-2",
     "n": "02",
-    "title": "Certificats carbone",
-    "description": "Compenser une partie de vos émissions en soutenant des projets durables et certifiés."
+    "title": "Crédits carbone bambou",
+    "description": "Soutenir des plantations BambouCamer certifiables pour compenser une partie de vos émissions.",
+    "titleEn": "Bamboo carbon credits",
+    "descriptionEn": "Support certifiable BambouCamer plantations to offset part of your emissions."
   },
   {
-    "id": "rse-3",
+    "id": "collab-3",
     "n": "03",
-    "title": "Action climatique",
-    "description": "Efficacité énergétique, innovations vertes et compensation carbone, mises en œuvre concrètement."
+    "title": "Plantation et restauration",
+    "description": "Mettre en terre du bambou sur des terrains dégradés pour stabiliser les sols et stocker du carbone.",
+    "titleEn": "Planting and restoration",
+    "descriptionEn": "Plant bamboo on degraded land to stabilise soils and store carbon."
   },
   {
-    "id": "rse-4",
+    "id": "collab-4",
     "n": "04",
-    "title": "Achats écologiques",
-    "description": "Adopter des choix responsables : matériaux durables, fournisseurs engagés, faible impact carbone."
+    "title": "Produits écologiques",
+    "description": "S'approvisionner en mobilier, emballages ou objets artisanaux issus de la filière bambou locale.",
+    "titleEn": "Ecological products",
+    "descriptionEn": "Source furniture, packaging or craft objects from the local bamboo value chain."
   },
   {
-    "id": "rse-5",
+    "id": "collab-5",
     "n": "05",
-    "title": "Réduction CO₂ par le bambou",
-    "description": "Intégrer cette ressource durable pour contribuer activement à la lutte climatique."
+    "title": "Formation métiers verts",
+    "description": "Former vos équipes, coopératives ou communautés à la culture, transformation et commercialisation du bambou.",
+    "titleEn": "Green skills training",
+    "descriptionEn": "Train your teams, cooperatives or communities in bamboo cultivation, processing and marketing."
   },
   {
-    "id": "rse-6",
+    "id": "collab-6",
     "n": "06",
-    "title": "Consultation & formation",
-    "description": "Des conseils personnalisés pour identifier les meilleures pratiques de votre transition."
+    "title": "Conseil et étude terrain",
+    "description": "Études de faisabilité, montage de projet et accompagnement opérationnel adaptés au contexte camerounais.",
+    "titleEn": "Field advice and studies",
+    "descriptionEn": "Feasibility studies, project setup and operational support adapted to the Cameroonian context."
   }
 ]

@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
+import { useI18n } from "@/i18n/LocaleProvider";
 import type { SiteSettings } from "@/lib/content/types";
 
 const socials = [
@@ -30,6 +33,8 @@ const linkHover =
   "transition-colors hover:text-white focus-visible:text-white";
 
 export function Footer({ settings }: { settings: SiteSettings }) {
+  const { t } = useI18n();
+
   return (
     <footer className="on-dark bg-forest text-[#C7D3C1]">
       <div className="container-site pb-8 pt-14 lg:pt-20">
@@ -57,31 +62,31 @@ export function Footer({ settings }: { settings: SiteSettings }) {
 
           <div>
             <h4 className="mb-4 font-sans text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-white">
-              Navigation
+              {t("footer.navigation")}
             </h4>
             <ul className="space-y-2.5 text-[0.92rem]">
-              <li><Link href="/apropos" className={linkHover}>À propos</Link></li>
-              <li><Link href="/objectifs" className={linkHover}>Objectifs</Link></li>
-              <li><Link href="/solutions" className={linkHover}>Solutions</Link></li>
-              <li><Link href="/contact" className={linkHover}>Contact</Link></li>
+              <li><Link href="/apropos" className={linkHover}>{t("footer.about")}</Link></li>
+              <li><Link href="/objectifs" className={linkHover}>{t("footer.goals")}</Link></li>
+              <li><Link href="/solutions" className={linkHover}>{t("footer.solutions")}</Link></li>
+              <li><Link href="/contact" className={linkHover}>{t("footer.contact")}</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="mb-4 font-sans text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-white">
-              Ressources
+              {t("footer.resources")}
             </h4>
             <ul className="space-y-2.5 text-[0.92rem]">
-              <li><Link href="/actualites" className={linkHover}>Actualités</Link></li>
-              <li><Link href="/impact" className={linkHover}>Notre impact</Link></li>
-              <li><Link href="/faq" className={linkHover}>FAQ</Link></li>
-              <li><Link href="/apropos#association" className={linkHover}>Association / Startup</Link></li>
+              <li><Link href="/actualites" className={linkHover}>{t("footer.news")}</Link></li>
+              <li><Link href="/impact" className={linkHover}>{t("footer.impact")}</Link></li>
+              <li><Link href="/faq" className={linkHover}>{t("footer.faq")}</Link></li>
+              <li><Link href="/apropos/association" className={linkHover}>{t("footer.associationStartup")}</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="mb-4 font-sans text-[0.82rem] font-semibold uppercase tracking-[0.12em] text-white">
-              Nous joindre
+              {t("footer.joinUs")}
             </h4>
             <ul className="space-y-3 text-[0.9rem]">
               <li className="flex gap-2.5">
@@ -105,18 +110,16 @@ export function Footer({ settings }: { settings: SiteSettings }) {
         </div>
 
         <div className="mt-11 flex flex-col gap-4 border-t border-white/10 pt-6 text-[0.85rem] sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
-          <span className="leading-relaxed">
-            © 2026 BambouCamer · Nouveau vecteur de l&apos;économie verte.
-          </span>
+          <span className="leading-relaxed">{t("footer.copyright")}</span>
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-5">
             <Link href="/mentions-legales" className={linkHover}>
-              Mentions légales
+              {t("footer.legal")}
             </Link>
             <Link href="/confidentialite" className={linkHover}>
-              Confidentialité
+              {t("footer.privacy")}
             </Link>
             <Link href="/conditions" className={linkHover}>
-              Conditions d&apos;utilisation
+              {t("footer.terms")}
             </Link>
           </div>
         </div>

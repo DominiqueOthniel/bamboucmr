@@ -6,7 +6,10 @@
     "icon": "map-pin",
     "image": "https://bamboucamer.com/wp-content/uploads/2026/04/Picture1-2.jpg",
     "accent": "bg-forest",
-    "body": "Nous identifions, cartographions et protégeons les espèces menacées en intégrant les communautés locales comme premières gardiennes de la nature."
+    "body": "Nous identifions, cartographions et protégeons les espèces menacées en intégrant les communautés locales comme premières gardiennes de la nature.",
+    "titleEn": "Biodiversity conservation",
+    "descriptionEn": "We identify, map and protect threatened species by involving local communities as primary guardians of nature.",
+    "bodyEn": "We identify, map and protect threatened species by involving local communities as primary guardians of nature."
   },
   {
     "id": "sol-2",
@@ -15,7 +18,10 @@
     "icon": "sprout",
     "image": "/pillars/restoration.jpg",
     "accent": "bg-bamboo",
-    "body": "Le bambou régénère les sols appauvris, stabilise les berges érodées et reconstitue les écosystèmes forestiers dégradés à grande échelle."
+    "body": "Le bambou régénère les sols appauvris, stabilise les berges érodées et reconstitue les écosystèmes forestiers dégradés à grande échelle.",
+    "titleEn": "Restoration of degraded land",
+    "descriptionEn": "Bamboo regenerates depleted soils, stabilises eroded riverbanks and rebuilds degraded forest ecosystems at scale.",
+    "bodyEn": "Bamboo regenerates depleted soils, stabilises eroded riverbanks and rebuilds degraded forest ecosystems at scale."
   },
   {
     "id": "sol-3",
@@ -24,7 +30,10 @@
     "icon": "coins",
     "image": "https://bamboucamer.com/wp-content/uploads/2025/12/src_img_CD1211FR_SOFO_img13-1140x570.jpg",
     "accent": "bg-forest-2",
-    "body": "Nos plantations certifiées génèrent des crédits carbone vérifiables pour financer la reforestation et soutenir les communautés rurales."
+    "body": "Nos plantations certifiées génèrent des crédits carbone vérifiables pour financer la reforestation et soutenir les communautés rurales.",
+    "titleEn": "Carbon credit sales",
+    "descriptionEn": "Our certified plantations generate verifiable carbon credits to finance reforestation and support rural communities.",
+    "bodyEn": "Our certified plantations generate verifiable carbon credits to finance reforestation and support rural communities."
   },
   {
     "id": "sol-4",
@@ -33,7 +42,10 @@
     "icon": "graduation",
     "image": "/pillars/training.jpg",
     "accent": "bg-bamboo-2",
-    "body": "Nous formons agriculteurs, jeunes et coopératives aux techniques de culture, de transformation et de commercialisation du bambou."
+    "body": "Nous formons agriculteurs, jeunes et coopératives aux techniques de culture, de transformation et de commercialisation du bambou.",
+    "titleEn": "Awareness and training",
+    "descriptionEn": "We train farmers, youth and cooperatives in bamboo cultivation, processing and marketing techniques.",
+    "bodyEn": "We train farmers, youth and cooperatives in bamboo cultivation, processing and marketing techniques."
   },
   {
     "id": "sol-5",
@@ -42,7 +54,10 @@
     "icon": "package",
     "image": "/pillars/innovation.jpg",
     "accent": "bg-shoot-deep",
-    "body": "Construction écologique, mobilier, emballages biodégradables et ustensiles : des alternatives concrètes aux matériaux polluants."
+    "body": "Construction écologique, mobilier, emballages biodégradables et ustensiles : des alternatives concrètes aux matériaux polluants.",
+    "titleEn": "Bamboo-based products",
+    "descriptionEn": "From construction to craftsmanship and packaging, we develop durable bamboo products for local and export markets.",
+    "bodyEn": "From construction to craftsmanship and packaging, we develop durable bamboo products for local and export markets."
   },
   {
     "id": "sol-6",
@@ -51,6 +66,9 @@
     "icon": "users",
     "image": "https://bamboucamer.com/wp-content/uploads/2026/04/Picture1.jpg",
     "accent": "bg-forest",
-    "body": "De l'étude de faisabilité à la mise en œuvre, nous accompagnons entreprises, ONG et institutions avec une connaissance fine du terrain."
+    "body": "De l'étude de faisabilité à la mise en œuvre, nous accompagnons entreprises, ONG et institutions avec une connaissance fine du terrain.",
+    "titleEn": "Consulting and expertise",
+    "descriptionEn": "From feasibility study to implementation, we support businesses, NGOs and institutions with deep field knowledge.",
+    "bodyEn": "From feasibility study to implementation, we support businesses, NGOs and institutions with deep field knowledge."
   }
 ]

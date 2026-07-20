@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   ArrowRight,
@@ -15,6 +17,7 @@ import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { TiltCard } from "@/components/motion/TiltCard";
+import { useI18n } from "@/i18n/LocaleProvider";
 import type { SolutionItem } from "@/lib/content/types";
 
 const icons: Record<string, typeof MapPin> = {
@@ -30,17 +33,18 @@ const icons: Record<string, typeof MapPin> = {
 };
 
 export function SolutionsPreview({ solutions }: { solutions: SolutionItem[] }) {
+  const { t } = useI18n();
+
   return (
     <section className="py-14 sm:py-24">
       <div className="container-site">
         <Reveal className="mb-10 max-w-[680px] sm:mb-12">
-          <Eyebrow>Nos solutions</Eyebrow>
+          <Eyebrow>{t("home.solutionsEyebrow")}</Eyebrow>
           <h2 className="mt-4 text-[clamp(1.75rem,4.2vw,2.9rem)]">
-            Des réponses concrètes pour un Cameroun et une Afrique durables
+            {t("home.solutionsTitle")}
           </h2>
           <p className="mt-4 text-[1rem] text-muted sm:text-[1.05rem]">
-            Restauration, formation, crédits carbone et produits durables : le bambou
-            au service d&apos;un développement véritablement durable.
+            {t("home.solutionsLead")}
           </p>
         </Reveal>
 
@@ -75,7 +79,7 @@ export function SolutionsPreview({ solutions }: { solutions: SolutionItem[] }) {
                         {sol.description}
                       </p>
                       <span className="mt-4 inline-flex items-center gap-2 text-[0.88rem] font-semibold text-bamboo">
-                        En savoir plus
+                        {t("common.learnMore")}
                         <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                       </span>
                     </div>
@@ -91,7 +95,7 @@ export function SolutionsPreview({ solutions }: { solutions: SolutionItem[] }) {
             href="/solutions"
             className="btn-cta inline-flex rounded-[13px] bg-bamboo px-6 py-3.5 font-semibold text-white transition"
           >
-            Toutes nos solutions
+            {t("home.allSolutions")}
           </Link>
         </Reveal>
       </div>

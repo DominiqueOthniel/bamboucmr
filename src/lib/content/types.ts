@@ -1,6 +1,7 @@
 export type NewsCategoryItem = {
   id: string;
   label: string;
+  labelEn?: string;
   order: number;
 };
 
@@ -8,10 +9,13 @@ export type NewsItem = {
   id: string;
   cat: string;
   title: string;
+  titleEn?: string;
   date: string;
   image: string;
   excerpt: string;
+  excerptEn?: string;
   body: string;
+  bodyEn?: string;
   published: boolean;
 };
 
@@ -20,11 +24,13 @@ export type StatItem = {
   value: number;
   suffix: string;
   label: string;
+  labelEn?: string;
 };
 
 export type ImpactBarItem = {
   id: string;
   label: string;
+  labelEn?: string;
   pct: number;
 };
 
@@ -38,12 +44,15 @@ export type PartnerItem = {
 export type AboutQuestionItem = {
   id: string;
   text: string;
+  textEn?: string;
 };
 
 export type FaqItem = {
   id: string;
   question: string;
+  questionEn?: string;
   answer: string;
+  answerEn?: string;
   order: number;
 };
 
@@ -51,14 +60,19 @@ export type NavLinkItem = {
   id: string;
   href: string;
   label: string;
+  labelEn?: string;
 };
 
 export type PillarItem = {
   id: string;
   title: string;
+  titleEn?: string;
   description: string;
+  descriptionEn?: string;
   body: string;
+  bodyEn?: string;
   kpi: string;
+  kpiEn?: string;
   icon: string;
   image: string;
   tint: string;
@@ -67,8 +81,11 @@ export type PillarItem = {
 export type SolutionItem = {
   id: string;
   title: string;
+  titleEn?: string;
   description: string;
+  descriptionEn?: string;
   body: string;
+  bodyEn?: string;
   icon: string;
   image: string;
   accent: string;
@@ -78,7 +95,9 @@ export type RseItem = {
   id: string;
   n: string;
   title: string;
+  titleEn?: string;
   description: string;
+  descriptionEn?: string;
 };
 
 export type SiteSettings = {
@@ -89,16 +108,23 @@ export type SiteSettings = {
   };
   footer: {
     tagline: string;
+    taglineEn?: string;
   };
   hero: {
     eyebrow: string;
+    eyebrowEn?: string;
     title: string;
+    titleEn?: string;
     tagline: string;
+    taglineEn?: string;
     description: string;
+    descriptionEn?: string;
     image: string;
     primaryCtaLabel: string;
+    primaryCtaLabelEn?: string;
     primaryCtaHref: string;
     secondaryCtaLabel: string;
+    secondaryCtaLabelEn?: string;
     secondaryCtaHref: string;
   };
 };

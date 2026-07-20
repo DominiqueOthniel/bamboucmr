@@ -6,15 +6,19 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { Logo } from "@/components/brand/Logo";
+import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher";
+import { useI18n } from "@/i18n/LocaleProvider";
 import type { NavItem } from "@/lib/nav";
 import { tweenFast } from "@/lib/motion";
 
 export function Header({ navItems }: { navItems: NavItem[] }) {
+  const { t } = useI18n();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [desktopOpen, setDesktopOpen] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState<string | null>(null);
+  const [hash, setHash] = useState("");
   const reduce = useReducedMotion();
   const navRef = useRef<HTMLElement>(null);
 
@@ -24,6 +28,13 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const syncHash = () => setHash(window.location.hash.replace(/^#/, ""));
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, [pathname]);
 
   useEffect(() => {
     setOpen(false);
@@ -56,15 +67,32 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
     };
   }, [desktopOpen]);
 
-  const isActive = (href: string) => {
-    const path = href.split("#")[0];
+  /** Surligne uniquement le lien réellement courant (pas le parent /apropos sur /apropos/association). */
+  const isActive = (href: string, siblingHrefs: string[] = []) => {
+    const [path, linkHash] = href.split("#");
     if (path === "/") return pathname === "/";
-    return pathname === path || pathname.startsWith(`${path}/`);
+
+    // Liens d'ancre: page exacte + hash
+    if (linkHash !== undefined) {
+      return pathname === path && hash === linkHash;
+    }
+
+    if (pathname === path) return true;
+
+    // "Vue d'ensemble" ne reste pas active sur une sous-page
+    const isOverview = siblingHrefs.some((sib) => {
+      const sibPath = sib.split("#")[0];
+      return sibPath !== path && sibPath.startsWith(`${path}/`);
+    });
+    if (isOverview) return false;
+
+    return pathname.startsWith(`${path}/`);
   };
 
   const isGroupActive = (item: NavItem) => {
-    if (isActive(item.href)) return true;
-    return item.children?.some((c) => isActive(c.href)) ?? false;
+    const sibs = item.children?.map((c) => c.href) ?? [];
+    if (isActive(item.href, sibs)) return true;
+    return item.children?.some((c) => isActive(c.href, sibs)) ?? false;
   };
 
   return (
@@ -122,19 +150,21 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
           )}
         </nav>
 
+        <LanguageSwitcher className="hidden lg:inline-flex" />
+
         <Link
           href="/contact"
           className="btn-cta hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-[var(--radius-sm)] bg-forest px-4 py-2.5 text-[0.88rem] font-semibold text-white transition lg:ml-2 lg:inline-flex xl:px-5"
         >
-          <span className="hidden xl:inline">Devenir partenaire</span>
-          <span className="xl:hidden">Partenaire</span>
+          <span className="hidden xl:inline">{t("nav.partnerCta")}</span>
+          <span className="xl:hidden">{t("nav.partnerCtaShort")}</span>
           <ArrowRight className="h-4 w-4" />
         </Link>
 
         <button
           type="button"
           className="ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-sand lg:ml-0 lg:hidden"
-          aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-label={open ? t("nav.closeMenu") : t("nav.openMenu")}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
@@ -153,8 +183,11 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
           >
             <nav
               className="container-site flex flex-col gap-1 py-3 pb-[max(1rem,env(safe-area-inset-bottom))]"
-              aria-label="Menu mobile"
+              aria-label={t("nav.openMenu")}
             >
+              <div className="mb-2 px-1">
+                <LanguageSwitcher />
+              </div>
               {navItems.map((item) =>
                 item.children?.length ? (
                   <MobileGroup
@@ -186,7 +219,7 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
                 href="/contact"
                 className="btn-cta mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-[var(--radius-sm)] bg-forest px-5 py-3 font-semibold text-white"
               >
-                Devenir partenaire
+                {t("nav.partnerCta")}
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </nav>
@@ -214,10 +247,11 @@ function DesktopDropdown({
   onOpen: () => void;
   onClose: () => void;
   onToggle: () => void;
-  isActive: (href: string) => boolean;
+  isActive: (href: string, siblings?: string[]) => boolean;
 }) {
   const panelId = useId();
   const children = item.children ?? [];
+  const siblingHrefs = children.map((c) => c.href);
 
   return (
     <div
@@ -266,33 +300,36 @@ function DesktopDropdown({
               <Link
                 href={item.href}
                 role="menuitem"
-                className="mx-2 mb-1 block rounded-[10px] px-3 py-2.5 text-[0.82rem] font-semibold text-forest transition hover:bg-sand"
+                className="mx-2 mb-1 block rounded-[10px] px-3 py-2.5 text-[0.82rem] font-semibold text-forest transition hover:bg-sand focus-visible:bg-sand focus-visible:outline-none"
                 onClick={onClose}
               >
                 Voir tout · {item.label}
               </Link>
               <div className="mx-2 mb-1 h-px bg-line" />
-              {children.map((child) => (
-                <Link
-                  key={child.href + child.label}
-                  href={child.href}
-                  role="menuitem"
-                  aria-current={isActive(child.href) ? "page" : undefined}
-                  className={`mx-2 block rounded-[10px] px-3 py-2.5 transition hover:bg-sand ${
-                    isActive(child.href) ? "bg-sand/80" : ""
-                  }`}
-                  onClick={onClose}
-                >
-                  <span className="block text-[0.9rem] font-medium text-ink">
-                    {child.label}
-                  </span>
-                  {child.description && (
-                    <span className="mt-0.5 block text-[0.78rem] text-muted">
-                      {child.description}
+              {children.map((child) => {
+                const childActive = isActive(child.href, siblingHrefs);
+                return (
+                  <Link
+                    key={child.href + child.label}
+                    href={child.href}
+                    role="menuitem"
+                    aria-current={childActive ? "page" : undefined}
+                    className={`mx-2 block rounded-[10px] px-3 py-2.5 transition hover:bg-sand focus-visible:bg-sand focus-visible:outline-none ${
+                      childActive ? "bg-sand/80" : "bg-transparent"
+                    }`}
+                    onClick={onClose}
+                  >
+                    <span className="block text-[0.9rem] font-medium text-ink">
+                      {child.label}
                     </span>
-                  )}
-                </Link>
-              ))}
+                    {child.description && (
+                      <span className="mt-0.5 block text-[0.78rem] text-muted">
+                        {child.description}
+                      </span>
+                    )}
+                  </Link>
+                );
+              })}
             </div>
           </motion.div>
         )}
@@ -312,10 +349,11 @@ function MobileGroup({
   active: boolean;
   open: boolean;
   onToggle: () => void;
-  isActive: (href: string) => boolean;
+  isActive: (href: string, siblings?: string[]) => boolean;
 }) {
   const panelId = useId();
   const children = item.children ?? [];
+  const siblingHrefs = children.map((c) => c.href);
 
   return (
     <div className="rounded-[var(--radius-md)]">
@@ -342,20 +380,23 @@ function MobileGroup({
           >
             Voir tout
           </Link>
-          {children.map((child) => (
-            <Link
-              key={child.href + child.label}
-              href={child.href}
-              aria-current={isActive(child.href) ? "page" : undefined}
-              className={`block rounded-[10px] px-3 py-2.5 text-sm ${
-                isActive(child.href)
-                  ? "bg-sand/80 font-medium text-forest"
-                  : "text-muted active:bg-sand/70"
-              }`}
-            >
-              {child.label}
-            </Link>
-          ))}
+          {children.map((child) => {
+            const childActive = isActive(child.href, siblingHrefs);
+            return (
+              <Link
+                key={child.href + child.label}
+                href={child.href}
+                aria-current={childActive ? "page" : undefined}
+                className={`block rounded-[10px] px-3 py-2.5 text-sm ${
+                  childActive
+                    ? "bg-sand/80 font-medium text-forest"
+                    : "bg-transparent text-muted active:bg-sand/70"
+                }`}
+              >
+                {child.label}
+              </Link>
+            );
+          })}
         </div>
       )}
     </div>

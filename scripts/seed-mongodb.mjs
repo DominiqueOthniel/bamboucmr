@@ -35,6 +35,7 @@ const collectionFiles = [
   "pillars",
   "solutions",
   "rse-items",
+  "faq",
 ];
 
 async function main() {

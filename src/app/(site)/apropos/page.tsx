@@ -6,6 +6,7 @@ import { PageHero } from "@/components/shared/PageHero";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { HashScroll } from "@/components/shared/HashScroll";
 import { Reveal } from "@/components/motion/Reveal";
+import { getMessages } from "@/i18n/server";
 import { images } from "@/lib/images";
 
 export const metadata: Metadata = {
@@ -14,65 +15,71 @@ export const metadata: Metadata = {
     "Découvrez BambouCamer : association et startup d'innovation sociale basées à Dschang, engagées pour le bambou et l'Afrique durable.",
 };
 
-const jumpLinks = [
-  { href: "#nous", label: "Nous" },
-  { href: "#bambou", label: "Le bambou" },
-  { href: "#association", label: "Association" },
-  { href: "#startup", label: "Startup" },
-] as const;
+export default async function AproposPage() {
+  const m = await getMessages();
 
-export default function AproposPage() {
+  const jumpLinks = [
+    { href: "#nous", label: m.about.jumpUs },
+    { href: "#bambou", label: m.about.jumpBamboo },
+    { href: "/apropos/association", label: m.about.jumpAssociation },
+    { href: "/apropos/startup", label: m.about.jumpStartup },
+  ] as const;
+
+  const chips = [
+    { icon: Users, label: m.about.chipCommunities },
+    { icon: Leaf, label: m.about.chipEcosystems },
+    { icon: Sprout, label: m.about.chipSector },
+    { icon: Building2, label: m.about.chipPartners },
+  ];
+
   return (
     <>
       <HashScroll />
       <PageHero
-        eyebrow="Qui sommes-nous"
-        title="BambouCamer"
-        description="Association et startup sociale à Dschang : le bambou au service des communautés, des écosystèmes et d'une économie verte."
+        eyebrow={m.about.eyebrow}
+        title={m.about.title}
+        description={m.about.description}
         image={images.hero}
       />
 
       <nav
-        aria-label="Sections de la page"
+        aria-label="Sections"
         className="sticky top-14 z-30 border-b border-line bg-paper/90 backdrop-blur-md sm:top-[70px]"
       >
         <div className="container-site flex gap-1 overflow-x-auto py-2.5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {jumpLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="shrink-0 rounded-full px-3.5 py-2 text-[0.85rem] font-medium text-ink/80 transition hover:bg-sand hover:text-ink"
-            >
-              {link.label}
-            </a>
-          ))}
+          {jumpLinks.map((link) =>
+            link.href.startsWith("#") ? (
+              <a
+                key={link.href}
+                href={link.href}
+                className="shrink-0 rounded-full px-3.5 py-2 text-[0.85rem] font-medium text-ink/80 transition hover:bg-sand hover:text-ink"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="shrink-0 rounded-full px-3.5 py-2 text-[0.85rem] font-medium text-ink/80 transition hover:bg-sand hover:text-ink"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
         </div>
       </nav>
 
-      <section
-        id="nous"
-        className="section-y scroll-mt-28 sm:scroll-mt-32"
-      >
+      <section id="nous" className="section-y scroll-mt-28 sm:scroll-mt-32">
         <div className="container-site grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <Eyebrow>À propos de nous</Eyebrow>
+            <Eyebrow>{m.about.usEyebrow}</Eyebrow>
             <h2 className="mt-4 text-[clamp(1.7rem,3.8vw,2.6rem)] text-forest">
-              Une organisation, une mission claire
+              {m.about.usTitle}
             </h2>
-            <p className="mt-5 text-muted">
-              BambouCamer est une organisation camerounaise apolitique et non
-              confessionnelle. Nous agissons à la croisée de deux engagements :
-              protéger la nature et créer de la valeur pour les communautés.
-            </p>
-            <p className="mt-4 text-muted">
-              Basés à Dschang, nous travaillons sur le terrain : plantations,
-              formation, filières locales et partenariats responsables, au
-              Cameroun et au-delà.
-            </p>
+            <p className="mt-5 text-muted">{m.about.usP1}</p>
+            <p className="mt-4 text-muted">{m.about.usP2}</p>
             <blockquote className="mt-7 border-l-4 border-forest bg-sand/60 px-5 py-4 font-display text-[1.12rem] leading-snug text-forest">
-              « Quand la nature est protégée et que l&apos;innovation sert les
-              communautés, le développement durable devient une réalité
-              tangible. »
+              {m.about.quote}
             </blockquote>
           </Reveal>
 
@@ -80,19 +87,14 @@ export default function AproposPage() {
             <div className="overflow-hidden rounded-[20px]">
               <SiteImage
                 src={images.bambooField}
-                alt="Plantation de bambou au Cameroun"
+                alt={m.about.usTitle}
                 width={1140}
                 height={570}
                 className="aspect-[4/3] w-full object-cover sm:aspect-[16/11]"
               />
             </div>
             <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-              {[
-                { icon: Users, label: "Communautés locales" },
-                { icon: Leaf, label: "Écosystèmes restaurés" },
-                { icon: Sprout, label: "Filière bambou" },
-                { icon: Building2, label: "Partenariats durables" },
-              ].map(({ icon: Icon, label }) => (
+              {chips.map(({ icon: Icon, label }) => (
                 <li
                   key={label}
                   className="flex items-center gap-3 rounded-[12px] border border-line bg-surface px-3.5 py-3"
@@ -117,7 +119,7 @@ export default function AproposPage() {
             <div className="overflow-hidden rounded-[20px]">
               <SiteImage
                 src={images.mission}
-                alt="Bambou et paysage camerounais"
+                alt={m.about.bambooTitle}
                 width={800}
                 height={600}
                 className="aspect-[5/4] w-full object-cover"
@@ -126,50 +128,39 @@ export default function AproposPage() {
           </Reveal>
 
           <Reveal delay={0.08} className="order-1 lg:order-2">
-            <Eyebrow>À propos du bambou</Eyebrow>
+            <Eyebrow>{m.about.bambooEyebrow}</Eyebrow>
             <h2 className="mt-4 text-[clamp(1.7rem,3.8vw,2.6rem)] text-forest">
-              Une ressource pour les défis d&apos;aujourd&apos;hui
+              {m.about.bambooTitle}
             </h2>
-            <p className="mt-5 text-muted">
-              Le bambou pousse vite, stocke du carbone, stabilise les sols et
-              peut remplacer des matériaux plus polluants. C&apos;est une ressource
-              locale encore sous-exploitée, idéale pour allier climat, emplois
-              et produits durables.
-            </p>
+            <p className="mt-5 text-muted">{m.about.bambooText}</p>
             <dl className="mt-8 space-y-5">
               <div>
                 <dt className="font-display text-[1.05rem] font-semibold text-forest">
-                  Jusqu&apos;à ×4 plus de CO₂
+                  {m.about.bambooCo2}
                 </dt>
                 <dd className="mt-1 text-[0.95rem] text-muted">
-                  Séquestré par rapport à un arbre ordinaire, selon les
-                  contextes de plantation.
+                  {m.about.bambooCo2Text}
                 </dd>
               </div>
               <div>
                 <dt className="font-display text-[1.05rem] font-semibold text-forest">
-                  Sols et biodiversité
+                  {m.about.bambooSoil}
                 </dt>
                 <dd className="mt-1 text-[0.95rem] text-muted">
-                  Restauration des terres dégradées, stabilisation des berges et
-                  habitats mieux protégés.
+                  {m.about.bambooSoilText}
                 </dd>
               </div>
               <div>
                 <dt className="font-display text-[1.05rem] font-semibold text-forest">
-                  Économie locale
+                  {m.about.bambooEconomy}
                 </dt>
                 <dd className="mt-1 text-[0.95rem] text-muted">
-                  Formation, transformation et commercialisation pour des
-                  revenus ancrés dans les territoires.
+                  {m.about.bambooEconomyText}
                 </dd>
               </div>
             </dl>
-            <Link
-              href="/objectifs"
-              className="btn-cta btn-primary mt-8 inline-flex"
-            >
-              Voir nos objectifs
+            <Link href="/objectifs" className="btn-cta btn-primary mt-8 inline-flex">
+              {m.common.seeGoals}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Reveal>
@@ -180,15 +171,12 @@ export default function AproposPage() {
         <div className="container-site">
           <Reveal className="mx-auto max-w-2xl text-center">
             <div className="flex justify-center">
-              <Eyebrow>Deux entités</Eyebrow>
+              <Eyebrow>{m.about.dualEyebrow}</Eyebrow>
             </div>
             <h2 className="mt-4 text-[clamp(1.7rem,3.8vw,2.6rem)] text-forest">
-              Une association. Une startup. Une mission.
+              {m.about.dualTitle}
             </h2>
-            <p className="mt-4 text-muted">
-              Deux façons d&apos;agir, un même cap : faire du bambou un pilier
-              du développement durable au Cameroun et en Afrique.
-            </p>
+            <p className="mt-4 text-muted">{m.about.dualText}</p>
           </Reveal>
 
           <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:gap-8">
@@ -199,25 +187,23 @@ export default function AproposPage() {
               >
                 <SiteImage
                   src={images.association}
-                  alt="BambouCamer association"
+                  alt={m.about.associationTitle}
                   width={640}
                   height={375}
                   className="aspect-[16/10] w-full object-cover"
                 />
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
                   <h3 className="font-display text-[1.35rem] text-forest">
-                    L&apos;association
+                    {m.about.associationTitle}
                   </h3>
                   <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-muted">
-                    Préservation de l&apos;environnement, conservation de la
-                    biodiversité et accompagnement des communautés locales vers
-                    des pratiques durables.
+                    {m.about.associationText}
                   </p>
                   <Link
-                    href="/impact"
+                    href="/apropos/association"
                     className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-forest transition hover:text-ink"
                   >
-                    Voir notre impact
+                    {m.about.associationCta}
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
@@ -231,25 +217,23 @@ export default function AproposPage() {
               >
                 <SiteImage
                   src={images.startup}
-                  alt="BambouCamer startup"
+                  alt={m.about.startupTitle}
                   width={640}
                   height={375}
                   className="aspect-[16/10] w-full object-cover"
                 />
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
                   <h3 className="font-display text-[1.35rem] text-forest">
-                    La startup
+                    {m.about.startupTitle}
                   </h3>
                   <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-muted">
-                    Innovation sociale et produits à base de bambou :
-                    construction, artisanat, emballages et expertises pour les
-                    marchés locaux et internationaux.
+                    {m.about.startupText}
                   </p>
                   <Link
-                    href="/solutions"
+                    href="/apropos/startup"
                     className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-forest transition hover:text-ink"
                   >
-                    Découvrir nos solutions
+                    {m.about.startupCta}
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
@@ -263,18 +247,16 @@ export default function AproposPage() {
         <div className="container-site flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
           <div className="max-w-xl">
             <h2 className="font-display text-[clamp(1.5rem,3.2vw,2.1rem)]">
-              Construisons ensemble la suite
+              {m.about.ctaTitle}
             </h2>
-            <p className="mt-2 text-white/75">
-              Partenariat, projet terrain ou simple question : parlons-en.
-            </p>
+            <p className="mt-2 text-white/75">{m.about.ctaText}</p>
           </div>
           <div className="btn-stack-mobile flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             <Link href="/contact" className="btn-light">
-              Nous contacter
+              {m.common.contactUs}
             </Link>
             <Link href="/solutions" className="btn-secondary">
-              Nos solutions
+              {m.common.seeSolutions}
             </Link>
           </div>
         </div>

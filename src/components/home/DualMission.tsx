@@ -6,32 +6,32 @@ import { ArrowRight } from "lucide-react";
 import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { useI18n } from "@/i18n/LocaleProvider";
 import { useLiteMotion } from "@/hooks/useLiteMotion";
 import { tweenSmooth } from "@/lib/motion";
 import { images } from "@/lib/images";
 
-const cards = [
-  {
-    title: "L'association",
-    description:
-      "Préservation de l'environnement, conservation de la biodiversité et développement des communautés locales.",
-    href: "/apropos",
-    image: images.association,
-    color: "from-forest to-bamboo",
-  },
-  {
-    title: "La startup",
-    description:
-      "Incubation de projets innovants qui transforment le bambou en produits durables et générateurs d'emplois.",
-    href: "/apropos",
-    image: images.startup,
-    color: "from-bamboo-2 to-shoot-deep",
-  },
-];
-
 export function DualMission() {
+  const { t } = useI18n();
   const reduce = useReducedMotion();
   const lite = useLiteMotion();
+
+  const cards = [
+    {
+      title: t("about.associationTitle"),
+      description: t("home.associationCard"),
+      href: "/apropos/association",
+      image: images.association,
+      color: "from-forest to-bamboo",
+    },
+    {
+      title: t("about.startupTitle"),
+      description: t("home.startupCard"),
+      href: "/apropos/startup",
+      image: images.startup,
+      color: "from-bamboo-2 to-shoot-deep",
+    },
+  ];
 
   return (
     <section className="on-dark relative overflow-hidden bg-forest py-14 text-white sm:py-20">
@@ -46,20 +46,19 @@ export function DualMission() {
       <div className="container-site relative">
         <Reveal className="mb-10 text-center">
           <Eyebrow tone="on-dark" className="justify-center">
-            Une association · Une startup
+            {t("home.dualEyebrow")}
           </Eyebrow>
           <h2 className="mt-4 text-[clamp(1.75rem,4vw,2.8rem)]">
-            BambouCamer, une seule mission
+            {t("home.dualTitle")}
           </h2>
           <p className="mx-auto mt-4 max-w-[640px] text-[#B9C7B4]">
-            Nés au Cameroun, engagés pour l&apos;Afrique. Deux forces complémentaires
-            pour faire du bambou un pilier du développement durable.
+            {t("home.dualText")}
           </p>
         </Reveal>
 
         <Stagger className="grid gap-4 sm:gap-5 md:grid-cols-2" stagger={0.15}>
           {cards.map((card) => (
-            <StaggerItem key={card.title} variant="scale">
+            <StaggerItem key={card.href} variant="scale">
               <motion.div whileHover={lite ? undefined : { y: -6 }} transition={tweenSmooth}>
                 <Link
                   href={card.href}
@@ -90,7 +89,7 @@ export function DualMission() {
                       {card.description}
                     </p>
                     <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-white">
-                      En savoir plus
+                      {t("common.learnMore")}
                       <ArrowRight className="h-4 w-4 transition group-hover:translate-x-2" />
                     </span>
                   </div>

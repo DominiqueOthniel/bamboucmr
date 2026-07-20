@@ -1,29 +1,34 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Calendar } from "lucide-react";
 import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { TiltCard } from "@/components/motion/TiltCard";
+import { useI18n } from "@/i18n/LocaleProvider";
 import type { NewsItem } from "@/lib/content/types";
 
 export function NewsPreview({ news }: { news: NewsItem[] }) {
+  const { t } = useI18n();
   const preview = news.slice(0, 3);
+  if (preview.length === 0) return null;
 
   return (
-    <section className="bg-sand py-14 sm:py-24">
+    <section className="border-t border-line bg-sand pb-10 pt-12 sm:pb-12 sm:pt-14">
       <div className="container-site">
         <Reveal className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
           <div className="max-w-[640px]">
-            <Eyebrow>Actualités & terrain</Eyebrow>
+            <Eyebrow>{t("home.newsEyebrow")}</Eyebrow>
             <h2 className="mt-4 text-[clamp(1.75rem,4.2vw,2.9rem)]">
-              Nos interventions récentes, là où les besoins sont réels
+              {t("home.newsTitle")}
             </h2>
           </div>
           <Link
             href="/actualites"
             className="inline-flex items-center gap-2 font-semibold text-ink transition-colors hover:text-forest"
           >
-            Toutes les actualités
+            {t("common.allNews")}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </Reveal>
@@ -57,7 +62,7 @@ export function NewsPreview({ news }: { news: NewsItem[] }) {
                     {item.title}
                   </h3>
                   <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[0.88rem] font-semibold text-bamboo sm:text-[0.9rem]">
-                    Lire l&apos;article
+                    {t("common.readArticle")}
                     <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-1" />
                   </span>
                 </div>

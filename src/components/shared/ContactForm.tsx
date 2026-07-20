@@ -3,8 +3,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { CheckCircle2, Send } from "lucide-react";
 import { type FormEvent, type ReactNode, useState } from "react";
+import { useI18n } from "@/i18n/LocaleProvider";
 
 export function ContactForm() {
+  const { t } = useI18n();
   const [errors, setErrors] = useState<Record<string, boolean>>({});
   const [sent, setSent] = useState(false);
 
@@ -36,9 +38,7 @@ export function ContactForm() {
             role="status"
           >
             <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-bamboo" />
-            <div>
-              <b>Message envoyé.</b> Merci, nous revenons vers vous très vite.
-            </div>
+            <div>{t("contact.formSuccess")}</div>
           </motion.div>
         ) : (
           <motion.form
@@ -51,16 +51,16 @@ export function ContactForm() {
           >
             <Field
               id="name"
-              label="Nom complet"
+              label={t("contact.formName")}
               error={errors.name}
-              message="Merci d'indiquer votre nom."
+              message={t("contact.formNameErr")}
             >
               <input
                 id="name"
                 name="name"
                 type="text"
                 autoComplete="name"
-                placeholder="Votre nom"
+                placeholder={t("contact.formNamePh")}
                 required
                 onChange={() => setErrors((e) => ({ ...e, name: false }))}
                 className={inputClass(errors.name)}
@@ -68,16 +68,16 @@ export function ContactForm() {
             </Field>
             <Field
               id="email"
-              label="E-mail"
+              label={t("contact.formEmail")}
               error={errors.email}
-              message="Adresse e-mail invalide."
+              message={t("contact.formEmailErr")}
             >
               <input
                 id="email"
                 name="email"
                 type="email"
                 autoComplete="email"
-                placeholder="vous@exemple.com"
+                placeholder={t("contact.formEmailPh")}
                 required
                 onChange={() => setErrors((e) => ({ ...e, email: false }))}
                 className={inputClass(errors.email)}
@@ -85,14 +85,14 @@ export function ContactForm() {
             </Field>
             <Field
               id="message"
-              label="Votre message"
+              label={t("contact.formMessage")}
               error={errors.message}
-              message="Écrivez-nous quelques mots (10 caractères min.)."
+              message={t("contact.formMessageErr")}
             >
               <textarea
                 id="message"
                 name="message"
-                placeholder="Parlez-nous de votre projet ou de votre demande…"
+                placeholder={t("contact.formMessagePh")}
                 required
                 rows={5}
                 onChange={() => setErrors((e) => ({ ...e, message: false }))}
@@ -103,11 +103,11 @@ export function ContactForm() {
               type="submit"
               className="btn-cta inline-flex w-full items-center justify-center gap-2.5 rounded-[13px] bg-bamboo px-6 py-3.5 font-semibold text-white shadow-[0_12px_24px_-14px_rgba(47,107,60,.8)] transition hover:-translate-y-0.5"
             >
-              Envoyer le message
+              {t("contact.formSubmit")}
               <Send className="h-4 w-4" />
             </button>
             <p className="text-center text-[0.8rem] text-muted">
-              Vos informations restent confidentielles et ne sont jamais partagées.
+              {t("contact.formPrivacy")}
             </p>
           </motion.form>
         )}

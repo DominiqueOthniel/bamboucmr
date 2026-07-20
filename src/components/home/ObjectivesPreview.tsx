@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   Building2,
@@ -12,6 +14,7 @@ import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { TiltCard } from "@/components/motion/TiltCard";
+import { useI18n } from "@/i18n/LocaleProvider";
 import type { PillarItem } from "@/lib/content/types";
 
 const icons: Record<string, typeof Shield> = {
@@ -25,19 +28,18 @@ const icons: Record<string, typeof Shield> = {
 };
 
 export function ObjectivesPreview({ pillars }: { pillars: PillarItem[] }) {
+  const { t } = useI18n();
+
   return (
     <section className="section-band-sand py-14 sm:py-20 lg:py-24">
       <div className="container-site">
         <Reveal className="mx-auto mb-10 max-w-[720px] text-center sm:mb-12">
-          <Eyebrow className="justify-center">4 objectifs de durabilité</Eyebrow>
+          <Eyebrow className="justify-center">{t("home.goalsEyebrow")}</Eyebrow>
           <h2 className="mt-4 text-[clamp(1.75rem,4vw,2.75rem)] leading-tight">
-            Le bambou, une réponse aux défis sociaux, économiques et
-            environnementaux
+            {t("home.goalsTitle")}
           </h2>
           <p className="mt-4 text-[1rem] text-muted sm:text-[1.05rem]">
-            BambouCamer exploite cette ressource pour transformer l&apos;économie
-            camerounaise et améliorer les conditions de vie à l&apos;échelle
-            nationale.
+            {t("home.goalsText")}
           </p>
         </Reveal>
 
@@ -90,7 +92,7 @@ export function ObjectivesPreview({ pillars }: { pillars: PillarItem[] }) {
             href="/objectifs"
             className="btn-cta inline-flex rounded-[13px] bg-forest px-6 py-3.5 font-semibold text-white transition"
           >
-            Voir tous les objectifs
+            {t("home.seeAllGoals")}
           </Link>
         </Reveal>
       </div>

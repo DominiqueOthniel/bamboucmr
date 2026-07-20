@@ -7,6 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { SiteImage } from "@/components/shared/SiteImage";
 import { Eyebrow } from "@/components/shared/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
+import { useI18n } from "@/i18n/LocaleProvider";
 import { useLiteMotion } from "@/hooks/useLiteMotion";
 import type { AboutQuestionItem } from "@/lib/content/types";
 import { images } from "@/lib/images";
@@ -16,6 +17,7 @@ export function AboutSection({
 }: {
   aboutQuestions: AboutQuestionItem[];
 }) {
+  const { t } = useI18n();
   const reduce = useReducedMotion();
   const lite = useLiteMotion();
   const ref = useRef<HTMLElement>(null);
@@ -35,7 +37,7 @@ export function AboutSection({
             <motion.div style={useParallax ? { y: imageY } : undefined}>
             <SiteImage
               src={images.bambooField}
-              alt="Plantation de bambou au Cameroun"
+              alt={t("home.aboutBadge")}
               width={1140}
               height={570}
               className="aspect-[16/10] w-full"
@@ -43,11 +45,10 @@ export function AboutSection({
             </motion.div>
             <div className="on-dark bg-forest px-5 py-4 text-white sm:px-6 sm:py-5">
               <Eyebrow tone="on-dark" className="mb-2">
-                Terrain · Cameroun
+                {t("home.aboutBadge")}
               </Eyebrow>
               <p className="font-display text-lg leading-snug sm:text-xl">
-                Né au Cameroun, engagé pour{" "}
-                <span className="text-shoot">l&apos;Afrique</span>
+                {t("home.aboutBadgeLine")}
               </p>
             </div>
           </div>
@@ -59,16 +60,16 @@ export function AboutSection({
           >
             <div>
               <p className="font-display text-2xl font-bold text-bamboo">×4</p>
-              <p className="text-sm text-muted">plus de CO₂ séquestré</p>
+              <p className="text-sm text-muted">{t("home.co2Label")}</p>
             </div>
           </motion.div>
         </Reveal>
 
         <div>
           <Reveal variant="right">
-            <Eyebrow>Qui sommes-nous</Eyebrow>
+            <Eyebrow>{t("home.aboutEyebrow")}</Eyebrow>
             <h2 className="mt-4 text-[clamp(1.75rem,4vw,2.75rem)] leading-tight">
-              Une association et une startup, une seule mission
+              {t("home.aboutTitle")}
             </h2>
           </Reveal>
 
@@ -88,15 +89,9 @@ export function AboutSection({
           </Reveal>
 
           <Reveal delay={0.14} className="mt-5 space-y-4 text-muted">
-            <p>
-              <strong className="text-forest">BambouCamer</strong> est une
-              association camerounaise à but non lucratif, née d&apos;une conviction
-              profonde : le bambou est un levier puissant pour transformer nos
-              communautés.
-            </p>
+            <p>{t("home.aboutLead")}</p>
             <blockquote className="rounded-xl border-l-4 border-shoot bg-sand/60 px-4 py-3 font-display text-[1.05rem] leading-snug text-forest sm:px-5 sm:text-[1.1rem]">
-              « Quand la nature est protégée et que l&apos;innovation sert les
-              communautés, le développement durable devient une réalité tangible. »
+              {t("home.aboutQuote")}
             </blockquote>
           </Reveal>
 
@@ -105,14 +100,14 @@ export function AboutSection({
               href="/apropos"
               className="btn-primary"
             >
-              En savoir plus
+              {t("home.aboutCta")}
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/objectifs"
               className="btn-cta inline-flex min-h-11 items-center justify-center rounded-[var(--radius-sm)] border border-line bg-surface px-5 py-3 font-semibold text-ink transition hover:bg-sand"
             >
-              Nos objectifs
+              {t("home.aboutGoals")}
             </Link>
           </Reveal>
         </div>

@@ -13,6 +13,8 @@ import { SiteImage } from "@/components/shared/SiteImage";
 import { PageHero } from "@/components/shared/PageHero";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { getPillars } from "@/lib/content/reader";
+import { getLocale, getMessages } from "@/i18n/server";
+import { localizeList } from "@/i18n/localize";
 import { images } from "@/lib/images";
 
 export const metadata: Metadata = {
@@ -32,14 +34,23 @@ const icons: Record<string, typeof Shield> = {
 };
 
 export default async function ObjectifsPage() {
-  const pillars = await getPillars();
+  const [pillarsRaw, messages, locale] = await Promise.all([
+    getPillars(),
+    getMessages(),
+    getLocale(),
+  ]);
+  const pillars = localizeList(
+    pillarsRaw as unknown as Record<string, unknown>[],
+    ["title", "description", "kpi", "body"],
+    locale
+  ) as typeof pillarsRaw;
 
   return (
     <>
       <PageHero
-        eyebrow="4 objectifs de durabilité"
-        title="Le bambou, une réponse aux défis sociaux, économiques et environnementaux."
-        description="Une ressource méconnue mise au service d'une transformation concrète, à l'échelle du Cameroun et de l'Afrique."
+        eyebrow={messages.goals.eyebrow}
+        title={messages.goals.title}
+        description={messages.goals.description}
         image={images.mission}
       />
 
@@ -69,7 +80,7 @@ export default async function ObjectifsPage() {
                         <Icon className="h-6 w-6" />
                       </span>
                       <span className="absolute bottom-4 left-4 rounded-full bg-shoot px-3 py-1 text-[0.72rem] font-bold text-forest">
-                        Objectif 0{i + 1}
+                        {messages.goals.badge} 0{i + 1}
                       </span>
                     </div>
                     <div className="p-6">
@@ -92,13 +103,13 @@ export default async function ObjectifsPage() {
               href="/solutions"
               className="btn-cta inline-flex rounded-[13px] bg-bamboo px-6 py-3.5 font-semibold text-white transition"
             >
-              Découvrir nos solutions
+              {messages.common.seeSolutions}
             </Link>
             <Link
               href="/impact"
               className="inline-flex rounded-[13px] border border-bamboo/40 bg-surface px-6 py-3.5 font-semibold text-bamboo"
             >
-              Voir notre impact
+              {messages.common.seeImpact}
             </Link>
           </Reveal>
         </div>

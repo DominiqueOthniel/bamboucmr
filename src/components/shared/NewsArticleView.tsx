@@ -1,9 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { SiteImage } from "@/components/shared/SiteImage";
+import { useI18n } from "@/i18n/LocaleProvider";
 import type { NewsItem } from "@/lib/content/types";
 
 export function NewsArticleView({ article }: { article: NewsItem }) {
+  const { t } = useI18n();
   const paragraphs = article.body.split(/\n\n+/).filter(Boolean);
 
   return (
@@ -13,7 +17,7 @@ export function NewsArticleView({ article }: { article: NewsItem }) {
         className="inline-flex items-center gap-2 text-sm font-medium text-ink transition-colors hover:text-forest"
       >
         <ArrowLeft className="h-4 w-4" />
-        Retour aux actualités
+        {t("detail.backNews")}
       </Link>
 
       <header className="mx-auto mt-8 max-w-3xl">

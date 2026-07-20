@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ContentDetailView } from "@/components/shared/ContentDetailView";
 import { getSolutionById } from "@/lib/content/reader";
+import { getLocale, getMessages } from "@/i18n/server";
+import { localizeItem } from "@/i18n/localize";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -11,31 +13,48 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
+  const locale = await getLocale();
   const solution = await getSolutionById(id);
-  if (!solution) return { title: "Solution introuvable" };
+  if (!solution) return { title: "Solution" };
+
+  const localized = localizeItem(
+    solution as unknown as Record<string, unknown>,
+    ["title", "description"],
+    locale
+  ) as typeof solution;
 
   return {
-    title: solution.title,
-    description: solution.description,
+    title: localized.title,
+    description: localized.description,
   };
 }
 
 export default async function SolutionDetailPage({ params }: Props) {
   const { id } = await params;
-  const solution = await getSolutionById(id);
+  const [solution, messages, locale] = await Promise.all([
+    getSolutionById(id),
+    getMessages(),
+    getLocale(),
+  ]);
   if (!solution) notFound();
+
+  const localized = localizeItem(
+    solution as unknown as Record<string, unknown>,
+    ["title", "description", "body"],
+    locale
+  ) as typeof solution;
 
   return (
     <ContentDetailView
       backHref="/solutions"
-      backLabel="Retour aux solutions"
-      eyebrow="Solution BambouCamer"
-      title={solution.title}
-      image={solution.image}
-      description={solution.description}
-      body={solution.body}
+      backLabel={messages.detail.backSolutions}
+      eyebrow={messages.detail.solutionEyebrow}
+      title={localized.title}
+      image={localized.image}
+      description={localized.description}
+      body={localized.body}
       ctaHref="/contact"
-      ctaLabel="En parler avec nous"
+      ctaLabel={messages.detail.talkCta}
     />
   );
 }

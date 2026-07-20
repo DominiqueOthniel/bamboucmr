@@ -1,6 +1,9 @@
 import "server-only";
 
 import { getPillars, getSolutions } from "@/lib/content/reader";
+import { getLocale } from "@/i18n/server";
+import { dictionaries } from "@/i18n/messages";
+import { pickLocalized } from "@/i18n/localize";
 
 export type NavChild = {
   label: string;
@@ -17,96 +20,98 @@ export type NavItem = {
 
 /** Arbre de navigation principal (sous-menus inclus). */
 export async function getNavTree(): Promise<NavItem[]> {
+  const locale = await getLocale();
+  const m = dictionaries[locale];
   const [pillars, solutions] = await Promise.all([getPillars(), getSolutions()]);
 
   return [
-    { id: "home", label: "Accueil", href: "/" },
+    { id: "home", label: m.nav.home, href: "/" },
     {
       id: "about",
-      label: "À propos",
+      label: m.nav.about,
       href: "/apropos",
       children: [
         {
-          label: "À propos de nous",
+          label: m.nav.aboutUs,
           href: "/apropos#nous",
-          description: "Mission et engagement",
+          description: m.nav.aboutUsDesc,
         },
         {
-          label: "À propos du bambou",
+          label: m.nav.aboutBamboo,
           href: "/apropos#bambou",
-          description: "Pourquoi cette ressource",
+          description: m.nav.aboutBambooDesc,
         },
         {
-          label: "L'association",
-          href: "/apropos#association",
-          description: "Environnement et communautés",
+          label: m.nav.association,
+          href: "/apropos/association",
+          description: m.nav.associationDesc,
         },
         {
-          label: "La startup",
-          href: "/apropos#startup",
-          description: "Innovation et produits",
+          label: m.nav.startup,
+          href: "/apropos/startup",
+          description: m.nav.startupDesc,
         },
       ],
     },
     {
       id: "goals",
-      label: "Objectifs",
+      label: m.nav.goals,
       href: "/objectifs",
       children: [
         {
-          label: "Vue d'ensemble",
+          label: m.nav.goalsOverview,
           href: "/objectifs",
-          description: "Nos 4 piliers de durabilité",
+          description: m.nav.goalsOverviewDesc,
         },
         ...pillars.map((p) => ({
-          label: p.title,
+          label: pickLocalized(p as unknown as Record<string, unknown>, "title", locale),
           href: `/objectifs/${p.id}`,
         })),
       ],
     },
     {
       id: "solutions",
-      label: "Solutions",
+      label: m.nav.solutions,
       href: "/solutions",
       children: [
         {
-          label: "Vue d'ensemble",
+          label: m.nav.solutionsOverview,
           href: "/solutions",
-          description: "Toutes nos solutions",
+          description: m.nav.solutionsOverviewDesc,
         },
         ...solutions.map((s) => ({
-          label: s.title,
+          label: pickLocalized(s as unknown as Record<string, unknown>, "title", locale),
           href: `/solutions/${s.id}`,
         })),
         {
-          label: "Entreprises & RSE",
-          href: "/solutions#rse",
-          description: "Collaborer avec nous",
+          label: m.nav.collaborate,
+          href: "/solutions#collaborer",
+          description: m.nav.collaborateDesc,
         },
       ],
     },
     {
       id: "resources",
-      label: "Ressources",
+      label: m.nav.resources,
       href: "/actualites",
       children: [
         {
-          label: "Actualités",
+          label: m.nav.news,
           href: "/actualites",
-          description: "Interventions sur le terrain",
+          description: m.nav.newsDesc,
         },
         {
-          label: "Notre impact",
+          label: m.nav.impact,
           href: "/impact",
-          description: "Résultats mesurables",
+          description: m.nav.impactDesc,
         },
         {
-          label: "FAQ",
+          label: m.nav.faq,
           href: "/faq",
-          description: "Questions fréquentes",
+          description: m.nav.faqDesc,
         },
       ],
     },
-    { id: "contact", label: "Contact", href: "/contact" },
+    { id: "contact", label: m.nav.contact, href: "/contact" },
   ];
 }

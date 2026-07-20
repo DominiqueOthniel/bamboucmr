@@ -7,7 +7,10 @@
     "image": "/news/voeux-2026.jpg",
     "excerpt": "BambouCamer adresse ses vœux de bonheur, de santé et de réussite à toutes ses partenaires et à la communauté pour cette nouvelle année.",
     "body": "À l'occasion du Nouvel An 2026, l'équipe de BambouCamer adresse ses vœux les plus sincères à l'ensemble de ses partenaires, bénévoles, collaborateurs et à toutes les communautés avec lesquelles nous œuvrons au quotidien.\n\nQue cette nouvelle année soit synonyme de croissance, d'innovation et d'engagement durable pour la protection de l'environnement et le développement local à travers le bambou.\n\nEnsemble, continuons à bâtir un avenir plus vert, plus résilient et plus inclusif pour le Cameroun et l'Afrique.",
-    "published": true
+    "published": true,
+    "titleEn": "New Year 2026 greetings",
+    "excerptEn": "BambouCamer extends its wishes for happiness, health and success to all its partners and the community for this new year.",
+    "bodyEn": "On the occasion of New Year 2026, the BambouCamer team extends its warmest wishes to all partners, volunteers, collaborators and communities with whom we work every day.\n\nMay this new year bring growth, innovation and lasting commitment to environmental protection and local development through bamboo.\n\nTogether, let us keep building a greener, more resilient and more inclusive future for Cameroon and Africa."
   },
   {
     "id": "news-fb-2",
@@ -17,7 +20,10 @@
     "image": "/news/promotion-culture.jpg",
     "excerpt": "BambouCamer poursuit sa mission de sensibilisation et de promotion de la culture du bambou auprès des communautés locales.",
     "body": "La promotion de la culture du bambou reste au cœur de la mission de BambouCamer. À travers des actions de sensibilisation, de formation et d'accompagnement, nous mobilisons les populations autour d'une ressource naturelle stratégique pour l'économie verte.\n\nLe bambou offre des solutions concrètes en matière de restauration des sols, de création d'emplois et de développement de produits durables. Nos équipes interviennent sur le terrain pour transmettre les bonnes pratiques et encourager l'adoption de filières locales autour de cette plante exceptionnelle.",
-    "published": true
+    "published": true,
+    "titleEn": "Promoting bamboo cultivation",
+    "excerptEn": "BambouCamer continues its mission to raise awareness and promote bamboo cultivation among local communities.",
+    "bodyEn": "Promoting bamboo cultivation remains at the heart of BambouCamer’s mission. Through awareness, training and support, we mobilise people around a strategic natural resource for the green economy."
   },
   {
     "id": "news-fb-3",
@@ -27,7 +33,10 @@
     "image": "/news/startup.jpg",
     "excerpt": "BambouCamer Startup transforme le potentiel du bambou en solutions concrètes à fort impact social et environnemental.",
     "body": "BambouCamer Startup incarne la dimension entrepreneuriale et innovante de notre action. Née de l'ambition de valoriser le bambou comme levier de développement durable, la startup conçoit et déploie des solutions à fort impact social, économique et environnemental.\n\nDe la production de plants à la transformation en produits finis, nous construisons une chaîne de valeur intégrée au service des communautés camerounaises. Notre modèle allie préservation de l'environnement, création d'emplois verts et innovation au bénéfice des territoires.",
-    "published": true
+    "published": true,
+    "titleEn": "BambouCamer Startup, social innovation around bamboo",
+    "excerptEn": "BambouCamer Startup turns bamboo’s potential into concrete solutions with strong social and environmental impact.",
+    "bodyEn": "BambouCamer Startup embodies the entrepreneurial and innovative side of our action. Born from the ambition to value bamboo as a sustainable development lever, the startup designs and deploys high-impact solutions."
   },
   {
     "id": "news-fb-4",
@@ -37,7 +46,10 @@
     "image": "/news/abambou.jpg",
     "excerpt": "BambouCamer place le bambou au centre de ses actions pour la protection de l'environnement et le développement durable.",
     "body": "Chez BambouCamer, le bambou n'est pas seulement une plante : c'est un outil de transformation écologique et socio-économique. Nos programmes visent à restaurer les écosystèmes dégradés, à lutter contre l'érosion des sols et à offrir des alternatives durables aux communautés rurales.\n\nÀ travers nos projets de terrain, nous démontrons chaque jour que la transition écologique peut être concrète, inclusive et porteuse d'opportunités pour les générations futures.",
-    "published": true
+    "published": true,
+    "titleEn": "Bamboo at the heart of our environmental action",
+    "excerptEn": "BambouCamer places bamboo at the centre of its actions for environmental protection and sustainable development.",
+    "bodyEn": "At BambouCamer, bamboo is not only a plant: it is a tool for ecological and socio-economic transformation. Our programmes aim to restore degraded ecosystems, fight soil erosion and offer durable alternatives to rural communities."
   },
   {
     "id": "news-1",

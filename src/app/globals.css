@@ -261,11 +261,11 @@ button[class*="bg-bamboo"] {
 }
 
 img,
-video,
-svg {
+video {
   max-width: 100%;
-  height: auto;
 }
+
+/* Ne pas forcer height:auto sur les SVG/logos (casse object-contain dans les cards) */
 
 @media (max-width: 379px) {
   .container-site {

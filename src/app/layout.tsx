@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
+import { AppProviders } from "@/components/shared/AppProviders";
+import { getLocale } from "@/i18n/server";
 import "./globals.css";
 
 const display = Fraunces({
@@ -33,14 +35,18 @@ export const viewport: Viewport = {
   themeColor: "#0c2416",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
-    <html lang="fr" className={`${display.variable} ${body.variable} h-full`}>
-      <body className="min-h-full antialiased">{children}</body>
+    <html lang={locale} className={`${display.variable} ${body.variable} h-full`}>
+      <body className="min-h-full antialiased">
+        <AppProviders>{children}</AppProviders>
+      </body>
     </html>
   );
 }

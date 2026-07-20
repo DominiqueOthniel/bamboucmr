@@ -5,7 +5,8 @@
     "email": "contact@bamboucamer.com"
   },
   "footer": {
-    "tagline": "Créer un modèle de développement durable intégrant le bambou comme levier économique, tout en protégeant l'environnement."
+    "tagline": "Créer un modèle de développement durable intégrant le bambou comme levier économique, tout en protégeant l'environnement.",
+    "taglineEn": "Build a sustainable development model with bamboo as an economic lever, while protecting the environment."
   },
   "hero": {
     "eyebrow": "Développement durable · Cameroun",
@@ -16,6 +17,12 @@
     "primaryCtaLabel": "Découvrir nos solutions",
     "primaryCtaHref": "/solutions",
     "secondaryCtaLabel": "Qui sommes-nous",
-    "secondaryCtaHref": "/apropos"
+    "secondaryCtaHref": "/apropos",
+    "eyebrowEn": "Sustainable development · Cameroon",
+    "titleEn": "BambouCamer",
+    "taglineEn": "Bamboo serving the green economy and local territories.",
+    "descriptionEn": "Association and social startup based in Dschang: ecological restoration, local value chains and responsible partnerships.",
+    "primaryCtaLabelEn": "Discover our solutions",
+    "secondaryCtaLabelEn": "Who we are"
   }
 }

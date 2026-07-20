@@ -13,20 +13,19 @@ export const images = {
   products: "/pillars/innovation.jpg",
   economic: "/pillars/economic.jpg",
   innovation: "/pillars/innovation.jpg",
-  rse: "https://bamboucamer.com/wp-content/uploads/2026/01/doing-removebg-preview.png",
 } as const;
 
 export const partnerLogos = [
   {
     name: "Carbonapp",
-    src: "https://bamboucamer.com/wp-content/uploads/2026/01/doing-removebg-preview.png",
+    src: "/partners/carbonapp.svg",
   },
   {
     name: "The Rufford Foundation",
-    src: "https://bamboucamer.com/wp-content/uploads/2025/12/rufford-logo-menu-hr-360x155-1.png",
+    src: "/partners/rufford.png",
   },
   {
-    name: "Afrique RSE",
-    src: "https://bamboucamer.com/wp-content/uploads/2026/01/Guinee.png",
+    name: "CJ Group",
+    src: "",
   },
 ] as const;

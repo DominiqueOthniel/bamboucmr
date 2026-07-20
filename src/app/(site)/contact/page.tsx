@@ -4,24 +4,27 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { PageHero } from "@/components/shared/PageHero";
 import { ContactForm } from "@/components/shared/ContactForm";
 import { Reveal } from "@/components/motion/Reveal";
-
 import { getSiteSettings } from "@/lib/content/reader";
+import { getMessages } from "@/i18n/server";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contactez BambouCamer à Dschang : partenariats, projets RSE, formations et questions sur le bambou durable.",
+    "Contactez BambouCamer à Dschang : partenariats, formations et questions sur le bambou durable.",
 };
 
 export default async function ContactPage() {
-  const settings = await getSiteSettings();
+  const [settings, messages] = await Promise.all([
+    getSiteSettings(),
+    getMessages(),
+  ]);
 
   return (
     <>
       <PageHero
-        eyebrow="Contact"
-        title="Construisons ensemble une Afrique durable."
-        description="Une question, un projet, un partenariat ? Écrivez-nous, notre équipe vous répond sous 48 h."
+        eyebrow={messages.contact.eyebrow}
+        title={messages.contact.title}
+        description={messages.contact.description}
       />
 
       <section className="py-16 sm:py-24">
@@ -30,18 +33,18 @@ export default async function ContactPage() {
             <div className="space-y-1.5">
               <Info
                 icon={MapPin}
-                label="Adresse"
+                label={messages.contact.address}
                 value={settings.contact.address}
               />
               <Info
                 icon={Phone}
-                label="Téléphone"
+                label={messages.contact.phone}
                 value={settings.contact.phone}
                 href={`tel:${settings.contact.phone.replace(/\s/g, "")}`}
               />
               <Info
                 icon={Mail}
-                label="E-mail"
+                label={messages.contact.email}
                 value={settings.contact.email}
                 href={`mailto:${settings.contact.email}`}
               />
@@ -68,21 +71,23 @@ function Info({
   href?: string;
 }) {
   const content = href ? (
-    <a href={href} className="font-display font-semibold transition-colors hover:text-forest">
+    <a href={href} className="transition-colors hover:text-forest">
       {value}
     </a>
   ) : (
-    <b className="font-display font-semibold">{value}</b>
+    value
   );
 
   return (
-    <div className="flex items-start gap-4 rounded-[14px] p-3.5 transition hover:bg-sand">
-      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-forest text-shoot">
-        <Icon className="h-5 w-5" />
+    <div className="flex gap-3 rounded-[14px] border border-line bg-surface px-4 py-3.5">
+      <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-[10px] bg-sand text-bamboo">
+        <Icon className="h-4 w-4" />
       </span>
       <div>
-        <small className="block text-[0.8rem] text-muted">{label}</small>
-        {content}
+        <p className="text-[0.78rem] font-semibold uppercase tracking-[0.08em] text-muted">
+          {label}
+        </p>
+        <p className="mt-0.5 text-[0.95rem] text-ink">{content}</p>
       </div>
     </div>
   );

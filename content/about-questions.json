@@ -1,18 +1,22 @@
 [
   {
     "id": "aq-1",
-    "text": "Une association | startup de valorisation du bambou au Cameroun et en Afrique"
+    "text": "Une association | startup de valorisation du bambou au Cameroun et en Afrique",
+    "textEn": "An association | startup promoting bamboo in Cameroon and Africa"
   },
   {
     "id": "aq-2",
-    "text": "Une association centrée sur le développement durable au Cameroun et en Afrique"
+    "text": "Une association centrée sur le développement durable au Cameroun et en Afrique",
+    "textEn": "An association focused on sustainable development in Cameroon and Africa"
   },
   {
     "id": "aq-3",
-    "text": "Une association | startup centrée sur le développement économique au Cameroun"
+    "text": "Une association | startup centrée sur le développement économique au Cameroun",
+    "textEn": "An association | startup focused on economic development in Cameroon"
   },
   {
     "id": "aq-4",
-    "text": "Une association centrée sur la lutte contre le changement climatique au Cameroun"
+    "text": "Une association centrée sur la lutte contre le changement climatique au Cameroun",
+    "textEn": "An association focused on fighting climate change in Cameroon"
   }
 ]

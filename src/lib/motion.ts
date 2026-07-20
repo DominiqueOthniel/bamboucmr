@@ -9,7 +9,7 @@ export const tweenSmooth = { duration: 0.55, ease: easeOut };
 export const tweenFast = { duration: 0.35, ease: easeOut };
 
 export const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 12 },
   visible: { opacity: 1, y: 0 },
 };
 

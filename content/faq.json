@@ -3,48 +3,64 @@
     "id": "faq-1",
     "question": "Qu'est-ce que BambouCamer ?",
     "answer": "BambouCamer est à la fois une association et une startup sociale basée à Dschang (Cameroun). Nous valorisons le bambou comme levier d'économie verte, de restauration écologique et de développement des communautés locales.",
-    "order": 1
+    "order": 1,
+    "questionEn": "What is BambouCamer?",
+    "answerEn": "BambouCamer is both an association and a social startup based in Dschang (Cameroon). We promote bamboo as a lever for green economy, ecological restoration and local community development."
   },
   {
     "id": "faq-2",
     "question": "Pourquoi le bambou ?",
     "answer": "Le bambou pousse rapidement, stocke du carbone, stabilise les sols et peut remplacer des matériaux plus polluants. C'est une ressource locale sous-exploitée, idéale pour allier protection de l'environnement et activités économiques durables.",
-    "order": 2
+    "order": 2,
+    "questionEn": "Why bamboo?",
+    "answerEn": "Bamboo grows quickly, stores carbon, stabilises soils and can replace more polluting materials. It is an underused local resource, ideal for combining environmental protection and durable economic activity."
   },
   {
     "id": "faq-3",
     "question": "Où êtes-vous basés ?",
     "answer": "Notre siège est à Dschang (Immeuble Gabon Bar, face au stade de Foréké). Nos actions touchent le Cameroun et s'étendent progressivement à d'autres territoires africains via des partenariats.",
-    "order": 3
+    "order": 3,
+    "questionEn": "Where are you based?",
+    "answerEn": "Our headquarters is in Dschang (Gabon Bar building, facing Foreke stadium). Our actions cover Cameroon and gradually expand to other African territories through partnerships."
   },
   {
     "id": "faq-4",
     "question": "Quelles solutions proposez-vous ?",
-    "answer": "Nous accompagnons la plantation et la restauration, la formation des acteurs locaux, le développement de filières et de produits à base de bambou, ainsi que des projets RSE pour les entreprises qui souhaitent un impact mesurable.",
-    "order": 4
+    "answer": "Nous accompagnons la plantation et la restauration, la formation des acteurs locaux, le développement de filières et de produits à base de bambou, ainsi que des partenariats pour des projets à impact mesurable.",
+    "order": 4,
+    "questionEn": "What solutions do you offer?",
+    "answerEn": "We support planting and restoration, training of local actors, development of bamboo value chains and products, as well as partnerships for projects with measurable impact."
   },
   {
     "id": "faq-5",
     "question": "Comment devenir partenaire ?",
-    "answer": "Entreprises, ONG, collectivités ou bailleurs : contactez-nous via le formulaire ou par e-mail. Nous construisons des partenariats sur mesure (cofinancement, expertise technique, projets terrain, mécénat ou RSE).",
-    "order": 5
+    "answer": "Entreprises, ONG, collectivités ou bailleurs : contactez-nous via le formulaire ou par e-mail. Nous construisons des partenariats sur mesure (cofinancement, expertise technique, projets terrain).",
+    "order": 5,
+    "questionEn": "How to become a partner?",
+    "answerEn": "Businesses, NGOs, local governments or funders: contact us via the form or by email. We build tailored partnerships (co-funding, technical expertise, field projects)."
   },
   {
     "id": "faq-6",
     "question": "Proposez-vous des formations ?",
     "answer": "Oui. Nous organisons des formations et ateliers sur la culture du bambou, sa transformation et les bonnes pratiques de gestion durable, destinés aux communautés, porteurs de projets et partenaires.",
-    "order": 6
+    "order": 6,
+    "questionEn": "Do you offer training?",
+    "answerEn": "Yes. We organise training and workshops on bamboo cultivation, processing and sustainable management practices for communities, project holders and partners."
   },
   {
     "id": "faq-7",
     "question": "Comment mesurer votre impact ?",
     "answer": "Nous suivons des indicateurs concrets : plantations, surfaces restaurées, personnes formées, avancée des projets produits et partenariats. Ces progrès sont présentés sur notre page Impact.",
-    "order": 7
+    "order": 7,
+    "questionEn": "How do you measure your impact?",
+    "answerEn": "We track concrete indicators: plantings, restored areas, people trained, product project progress and partnerships. These advances are presented on our Impact page."
   },
   {
     "id": "faq-8",
     "question": "Comment vous contacter ?",
     "answer": "Écrivez à contact@bamboucamer.com, appelez le (+237) 653 07 70 76, ou utilisez le formulaire de la page Contact. Nous répondons en général sous 48 heures.",
-    "order": 8
+    "order": 8,
+    "questionEn": "How can I contact you?",
+    "answerEn": "Write to contact@bamboucamer.com, call (+237) 653 07 70 76, or use the Contact page form. We usually reply within 48 hours."
   }
 ]
