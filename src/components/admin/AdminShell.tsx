@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
   BarChart3,
@@ -59,10 +60,19 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
             open ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <div className="flex h-14 shrink-0 items-center border-b border-line px-5 sm:h-16">
-            <Link href="/admin" className="font-display text-lg font-bold text-forest">
+          <div className="flex h-14 shrink-0 items-center gap-2.5 border-b border-line px-4 sm:h-16 sm:px-5">
+            <Image
+              src="/logo.jpg"
+              alt=""
+              width={36}
+              height={36}
+              className="h-9 w-9 shrink-0 rounded-full object-cover ring-2 ring-bamboo/20"
+            />
+            <Link href="/admin" className="min-w-0 font-display text-lg font-bold leading-tight text-forest">
               Bambou<span className="text-bamboo">Camer</span>
-              <span className="ml-1 text-xs font-normal text-muted">Admin</span>
+              <span className="mt-0.5 block text-[0.7rem] font-sans font-normal uppercase tracking-[0.08em] text-muted">
+                Admin
+              </span>
             </Link>
           </div>
           <nav className="flex flex-1 flex-col gap-1 overflow-y-auto p-3 pb-28">
@@ -116,20 +126,30 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
         )}
 
         <div className="flex min-w-0 flex-1 flex-col">
-          <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-line bg-surface/90 px-3 backdrop-blur sm:h-16 sm:px-4 lg:px-8">
+          <header className="sticky top-0 z-20 flex h-14 items-center gap-3 border-b border-line bg-surface/90 px-3 pt-[env(safe-area-inset-top)] backdrop-blur sm:h-16 sm:px-4 lg:px-8">
             <button
               type="button"
-              className="flex h-11 w-11 items-center justify-center rounded-lg bg-sand lg:hidden"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-sand lg:hidden"
               onClick={() => setOpen((v) => !v)}
               aria-label="Menu"
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
-            <p className="truncate text-sm font-medium text-muted lg:hidden">
-              Administration
-            </p>
+            <div className="flex min-w-0 items-center gap-2.5 lg:hidden">
+              <Image
+                src="/logo.jpg"
+                alt=""
+                width={32}
+                height={32}
+                className="h-8 w-8 shrink-0 rounded-full object-cover ring-1 ring-bamboo/20"
+              />
+              <p className="truncate text-sm font-medium text-ink">
+                Bambou<span className="text-bamboo">Camer</span>
+                <span className="ml-1.5 font-normal text-muted">Admin</span>
+              </p>
+            </div>
           </header>
-          <main className="min-w-0 flex-1 overflow-x-clip p-3 sm:p-4 lg:p-8">
+          <main className="min-w-0 flex-1 overflow-x-clip p-3 pb-[max(1rem,env(safe-area-inset-bottom))] sm:p-4 lg:p-8">
             {children}
           </main>
         </div>

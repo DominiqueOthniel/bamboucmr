@@ -9,6 +9,8 @@ type LogoProps = {
   compact?: boolean;
   /** Masquer le texte sous le breakpoint sm (header mobile) */
   hideTextOnMobile?: boolean;
+  /** Lien de destination (défaut : accueil) */
+  href?: string;
 };
 
 export function Logo({
@@ -16,14 +18,15 @@ export function Logo({
   dark = false,
   compact = false,
   hideTextOnMobile = false,
+  href = "/",
 }: LogoProps) {
   const showText = !compact;
   const textClass = hideTextOnMobile ? "hidden sm:inline" : "";
 
   return (
     <Link
-      href="/"
-      className={`inline-flex min-w-0 max-w-[min(100%,14rem)] items-center gap-2 sm:max-w-none sm:gap-2.5 ${className}`}
+      href={href}
+      className={`inline-flex shrink-0 items-center gap-2 sm:gap-2.5 ${className}`}
       aria-label="BambouCamer, accueil"
     >
       <Image
@@ -36,7 +39,7 @@ export function Logo({
       />
       {showText && (
         <span
-          className={`truncate font-display text-[1rem] font-bold tracking-tight sm:text-[1.15rem] ${textClass} ${dark ? "text-white" : "text-ink"}`}
+          className={`whitespace-nowrap font-display text-[1rem] font-bold tracking-tight sm:text-[1.15rem] ${textClass} ${dark ? "text-white" : "text-ink"}`}
         >
           Bambou
           <span className={dark ? "font-semibold text-white/90" : "font-semibold text-bamboo"}>

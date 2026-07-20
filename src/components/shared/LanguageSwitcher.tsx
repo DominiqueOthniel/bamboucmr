@@ -22,7 +22,7 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
             type="button"
             disabled={pending || active}
             onClick={() => setLocale(code)}
-            className={`min-h-8 min-w-9 rounded-[5px] px-2 text-[0.78rem] font-semibold transition ${
+            className={`min-h-9 min-w-9 rounded-[5px] px-2.5 text-[0.78rem] font-semibold transition sm:min-h-8 ${
               active
                 ? "bg-forest text-white"
                 : "text-muted hover:bg-sand hover:text-ink"

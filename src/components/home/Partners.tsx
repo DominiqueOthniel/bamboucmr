@@ -7,14 +7,14 @@ import type { PartnerItem } from "@/lib/content/types";
 
 function PartnerCard({ partner }: { partner: PartnerItem }) {
   return (
-    <div className="flex h-[4.5rem] items-center justify-center rounded-[14px] border border-line bg-surface px-3 py-2 sm:h-20 sm:rounded-[16px] sm:px-4">
+    <div className="flex h-[4.75rem] items-center justify-center rounded-[14px] border border-line bg-surface px-3 py-2.5 sm:h-[5.5rem] sm:rounded-[16px] sm:px-4">
       {partner.logoUrl ? (
         <SiteImage
           src={partner.logoUrl}
           alt={partner.name}
-          width={140}
-          height={48}
-          className="!h-8 !w-auto max-h-8 !object-contain sm:!h-10 sm:max-h-10"
+          width={180}
+          height={64}
+          className="!h-10 !w-auto max-h-10 max-w-[95%] !object-contain sm:!h-12 sm:max-h-12"
         />
       ) : (
         <span className="inline-flex items-center gap-2 text-center font-display text-xs font-bold text-forest sm:text-sm">
@@ -48,7 +48,15 @@ export function Partners({ partners }: { partners: PartnerItem[] }) {
           {t("home.partnersTitle")}
         </h2>
 
-        <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:hidden">
+        <div
+          className={`mt-6 grid gap-3 md:hidden ${
+            partners.length === 1
+              ? "grid-cols-1 max-w-xs mx-auto"
+              : partners.length === 3
+                ? "grid-cols-2 sm:grid-cols-3"
+                : "grid-cols-2"
+          }`}
+        >
           {partners.map((partner) => (
             <PartnerCard key={partner.id} partner={partner} />
           ))}
@@ -56,12 +64,15 @@ export function Partners({ partners }: { partners: PartnerItem[] }) {
       </div>
 
       <div className="relative mt-6 hidden md:block">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-14 bg-gradient-to-r from-sand to-transparent sm:w-20" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-14 bg-gradient-to-l from-sand to-transparent sm:w-20" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-sand to-transparent sm:w-20" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-sand to-transparent sm:w-20" />
         <div className="flex overflow-hidden">
           <div className="animate-marquee flex w-max gap-3 px-3 will-change-transform sm:gap-4 sm:px-4">
             {track.map((partner, i) => (
-              <div key={`${partner.id}-${i}`} className="w-36 shrink-0 sm:w-40">
+              <div
+                key={`${partner.id}-${i}`}
+                className="w-40 shrink-0 sm:w-48 lg:w-52"
+              >
                 <PartnerCard partner={partner} />
               </div>
             ))}

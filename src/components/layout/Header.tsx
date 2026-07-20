@@ -103,12 +103,12 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
           : "border-transparent bg-paper/75 backdrop-blur-md"
       }`}
     >
-      <div className="container-site flex h-14 items-center gap-2 sm:h-[70px] sm:gap-4">
-        <Logo hideTextOnMobile className="min-w-0 shrink" />
+      <div className="container-site flex h-14 items-center gap-2 sm:h-[70px] sm:gap-3 xl:gap-4">
+        <Logo hideTextOnMobile className="shrink-0" />
 
         <nav
           ref={navRef}
-          className="ml-auto hidden items-center gap-0.5 lg:flex"
+          className="ml-auto hidden items-center gap-0.5 xl:flex"
           aria-label="Navigation principale"
         >
           {navItems.map((item) =>
@@ -131,7 +131,7 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
                 key={item.id}
                 href={item.href}
                 aria-current={isActive(item.href) ? "page" : undefined}
-                className={`relative whitespace-nowrap rounded-[var(--radius-sm)] px-2.5 py-2 text-[0.88rem] font-medium transition-colors xl:px-3.5 xl:text-[0.9rem] ${
+                className={`relative whitespace-nowrap rounded-[var(--radius-sm)] px-2.5 py-2 text-[0.88rem] font-medium transition-colors 2xl:px-3.5 2xl:text-[0.9rem] ${
                   isActive(item.href)
                     ? "text-forest"
                     : "text-ink/85 hover:bg-sand/80 hover:text-ink"
@@ -141,7 +141,7 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
                 {isActive(item.href) && (
                   <motion.span
                     layoutId="nav-underline"
-                    className="absolute inset-x-2.5 bottom-1 h-px rounded-full bg-forest xl:inset-x-3"
+                    className="absolute inset-x-2.5 bottom-1 h-px rounded-full bg-forest 2xl:inset-x-3"
                     transition={reduce ? { duration: 0 } : tweenFast}
                   />
                 )}
@@ -150,26 +150,28 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
           )}
         </nav>
 
-        <LanguageSwitcher className="hidden lg:inline-flex" />
+        <div className="ml-auto flex shrink-0 items-center gap-2 xl:ml-0">
+          <LanguageSwitcher className="shrink-0" />
 
-        <Link
-          href="/contact"
-          className="btn-cta hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-[var(--radius-sm)] bg-forest px-4 py-2.5 text-[0.88rem] font-semibold text-white transition lg:ml-2 lg:inline-flex xl:px-5"
-        >
-          <span className="hidden xl:inline">{t("nav.partnerCta")}</span>
-          <span className="xl:hidden">{t("nav.partnerCtaShort")}</span>
-          <ArrowRight className="h-4 w-4" />
-        </Link>
+          <Link
+            href="/contact"
+            className="btn-cta hidden min-h-11 items-center gap-2 whitespace-nowrap rounded-[var(--radius-sm)] bg-forest px-4 py-2.5 text-[0.88rem] font-semibold text-white transition xl:ml-1 xl:inline-flex 2xl:px-5"
+          >
+            <span className="hidden 2xl:inline">{t("nav.partnerCta")}</span>
+            <span className="2xl:hidden">{t("nav.partnerCtaShort")}</span>
+            <ArrowRight className="h-4 w-4" />
+          </Link>
 
-        <button
-          type="button"
-          className="ml-auto flex h-11 w-11 shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-sand lg:ml-0 lg:hidden"
-          aria-label={open ? t("nav.closeMenu") : t("nav.openMenu")}
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+          <button
+            type="button"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[var(--radius-sm)] bg-sand xl:hidden"
+            aria-label={open ? t("nav.closeMenu") : t("nav.openMenu")}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -179,15 +181,12 @@ export function Header({ navItems }: { navItems: NavItem[] }) {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={tweenFast}
-            className="max-h-[min(80vh,560px)] overflow-y-auto border-b border-line bg-surface lg:hidden"
+            className="max-h-[min(80vh,560px)] overflow-y-auto border-b border-line bg-surface xl:hidden"
           >
             <nav
               className="container-site flex flex-col gap-1 py-3 pb-[max(1rem,env(safe-area-inset-bottom))]"
               aria-label={t("nav.openMenu")}
             >
-              <div className="mb-2 px-1">
-                <LanguageSwitcher />
-              </div>
               {navItems.map((item) =>
                 item.children?.length ? (
                   <MobileGroup
@@ -265,7 +264,7 @@ function DesktopDropdown({
         aria-haspopup="menu"
         aria-controls={panelId}
         onClick={onToggle}
-        className={`relative inline-flex items-center gap-1 whitespace-nowrap rounded-[var(--radius-sm)] px-2.5 py-2 text-[0.88rem] font-medium transition-colors xl:px-3.5 xl:text-[0.9rem] ${
+        className={`relative inline-flex items-center gap-1 whitespace-nowrap rounded-[var(--radius-sm)] px-2.5 py-2 text-[0.88rem] font-medium transition-colors 2xl:px-3.5 2xl:text-[0.9rem] ${
           active || open
             ? "text-forest"
             : "text-ink/85 hover:bg-sand/80 hover:text-ink"
@@ -273,13 +272,13 @@ function DesktopDropdown({
       >
         {item.label}
         <ChevronDown
-          className={`h-3.5 w-3.5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          className={`h-3.5 w-3.5 shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
           aria-hidden
         />
         {active && (
           <motion.span
             layoutId="nav-underline"
-            className="absolute inset-x-2.5 bottom-1 h-px rounded-full bg-forest xl:inset-x-3"
+            className="absolute inset-x-2.5 bottom-1 h-px rounded-full bg-forest 2xl:inset-x-3"
             transition={reduce ? { duration: 0 } : tweenFast}
           />
         )}

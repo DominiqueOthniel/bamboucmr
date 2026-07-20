@@ -14,7 +14,13 @@
   {
     "id": "p-3",
     "name": "CJ Group",
-    "logoUrl": null,
+    "logoUrl": "/partners/cjgroup.png",
     "order": 2
+  },
+  {
+    "id": "p-4",
+    "name": "DECENTAS",
+    "logoUrl": "/partners/decentas.png",
+    "order": 3
   }
 ]
